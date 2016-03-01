@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9768B9761C86070800019860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B9751C86070800019860 /* AppDelegate.swift */; };
-		9768B9781C86070800019860 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B9771C86070800019860 /* ViewController.swift */; };
 		9768B97B1C86070800019860 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9768B9791C86070800019860 /* Main.storyboard */; };
 		9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9768B97C1C86070800019860 /* Membot.xcdatamodeld */; };
 		9768B9801C86070800019860 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9768B97F1C86070800019860 /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		9768B9721C86070800019860 /* Membot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Membot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9768B9751C86070800019860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9768B9771C86070800019860 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9768B97A1C86070800019860 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9768B97D1C86070800019860 /* Membot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Membot.xcdatamodel; sourceTree = "<group>"; };
 		9768B97F1C86070800019860 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				9768B9751C86070800019860 /* AppDelegate.swift */,
-				9768B9771C86070800019860 /* ViewController.swift */,
 				9768B9791C86070800019860 /* Main.storyboard */,
 				9768B97F1C86070800019860 /* Assets.xcassets */,
 				9768B9811C86070800019860 /* LaunchScreen.storyboard */,
@@ -263,7 +260,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */,
-				9768B9781C86070800019860 /* ViewController.swift in Sources */,
 				9768B9761C86070800019860 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
