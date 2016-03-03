@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		971466B71C88946B000C07FC /* Memorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971466B51C88946B000C07FC /* Memorable.swift */; };
+		971466B81C88946B000C07FC /* MemorableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971466B61C88946B000C07FC /* MemorableData.swift */; };
 		9768B9761C86070800019860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B9751C86070800019860 /* AppDelegate.swift */; };
 		9768B97B1C86070800019860 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9768B9791C86070800019860 /* Main.storyboard */; };
 		9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9768B97C1C86070800019860 /* Membot.xcdatamodeld */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		971466B51C88946B000C07FC /* Memorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memorable.swift; sourceTree = "<group>"; };
+		971466B61C88946B000C07FC /* MemorableData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableData.swift; sourceTree = "<group>"; };
 		9768B9721C86070800019860 /* Membot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Membot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9768B9751C86070800019860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9768B97A1C86070800019860 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		9768B9741C86070800019860 /* Membot */ = {
 			isa = PBXGroup;
 			children = (
+				971466B51C88946B000C07FC /* Memorable.swift */,
+				971466B61C88946B000C07FC /* MemorableData.swift */,
 				9768B9751C86070800019860 /* AppDelegate.swift */,
 				FA1399991C8612C10050678C /* MonthCollectionView */,
 				FA13999A1C8612E10050678C /* DayCollectionView */,
@@ -316,6 +322,8 @@
 				9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */,
 				9768B9761C86070800019860 /* AppDelegate.swift in Sources */,
 				FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */,
+				971466B71C88946B000C07FC /* Memorable.swift in Sources */,
+				971466B81C88946B000C07FC /* MemorableData.swift in Sources */,
 				FA1399921C8612330050678C /* MonthCollectionViewCell.swift in Sources */,
 				FA13998A1C8611430050678C /* DayCollectionViewController.swift in Sources */,
 				FA13998E1C8611D00050678C /* MonthHeaderCollectionReusableView.swift in Sources */,
