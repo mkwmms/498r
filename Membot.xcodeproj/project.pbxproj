@@ -14,6 +14,15 @@
 		9768B9831C86070800019860 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9768B9811C86070800019860 /* LaunchScreen.storyboard */; };
 		9768B98E1C86070900019860 /* MembotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B98D1C86070900019860 /* MembotTests.swift */; };
 		9768B9991C86070900019860 /* MembotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B9981C86070900019860 /* MembotUITests.swift */; };
+		FA1399881C86112F0050678C /* MonthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399871C86112F0050678C /* MonthCollectionViewController.swift */; };
+		FA13998A1C8611430050678C /* DayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399891C8611430050678C /* DayCollectionViewController.swift */; };
+		FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */; };
+		FA13998E1C8611D00050678C /* MonthHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13998D1C8611D00050678C /* MonthHeaderCollectionReusableView.swift */; };
+		FA1399901C8611DB0050678C /* DayHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13998F1C8611DB0050678C /* DayHeaderCollectionReusableView.swift */; };
+		FA1399921C8612330050678C /* MonthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399911C8612330050678C /* MonthCollectionViewCell.swift */; };
+		FA1399941C86123D0050678C /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399931C86123D0050678C /* DayCollectionViewCell.swift */; };
+		FA1399961C8612490050678C /* MemorableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */; };
+		FA1399981C8612930050678C /* MemorableCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +56,15 @@
 		9768B9941C86070900019860 /* MembotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MembotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9768B9981C86070900019860 /* MembotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembotUITests.swift; sourceTree = "<group>"; };
 		9768B99A1C86070900019860 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA1399871C86112F0050678C /* MonthCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewController.swift; sourceTree = "<group>"; };
+		FA1399891C8611430050678C /* DayCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewController.swift; sourceTree = "<group>"; };
+		FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionViewController.swift; sourceTree = "<group>"; };
+		FA13998D1C8611D00050678C /* MonthHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		FA13998F1C8611DB0050678C /* DayHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		FA1399911C8612330050678C /* MonthCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA1399931C86123D0050678C /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				9768B9751C86070800019860 /* AppDelegate.swift */,
+				FA1399991C8612C10050678C /* MonthCollectionView */,
+				FA13999A1C8612E10050678C /* DayCollectionView */,
+				FA13999B1C8612ED0050678C /* MemorableCollectionView */,
 				9768B9791C86070800019860 /* Main.storyboard */,
 				9768B97F1C86070800019860 /* Assets.xcassets */,
 				9768B9811C86070800019860 /* LaunchScreen.storyboard */,
@@ -123,6 +144,36 @@
 				9768B99A1C86070900019860 /* Info.plist */,
 			);
 			path = MembotUITests;
+			sourceTree = "<group>";
+		};
+		FA1399991C8612C10050678C /* MonthCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				FA1399871C86112F0050678C /* MonthCollectionViewController.swift */,
+				FA13998D1C8611D00050678C /* MonthHeaderCollectionReusableView.swift */,
+				FA1399911C8612330050678C /* MonthCollectionViewCell.swift */,
+			);
+			name = MonthCollectionView;
+			sourceTree = "<group>";
+		};
+		FA13999A1C8612E10050678C /* DayCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				FA1399891C8611430050678C /* DayCollectionViewController.swift */,
+				FA13998F1C8611DB0050678C /* DayHeaderCollectionReusableView.swift */,
+				FA1399931C86123D0050678C /* DayCollectionViewCell.swift */,
+			);
+			name = DayCollectionView;
+			sourceTree = "<group>";
+		};
+		FA13999B1C8612ED0050678C /* MemorableCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */,
+				FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */,
+				FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */,
+			);
+			name = MemorableCollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +310,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1399881C86112F0050678C /* MonthCollectionViewController.swift in Sources */,
+				FA1399941C86123D0050678C /* DayCollectionViewCell.swift in Sources */,
+				FA1399901C8611DB0050678C /* DayHeaderCollectionReusableView.swift in Sources */,
 				9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */,
 				9768B9761C86070800019860 /* AppDelegate.swift in Sources */,
+				FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */,
+				FA1399921C8612330050678C /* MonthCollectionViewCell.swift in Sources */,
+				FA13998A1C8611430050678C /* DayCollectionViewController.swift in Sources */,
+				FA13998E1C8611D00050678C /* MonthHeaderCollectionReusableView.swift in Sources */,
+				FA1399961C8612490050678C /* MemorableCollectionViewCell.swift in Sources */,
+				FA1399981C8612930050678C /* MemorableCollectionReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +547,7 @@
 				9768B99F1C86070900019860 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9768B9A01C86070900019860 /* Build configuration list for PBXNativeTarget "MembotTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +556,7 @@
 				9768B9A21C86070900019860 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9768B9A31C86070900019860 /* Build configuration list for PBXNativeTarget "MembotUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +565,7 @@
 				9768B9A51C86070900019860 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
