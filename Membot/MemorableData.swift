@@ -8,18 +8,6 @@
 
 import Foundation
 
-extension NSDate {
-    
-    func toString() -> String {
-        return NSDateFormatter.localizedStringFromDate(
-            self,
-            dateStyle: .MediumStyle,
-            timeStyle: .NoStyle // Do not display the time
-        )
-    }
-    
-}
-
 class MemorableData {
 
     var allMemorables = [String: [Memorable]]()
