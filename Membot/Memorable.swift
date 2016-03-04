@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSDate {
-    
+
     func toString() -> String {
         return NSDateFormatter.localizedStringFromDate(
             self,
@@ -21,14 +21,13 @@ extension NSDate {
 }
 
 protocol Memorable {
-    
+
     var creationDate: NSDate { get set }
     var tags: [String]? { get set }
     var isFavorite: Bool? { get set }
-    
+
     var data: Any { get set }
     var displayableData: Any? { get set }
-    
-    func refreshData()
 
+    func refreshData()
 }
