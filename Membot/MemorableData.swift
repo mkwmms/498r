@@ -11,6 +11,7 @@ import Foundation
 class MemorableData {
 
     var allMemorables = [String: [Memorable]]()
+    var allMemorablesArray = [Memorable]()
 
     static let sharedInstance = MemorableData()
 
