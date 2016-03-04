@@ -12,9 +12,15 @@ private let reuseIdentifier = "MonthCollectionCellIdentifier"
 
 class MonthCollectionViewController: UICollectionViewController {
 
+    let fbAdapter = FBAdapter()
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        fbAdapter.retrieveMetaData()
 
+        super.viewDidLoad()
+        
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -43,20 +49,49 @@ class MonthCollectionViewController: UICollectionViewController {
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return Int(arc4random_uniform(UInt32(6)))
+        return 1
     }
-
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 3
+        print("MonthController:",MemorableData.sharedInstance.getMemorablesByDay().count)
+//        return MemorableData.sharedInstance.getMemorablesByDay().count
+        return 10
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MonthCollectionViewCell
         
         // Configure the cell
-        numberOfSectionsInCollectionView(collectionView)
+        
+//        view.addSubview(loginButton)
+//        loginButton.center = view.center
+//        loginButton.delegate = self
+        
+        
+//         define an UIImage
+//         add it to the cell
+        
+        if MemorableData.sharedInstance.getMemorablesByDay().count == 0 {
+            return cell
+        }
+        
+        if let url = MemorableData.sharedInstance.getMemorablesByDay()[indexPath.row].data as? NSURL {
+            let imageDataFromURL = NSData(contentsOfURL: url)
+            
+            
+            let fbImage = UIImage(data: imageDataFromURL!)
+            
+            let imageView = UIImageView(image: fbImage)
+            
+            cell.addSubview(imageView)
+            imageView.center = cell.center
+        } else {
+            
+        }
+        
+        
+        
         return cell
     }
 

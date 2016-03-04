@@ -18,6 +18,12 @@ extension NSDate {
         )
     }
     
+//    func stringToNSDate(dateString: String) -> NSDate {
+    
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+//        return dateFormatter.dateFromString(dateString)!
+//    }
 }
 
 protocol Memorable {

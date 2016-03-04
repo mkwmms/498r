@@ -30,6 +30,7 @@
 		FA709E801C88C10E00AAAF06 /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E7F1C88C10E00AAAF06 /* FBLoginViewController.swift */; };
 		FA709E821C89EE7F00AAAF06 /* FBAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */; };
 		FA709E841C89FBDF00AAAF06 /* FBMemorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E831C89FBDF00AAAF06 /* FBMemorable.swift */; };
+		FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E851C8A060400AAAF06 /* Adapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		FA709E7F1C88C10E00AAAF06 /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
 		FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAdapter.swift; sourceTree = "<group>"; };
 		FA709E831C89FBDF00AAAF06 /* FBMemorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBMemorable.swift; sourceTree = "<group>"; };
+		FA709E851C8A060400AAAF06 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		9768B9741C86070800019860 /* Membot */ = {
 			isa = PBXGroup;
 			children = (
+				FA709E851C8A060400AAAF06 /* Adapter.swift */,
 				971466B51C88946B000C07FC /* Memorable.swift */,
 				971466B61C88946B000C07FC /* MemorableData.swift */,
 				9768B9751C86070800019860 /* AppDelegate.swift */,
@@ -340,6 +343,7 @@
 				FA709E821C89EE7F00AAAF06 /* FBAdapter.swift in Sources */,
 				FA1399901C8611DB0050678C /* DayHeaderCollectionReusableView.swift in Sources */,
 				9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */,
+				FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */,
 				FA709E801C88C10E00AAAF06 /* FBLoginViewController.swift in Sources */,
 				9768B9761C86070800019860 /* AppDelegate.swift in Sources */,
 				FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 
 class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
-    let fBAdapter = FBAdapter()
+//    let fbAdapter = FBAdapter()
     @IBOutlet weak var fbProfilePicture: UIImageView!
     
     let loginButton: FBSDKLoginButton = {
@@ -21,14 +21,19 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.addSubview(loginButton)
-        loginButton.center = view.center
-        loginButton.delegate = self
         
-        if let _ = FBSDKAccessToken.currentAccessToken() {
-            //fetchProfile()
-            fBAdapter.retrieveMetaData()
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        if FBSDKAccessToken.currentAccessToken() != nil {
+//            fbAdapter.retrieveMetaData()
+            self.performSegueWithIdentifier("LoginToMonthViewController", sender: self.loginButton)
+        } else {
+            view.addSubview(loginButton)
+            loginButton.center = view.center
+            loginButton.delegate = self
         }
     }
 
@@ -37,62 +42,17 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func fetchProfile() {
-        /*
-        let parameters = ["fields": "picture.type(large),photos.type(uploaded){images, created_time}"]
-        FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler {( connection, result, error) -> Void in
-            if error != nil {
-                print(error)
-                return
-            }
-            
-            
-            let resultImages = result.objectForKey("photos")!.objectForKey("data")!
-            print ("resultImagesCount:", resultImages.count)
-            print (resultImages)
-            for (var i = 0; i < resultImages.count; i++) {
-                
-                let fbImageMetaData = resultImages[i].objectForKey("images")![0].objectForKey("source")
-                
-                let fbImageCreationDate = resultImages[i].objectForKey("created_time")!
-                
-                print("metadata:", fbImageMetaData!)
-                print("creationDate:", fbImageCreationDate)
-                
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                
-                let date = dateFormatter.dateFromString(fbImageCreationDate as! String)
-                
-                let memorable = FBMemorable(creationDate: date!, data: fbImageMetaData!)
-                
-                
-//                print("FBImageMetaData:", fbImageMetaData)
-                //                let memorable = FBMemorable(creationDate: <#T##NSDate#>, data: <#T##Any#>))
-                
-                //                let time = fbImageMetaData.objectForKey("created_time")
-            }
-            
-            let url = NSURL(string: (result.objectForKey("photos")!.objectForKey("data")![0].objectForKey("images")![0]!.objectForKey("source") as! String))
-            
-            let imageDataFromURL = NSData(contentsOfURL: url!)
-            
-            let fbImage = UIImage(data: imageDataFromURL!)
-        }
-        */
-    }
-    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("completed login")
-        fetchProfile()
-        performSegueWithIdentifier("LoginToMonthViewController", sender: nil)
+//        self.performSegueWithIdentifier("LoginToMonthViewController", sender: self)
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-
+//        self.performSegueWithIdentifier("LoginToMonthViewController", sender: self)
     }
     
     func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
+//        self.performSegueWithIdentifier("LoginToMonthViewController", sender: self)
         return true
     }
     

@@ -7,17 +7,23 @@
 //
 
 import Foundation
+import UIKit
 
 class MemorableData {
-
-    var allMemorables = [String: [Memorable]]()
-    var allMemorablesArray = [Memorable]()
+    
+    //    private var allMemorables = [NSDate: [Memorable]]()
+    private var allMemorables = [Memorable]()
 
 //    private let calendar = NSCalendar.currentCalendar()
 
     static let sharedInstance = MemorableData()
     
     private init() {}
+    
+    func addMemorable(memorable: Memorable) -> Void {
+        allMemorables.append(memorable)
+    }
+    
     
 //    func addMemorablesByDay(day: Int, month: Int, year: Int, memorable: Memorable) {
 //        let components = NSDateComponents()
