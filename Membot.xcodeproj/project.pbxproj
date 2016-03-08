@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		971466B71C88946B000C07FC /* Memorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971466B51C88946B000C07FC /* Memorable.swift */; };
 		971466B81C88946B000C07FC /* MemorableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971466B61C88946B000C07FC /* MemorableData.swift */; };
+		974484051C8F29A3001DF7CC /* CalendarLibraryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */; };
+		974484071C8F2A53001DF7CC /* MemorableCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */; };
 		9768B9761C86070800019860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B9751C86070800019860 /* AppDelegate.swift */; };
 		9768B97B1C86070800019860 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9768B9791C86070800019860 /* Main.storyboard */; };
 		9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9768B97C1C86070800019860 /* Membot.xcdatamodeld */; };
@@ -16,6 +18,8 @@
 		9768B9831C86070800019860 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9768B9811C86070800019860 /* LaunchScreen.storyboard */; };
 		9768B98E1C86070900019860 /* MembotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B98D1C86070900019860 /* MembotTests.swift */; };
 		9768B9991C86070900019860 /* MembotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B9981C86070900019860 /* MembotUITests.swift */; };
+		97ED8C711C8D18C0009DAA01 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ED8C6F1C8D18C0009DAA01 /* FBSDKCoreKit.framework */; };
+		97ED8C721C8D18C0009DAA01 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ED8C701C8D18C0009DAA01 /* FBSDKLoginKit.framework */; };
 		FA1399881C86112F0050678C /* MonthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399871C86112F0050678C /* MonthCollectionViewController.swift */; };
 		FA13998A1C8611430050678C /* DayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399891C8611430050678C /* DayCollectionViewController.swift */; };
 		FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */; };
@@ -25,8 +29,6 @@
 		FA1399941C86123D0050678C /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399931C86123D0050678C /* DayCollectionViewCell.swift */; };
 		FA1399961C8612490050678C /* MemorableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */; };
 		FA1399981C8612930050678C /* MemorableCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */; };
-		FA709E781C88BD9500AAAF06 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA709E761C88BD9500AAAF06 /* FBSDKCoreKit.framework */; };
-		FA709E791C88BD9500AAAF06 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA709E771C88BD9500AAAF06 /* FBSDKLoginKit.framework */; };
 		FA709E801C88C10E00AAAF06 /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E7F1C88C10E00AAAF06 /* FBLoginViewController.swift */; };
 		FA709E821C89EE7F00AAAF06 /* FBAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */; };
 		FA709E841C89FBDF00AAAF06 /* FBMemorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E831C89FBDF00AAAF06 /* FBMemorable.swift */; };
@@ -53,6 +55,8 @@
 /* Begin PBXFileReference section */
 		971466B51C88946B000C07FC /* Memorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memorable.swift; sourceTree = "<group>"; };
 		971466B61C88946B000C07FC /* MemorableData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableData.swift; sourceTree = "<group>"; };
+		974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLibraryAdapter.swift; sourceTree = "<group>"; };
+		974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCalendarEvent.swift; sourceTree = "<group>"; };
 		9768B9721C86070800019860 /* Membot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Membot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9768B9751C86070800019860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9768B97A1C86070800019860 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 		9768B9941C86070900019860 /* MembotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MembotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9768B9981C86070900019860 /* MembotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembotUITests.swift; sourceTree = "<group>"; };
 		9768B99A1C86070900019860 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97ED8C6F1C8D18C0009DAA01 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		97ED8C701C8D18C0009DAA01 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		FA1399871C86112F0050678C /* MonthCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewController.swift; sourceTree = "<group>"; };
 		FA1399891C8611430050678C /* DayCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewController.swift; sourceTree = "<group>"; };
 		FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionViewController.swift; sourceTree = "<group>"; };
@@ -75,8 +81,6 @@
 		FA1399931C86123D0050678C /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionReusableView.swift; sourceTree = "<group>"; };
-		FA709E761C88BD9500AAAF06 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		FA709E771C88BD9500AAAF06 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Membot-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA709E7F1C88C10E00AAAF06 /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
 		FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAdapter.swift; sourceTree = "<group>"; };
@@ -89,8 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA709E791C88BD9500AAAF06 /* FBSDKLoginKit.framework in Frameworks */,
-				FA709E781C88BD9500AAAF06 /* FBSDKCoreKit.framework in Frameworks */,
+				97ED8C721C8D18C0009DAA01 /* FBSDKLoginKit.framework in Frameworks */,
+				97ED8C711C8D18C0009DAA01 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,9 +153,11 @@
 				9768B9811C86070800019860 /* LaunchScreen.storyboard */,
 				9768B9841C86070800019860 /* Info.plist */,
 				9768B97C1C86070800019860 /* Membot.xcdatamodeld */,
-				FA709E761C88BD9500AAAF06 /* FBSDKCoreKit.framework */,
-				FA709E771C88BD9500AAAF06 /* FBSDKLoginKit.framework */,
+				97ED8C6F1C8D18C0009DAA01 /* FBSDKCoreKit.framework */,
+				97ED8C701C8D18C0009DAA01 /* FBSDKLoginKit.framework */,
 				FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */,
+				974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */,
+				974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */,
 			);
 			path = Membot;
 			sourceTree = "<group>";
@@ -339,7 +345,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA1399881C86112F0050678C /* MonthCollectionViewController.swift in Sources */,
+				974484051C8F29A3001DF7CC /* CalendarLibraryAdapter.swift in Sources */,
 				FA1399941C86123D0050678C /* DayCollectionViewCell.swift in Sources */,
+				974484071C8F2A53001DF7CC /* MemorableCalendarEvent.swift in Sources */,
 				FA709E821C89EE7F00AAAF06 /* FBAdapter.swift in Sources */,
 				FA1399901C8611DB0050678C /* DayHeaderCollectionReusableView.swift in Sources */,
 				9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */,

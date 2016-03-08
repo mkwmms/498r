@@ -55,6 +55,12 @@ class MemorableData {
         return allMemorables
      }
     
+    func addDataFrom(adapter: Adapter) {
+        adapter.retrieveMetaData { (memorables) -> () in
+            self.allMemorables += memorables
+        }
+    }
+    
 //    func getMemorablesByMonth(month: Int, year: Int) -> [Memorable] {
 //        let matchMonth = NSDateComponents()
 //        matchMonth.year = year
