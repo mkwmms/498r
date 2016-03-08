@@ -14,11 +14,11 @@ class FBAdapter: Adapter {
 
         let parameters = ["fields": "picture.type(large),photos{images, created_time}"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler { (connection, result, error) -> Void in
-            if error != nil {
+            guard error == nil else {
                 print(error)
                 return
             }
-
+        
             let resultImages = result.objectForKey("photos")!.objectForKey("data")!
 
             var facebookMemorables = [Memorable]()
