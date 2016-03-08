@@ -11,22 +11,33 @@ import UIKit
 private let reuseIdentifier = "MonthCollectionCellIdentifier"
 
 class MonthCollectionViewController: UICollectionViewController {
-    
-    override func viewDidLoad() {
-        MemorableData.sharedInstance.addDataFrom(FBAdapter())
-        MemorableData.sharedInstance.addDataFrom(CalendarLibraryAdapter())
-        MemorableData.sharedInstance.addDataFrom(PhotoLibraryAdapter())
 
+    var dataSource: MonthCollectionViewDataSource?
+
+    override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
+        self.dataSource!.addMetaDataFrom(FBAdapter())
+        self.dataSource!.addMetaDataFrom(CalendarLibraryAdapter())
+        self.dataSource!.addMetaDataFrom(PhotoLibraryAdapter())
+
+        // Init our datasource and setup the closure to handle our cell
+        // FIXME
+        self.dataSource = MonthCollectionViewDataSource(memorablesByMonth: self.memorablesByMonth, cellIdentifier: "Cell", configureBlock: { (cell, item) -> () in
+            if let actualCell = cell as? MonthCollectionViewCell {
+                if let actualItem = item as? Memorable {
+                    actualCell.configureForItem(actualItem)
+                }
+            }
+        })
+
+        self.collectionView!.dataSource = self.dataSource
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-//        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        // self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,91 +46,43 @@ class MonthCollectionViewController: UICollectionViewController {
     }
 
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-//        print("MonthController:",MemorableData.sharedInstance.getMemorablesByDay().count)
-//        return MemorableData.sharedInstance.getMemorablesByDay().count
-        return 10
-    }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MonthCollectionViewCell
-        
-        // Configure the cell
-        
-//        view.addSubview(loginButton)
-//        loginButton.center = view.center
-//        loginButton.delegate = self
-        
-        
-//         define an UIImage
-//         add it to the cell
-        
-        if MemorableData.sharedInstance.getMemorablesByDay().count == 0 {
-            return cell
-        }
-        
-        if let url = MemorableData.sharedInstance.getMemorablesByDay()[indexPath.row].data as? NSURL {
-            let imageDataFromURL = NSData(contentsOfURL: url)
-            
-            
-            let fbImage = UIImage(data: imageDataFromURL!)
-            
-            let imageView = UIImageView(image: fbImage)
-            
-            cell.addSubview(imageView)
-            imageView.center = cell.center
-        } else {
-            
-        }
-        return cell
-    }
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using [segue destinationViewController].
+     // Pass the selected object to the new view controller.
+     }
+     */
 
     // MARK: UICollectionViewDelegate
 
     /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
+     // Uncomment this method to specify if the specified item should be highlighted during tracking
+     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+     return true
+     }
+     */
 
     /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
+     // Uncomment this method to specify if the specified item should be selected
+     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+     return true
+     }
+     */
 
     /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
+     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+     override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+     return false
+     }
 
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
+     override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+     return false
+     }
 
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
+     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
 
+     }
+     */
 }
