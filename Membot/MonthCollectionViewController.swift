@@ -11,11 +11,9 @@ import UIKit
 private let reuseIdentifier = "MonthCollectionCellIdentifier"
 
 class MonthCollectionViewController: UICollectionViewController {
-
-    let fbAdapter = FBAdapter()
     
     override func viewDidLoad() {
-        fbAdapter.retrieveMetaData()
+        MemorableData.sharedInstance.addDataFrom(FBAdapter())
 
         super.viewDidLoad()
         
@@ -89,9 +87,6 @@ class MonthCollectionViewController: UICollectionViewController {
         } else {
             
         }
-        
-        
-        
         return cell
     }
 
