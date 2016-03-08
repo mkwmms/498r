@@ -15,6 +15,7 @@ class MonthCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         MemorableData.sharedInstance.addDataFrom(FBAdapter())
         MemorableData.sharedInstance.addDataFrom(CalendarLibraryAdapter())
+        MemorableData.sharedInstance.addDataFrom(PhotoLibraryAdapter())
 
         super.viewDidLoad()
         
@@ -52,7 +53,7 @@ class MonthCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        print("MonthController:",MemorableData.sharedInstance.getMemorablesByDay().count)
+//        print("MonthController:",MemorableData.sharedInstance.getMemorablesByDay().count)
 //        return MemorableData.sharedInstance.getMemorablesByDay().count
         return 10
     }
