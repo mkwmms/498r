@@ -33,7 +33,7 @@ class FBAdapter: Adapter {
 
                 facebookMemorables.append(FBMemorable(creationDate: date!, data: fbImageMetaData!))
             }
-            print("FBAdapter:", MemorableData.sharedInstance.getMemorablesByDay().count)
+//            print("FBAdapter:", MemorableData.sharedInstance.getMemorablesByDay().count)
             completion(facebookMemorables)
 //         collecitonView.numberOfSections(MemorableData.sharedInstance.getMemorablesByDay().count)
         }

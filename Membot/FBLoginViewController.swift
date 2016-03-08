@@ -12,21 +12,19 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
 //    let fbAdapter = FBAdapter()
     @IBOutlet weak var fbProfilePicture: UIImageView!
-    
+
     let loginButton: FBSDKLoginButton = {
         let button = FBSDKLoginButton()
-        button.readPermissions = ["user_photos","user_posts"]
+        button.readPermissions = ["user_photos", "user_posts"]
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
-    
+
     override func viewDidAppear(animated: Bool) {
-        
+
         if FBSDKAccessToken.currentAccessToken() != nil {
 //            fbAdapter.retrieveMetaData()
             self.performSegueWithIdentifier("LoginToMonthViewController", sender: self.loginButton)
@@ -41,30 +39,28 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("completed login")
 //        self.performSegueWithIdentifier("LoginToMonthViewController", sender: self)
     }
-    
+
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
 //        self.performSegueWithIdentifier("LoginToMonthViewController", sender: self)
     }
-    
+
     func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
 //        self.performSegueWithIdentifier("LoginToMonthViewController", sender: self)
         return true
     }
-    
 
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

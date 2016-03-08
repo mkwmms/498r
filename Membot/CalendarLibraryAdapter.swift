@@ -17,7 +17,7 @@ class CalendarLibraryAdapter: Adapter {
         eventStore.requestAccessToEntityType(.Event, completion: { [eventStore]
             granted, error in
             if (error != nil) {
-                print("EROR: do not have access to calendar.")
+                print("ERROR: do not have access to calendar.")
                 return
             }
 
@@ -34,7 +34,7 @@ class CalendarLibraryAdapter: Adapter {
             completion(memorableEvents)
         })
     }
-    
+
     func retrieveData(completion: ([Memorable]) -> ()) {
         // TODO
     }

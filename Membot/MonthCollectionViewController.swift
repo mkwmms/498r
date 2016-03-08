@@ -14,9 +14,9 @@ class MonthCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         MemorableData.sharedInstance.addDataFrom(FBAdapter())
+        MemorableData.sharedInstance.addDataFrom(CalendarLibraryAdapter())
 
         super.viewDidLoad()
-        
         
         
         // Uncomment the following line to preserve selection between presentations

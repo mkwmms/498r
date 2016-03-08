@@ -145,6 +145,8 @@
 				FA709E831C89FBDF00AAAF06 /* FBMemorable.swift */,
 				FA709E7F1C88C10E00AAAF06 /* FBLoginViewController.swift */,
 				FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */,
+				974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */,
+				974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */,
 				FA1399991C8612C10050678C /* MonthCollectionView */,
 				FA13999A1C8612E10050678C /* DayCollectionView */,
 				FA13999B1C8612ED0050678C /* MemorableCollectionView */,
@@ -156,8 +158,6 @@
 				97ED8C6F1C8D18C0009DAA01 /* FBSDKCoreKit.framework */,
 				97ED8C701C8D18C0009DAA01 /* FBSDKLoginKit.framework */,
 				FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */,
-				974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */,
-				974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */,
 			);
 			path = Membot;
 			sourceTree = "<group>";

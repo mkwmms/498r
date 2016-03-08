@@ -9,12 +9,12 @@
 import Foundation
 
 class FBMemorable: Memorable {
-    
+
     init(creationDate: NSDate, data: Any) {
         self.creationDate = creationDate
         self.data = data
     }
-    
+
     init(creationDate: NSDate, tags: [String], isFavorite: Bool, data: Any, displayableData: Any) {
         self.creationDate = creationDate
         self.tags = tags
@@ -22,15 +22,15 @@ class FBMemorable: Memorable {
         self.data = data
         self.displayableData = displayableData
     }
-    
+
     var creationDate: NSDate
     var tags: [String]?
     var isFavorite: Bool?
-    
+
     var data: Any
     var displayableData: Any?
-    
+
     func refreshData() {
-        
+        // TODO
     }
 }
