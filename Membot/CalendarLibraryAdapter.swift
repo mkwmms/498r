@@ -16,7 +16,7 @@ class CalendarLibraryAdapter: Adapter {
 
         eventStore.requestAccessToEntityType(.Event, completion: { [eventStore]
             granted, error in
-            if (error != nil) {
+            guard error == nil else {
                 print("ERROR: do not have access to calendar.")
                 return
             }
