@@ -18,62 +18,56 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     private var configureCellBlock: CollectionViewCellConfigureBlock
 
     init(cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
-//        self.memorablesByMonth = memorablesByMonth
         self.itemIdentifier = cellIdentifier
         self.configureCellBlock = configureBlock
         super.init()
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return self.memorablesByMonth.count
+        print("total count: ", memorablesByMonth.count)
+        return memorablesByMonth.count
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.memorablesByMonth[section].count
+        print("section: ", section, " ", memorablesByMonth[section].count)
+        return memorablesByMonth[section].count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.itemIdentifier!, forIndexPath: indexPath) as UICollectionViewCell
 
         let memorable: Memorable = self.itemAtIndexPath(indexPath)
-//        if (self.configureCellBlock != nil) {
         self.configureCellBlock(cell: cell, memorable: memorable)
-//        }
 
+        cell.backgroundColor = UIColor.redColor()
         return cell
     }
 
-    func addMetaDataFrom(collectionView: UICollectionView, adapter: Adapter) {
-        adapter.retrieveMetaData { (memorables) -> () in
-            // FIXME do not do this every time we add memorables?
-//            memorables.sortInPlace({
-//                $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
-//            })
-            guard memorables.count > 0 else {
-                return
-            }
+    // FIXME does not sort correctly...
+    func sortMemorablesByMonth() {
+        guard MemorableMetadata.sharedInstance.allMemorables.count > 0 else {
+            return
+        }
 
-            let calendar = NSCalendar.currentCalendar()
-            var currentDate = memorables[0].creationDate
-            var memorablesInCurrentMonth = [Memorable]()
-            // Build up 2D array memorablesByMonth
-            for mem in memorables {
-                if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) {
-                    memorablesInCurrentMonth.append(mem)
-                } else {
-                    currentDate = mem.creationDate
-                    if memorablesInCurrentMonth.count > 0 {
-                        self.memorablesByMonth.append(memorablesInCurrentMonth)
-                        memorablesInCurrentMonth = [Memorable]()
-                    }
+        let calendar = NSCalendar.currentCalendar()
+        var currentDate = MemorableMetadata.sharedInstance.allMemorables[0].creationDate
+        var memorablesInCurrentMonth = [Memorable]()
+        // Build up 2D array memorablesByMonth
+        for mem in MemorableMetadata.sharedInstance.allMemorables {
+            if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) {
+                memorablesInCurrentMonth.append(mem)
+            } else {
+                currentDate = mem.creationDate
+                if memorablesInCurrentMonth.count > 0 {
+                    memorablesByMonth.append(memorablesInCurrentMonth)
+                    memorablesInCurrentMonth = [Memorable]()
                 }
             }
-            debugPrint(self.memorablesByMonth)
         }
+//        debugPrint(self.memorablesByMonth)
     }
 
     private func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
-        return self.memorablesByMonth[indexPath.section][indexPath.row]
+        return memorablesByMonth[indexPath.section][indexPath.row]
     }
-
 }
