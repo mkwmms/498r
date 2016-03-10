@@ -11,7 +11,7 @@ import EventKit
 
 class CalendarLibraryAdapter: Adapter {
 
-    func retrieveMetadata(completion: ([Memorable]) -> ()) {
+    func retrieveMetadata(completion: ([Memorable]) -> Void) {
         let eventStore = EKEventStore()
         eventStore.requestAccessToEntityType(.Event, completion: { [eventStore]
             granted, error in
@@ -34,7 +34,7 @@ class CalendarLibraryAdapter: Adapter {
         })
     }
 
-    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> ()) {
+    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
         // TODO
     }
 }

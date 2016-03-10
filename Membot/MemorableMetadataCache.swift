@@ -24,7 +24,7 @@ class MemorableMetadataCache {
         // $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
         // })
 
-        adapter.retrieveMetadata { (memorables) -> () in
+        adapter.retrieveMetadata { (memorables) -> Void in
             self.allMemorables += memorables
         }
     }

@@ -18,9 +18,10 @@ class MonthCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         // Init our datasource and setup the closure to handle our cell
-        monthDataSource = MonthCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> () in
+        monthDataSource = MonthCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> Void in
             if let actualCell = cell as? MonthCollectionViewCell {
                 if let mem = memorable as? Memorable {
+                    debugPrint(mem)
                     actualCell.configureForItem(mem)
                 }
             }

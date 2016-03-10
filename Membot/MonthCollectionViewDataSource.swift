@@ -9,7 +9,7 @@
 import UIKit
 
 // TODO what the heck?
-typealias CollectionViewCellConfigureBlock = (cell: UICollectionViewCell, memorable: Memorable) -> ()
+typealias CollectionViewCellConfigureBlock = (cell: UICollectionViewCell, memorable: Memorable) -> Void
 
 class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
@@ -38,9 +38,6 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
         if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
             self.configureCellBlock(cell: cell, memorable: memorable)
-            cell.backgroundColor = UIColor.greenColor()
-        } else {
-            cell.backgroundColor = UIColor.redColor()
         }
 
         return cell

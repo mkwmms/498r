@@ -12,7 +12,7 @@ import Photos
 class PhotoLibraryAdapter: Adapter {
     let manager = PHImageManager.defaultManager()
 
-    func retrieveMetadata(completion: ([Memorable]) -> ()) {
+    func retrieveMetadata(completion: ([Memorable]) -> Void) {
         let assets = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
         var photoMemorables = [Memorable]()
         assets.enumerateObjectsUsingBlock({ (obj, index, stop) in
@@ -25,9 +25,10 @@ class PhotoLibraryAdapter: Adapter {
         // call this callback within some kind of Photos callback?
     }
 
-    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> ()) {
+    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
         manager.requestImageForAsset(source as! PHAsset, targetSize: dimensions, contentMode: .AspectFit, options: nil, resultHandler: { (result, info) -> Void in
-            completion(result! as UIImage)
+            debugPrint("requestImageForAsset closure:", result)
+            completion(result)
         })
     }
 }

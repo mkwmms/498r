@@ -10,7 +10,7 @@ import Foundation
 
 protocol Adapter {
 
-    func retrieveMetadata(completion: ([Memorable]) -> ())
+    func retrieveMetadata(completion: ([Memorable]) -> Void)
 
-    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> ())
+    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void)
 }

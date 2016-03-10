@@ -10,7 +10,7 @@ import Foundation
 
 class FacebookPhotosAdapter: Adapter {
 
-    func retrieveMetadata(completion: ([Memorable]) -> ()) {
+    func retrieveMetadata(completion: ([Memorable]) -> Void) {
 
         let parameters = ["fields": "picture.type(large),photos{images, created_time}"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler { (connection, result, error) -> Void in
@@ -39,7 +39,7 @@ class FacebookPhotosAdapter: Adapter {
         }
     }
 
-    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> ()) {
+    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
         /*
          let url = NSURL(string: (result.objectForKey("photos")!.objectForKey("data")![0].objectForKey("images")![0]!.objectForKey("source") as! String))
 
