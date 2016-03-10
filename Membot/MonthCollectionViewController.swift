@@ -19,7 +19,7 @@ class MonthCollectionViewController: UICollectionViewController {
 
         // Init our datasource and setup the closure to handle our cell
         // FIXME
-        self.dataSource = MonthCollectionViewDataSource(cellIdentifier: "MemCell", configureBlock: { (cell, item) -> () in
+        self.dataSource = MonthCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, item) -> () in
             if let actualCell = cell as? MonthCollectionViewCell {
                 if let actualItem = item as? Memorable {
                     actualCell.configureForItem(actualItem)

@@ -103,6 +103,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                     }
                 }
             }
+            debugPrint(self.memorablesByMonth)
         }
     }
 

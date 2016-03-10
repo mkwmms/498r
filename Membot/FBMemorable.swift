@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FBMemorable: Memorable {
+class FBMemorable: Memorable, CustomDebugStringConvertible {
 
     init(creationDate: NSDate, data: Any) {
         self.creationDate = creationDate
@@ -32,5 +32,9 @@ class FBMemorable: Memorable {
 
     func refreshData() {
         // TODO
+    }
+    
+    var debugDescription: String {
+        return String(format: "<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }

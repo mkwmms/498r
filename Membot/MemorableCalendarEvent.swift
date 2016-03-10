@@ -10,7 +10,7 @@ import Foundation
 import EventKit
 import UIKit
 
-class MemorableCalendarEvent: Memorable {
+class MemorableCalendarEvent: Memorable, CustomDebugStringConvertible {
     var creationDate: NSDate
     var tags: [String]?
     var isFavorite: Bool?
@@ -30,5 +30,9 @@ class MemorableCalendarEvent: Memorable {
 //        event = self.data as! EKEvent
 //        event.refresh()
 //        creationDate = event.startDate
+    }
+    
+    var debugDescription: String {
+        return String(format: "<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }

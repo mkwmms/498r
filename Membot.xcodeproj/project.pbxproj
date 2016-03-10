@@ -119,6 +119,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		971036BA1C91D6F600C9628E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA709E851C8A060400AAAF06 /* Adapter.swift */,
+				971466B51C88946B000C07FC /* Memorable.swift */,
+				971036BB1C91D70600C9628E /* Facebook */,
+				971036BC1C91D71700C9628E /* Calendar */,
+				971036BD1C91D72600C9628E /* Photos */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		971036BB1C91D70600C9628E /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				FA709E831C89FBDF00AAAF06 /* FBMemorable.swift */,
+				FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */,
+			);
+			name = Facebook;
+			sourceTree = "<group>";
+		};
+		971036BC1C91D71700C9628E /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */,
+				974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
+		971036BD1C91D72600C9628E /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				974484081C8F3ABF001DF7CC /* PhotoLibraryAdapter.swift */,
+				9744840A1C8F3B1C001DF7CC /* MemorablePhoto.swift */,
+			);
+			name = Photos;
+			sourceTree = "<group>";
+		};
+		971036BE1C91D73C00C9628E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FA709E7F1C88C10E00AAAF06 /* FBLoginViewController.swift */,
+				FA1399991C8612C10050678C /* MonthCollectionView */,
+				FA13999A1C8612E10050678C /* DayCollectionView */,
+				FA13999B1C8612ED0050678C /* MemorableCollectionView */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		9768B9691C86070800019860 = {
 			isa = PBXGroup;
 			children = (
@@ -142,19 +192,9 @@
 		9768B9741C86070800019860 /* Membot */ = {
 			isa = PBXGroup;
 			children = (
-				FA709E851C8A060400AAAF06 /* Adapter.swift */,
-				971466B51C88946B000C07FC /* Memorable.swift */,
 				9768B9751C86070800019860 /* AppDelegate.swift */,
-				FA709E831C89FBDF00AAAF06 /* FBMemorable.swift */,
-				FA709E7F1C88C10E00AAAF06 /* FBLoginViewController.swift */,
-				FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */,
-				974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */,
-				974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */,
-				974484081C8F3ABF001DF7CC /* PhotoLibraryAdapter.swift */,
-				9744840A1C8F3B1C001DF7CC /* MemorablePhoto.swift */,
-				FA1399991C8612C10050678C /* MonthCollectionView */,
-				FA13999A1C8612E10050678C /* DayCollectionView */,
-				FA13999B1C8612ED0050678C /* MemorableCollectionView */,
+				971036BA1C91D6F600C9628E /* Model */,
+				971036BE1C91D73C00C9628E /* UI */,
 				9768B9791C86070800019860 /* Main.storyboard */,
 				9768B97F1C86070800019860 /* Assets.xcassets */,
 				9768B9811C86070800019860 /* LaunchScreen.storyboard */,

@@ -10,26 +10,26 @@ import Foundation
 import UIKit
 import Photos
 
-class MemorablePhoto: Memorable {
+class MemorablePhoto: Memorable, CustomDebugStringConvertible {
     var creationDate: NSDate
     var tags: [String]?
     var isFavorite: Bool?
 //    var location: CLLocation?
-    
+
     var data: Any
     var displayableData: Any?
-    
+
     init(date: NSDate, data: PHAsset) {
         self.creationDate = date
         self.data = data
     }
-    
+
     init(date: NSDate, data: PHAsset, displayableData: UIImage) {
         self.creationDate = date
         self.data = data
         self.displayableData = displayableData
     }
-    
+
     init(date: NSDate, tags: [String], isFavorite: Bool, data: PHAsset, displayableData: UIImage) {
         self.creationDate = date
         self.tags = tags
@@ -37,8 +37,12 @@ class MemorablePhoto: Memorable {
         self.data = data
         self.displayableData = displayableData
     }
-    
+
     func refreshData() {
         // TODO
+    }
+
+    var debugDescription: String {
+        return String(format: "<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }
