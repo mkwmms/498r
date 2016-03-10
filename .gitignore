@@ -27,4 +27,4 @@ DerivedData
 #
 # Pods/
 
-*.framework
+*.framework/*
