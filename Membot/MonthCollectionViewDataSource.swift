@@ -9,7 +9,7 @@
 import UIKit
 
 // TODO what the heck?
-typealias CollectionViewCellConfigureBlock = (cell: UICollectionViewCell, item: Memorable?) -> ()
+typealias CollectionViewCellConfigureBlock = (cell: UICollectionViewCell, item: Memorable) -> ()
 
 class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
@@ -17,8 +17,8 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     private var itemIdentifier: String?
     private var configureCellBlock: CollectionViewCellConfigureBlock
 
-    init(memorablesByMonth: [[Memorable]], cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
-        self.memorablesByMonth = memorablesByMonth
+    init(cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
+//        self.memorablesByMonth = memorablesByMonth
         self.itemIdentifier = cellIdentifier
         self.configureCellBlock = configureBlock
         super.init()
@@ -80,60 +80,34 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
     func addMetaDataFrom(adapter: Adapter) {
         adapter.retrieveMetaData { (memorables) -> () in
-            var mems = self.sortMemorablesByTime(memorables)
-    
-            
-            // TODO call reloadData on MonthCollectionViewController here?
-            print(self.memorablesByMonth)
+            // FIXME do not do this every time we add memorables?
+//            memorables.sortInPlace({
+//                $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
+//            })
+            guard memorables.count > 0 else {
+                return
+            }
+
+            let calendar = NSCalendar.currentCalendar()
+            var currentDate = memorables[0].creationDate
+            var memorablesInCurrentMonth = [Memorable]()
+            // Build up 2D array memorablesByMonth
+            for mem in memorables {
+                if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) {
+                    memorablesInCurrentMonth.append(mem)
+                } else {
+                    currentDate = mem.creationDate
+                    if memorablesInCurrentMonth.count > 0 {
+                        self.memorablesByMonth.append(memorablesInCurrentMonth)
+                        memorablesInCurrentMonth = [Memorable]()
+                    }
+                }
+            }
         }
     }
 
-    private func sortMemorables(memorables: [Memorable]) -> [Memorable] {
-        let calendar = NSCalendar.currentCalendar()
-        return memorables.sort({
-            calendar.compareDate($0.creationDate, toDate: $1.creationDate, toUnitGranularity: .Month)
-                == NSComparisonResult.OrderedAscending
-        })
-    }
-
-    private func sortMemorablesByTime(memorables: [Memorable]) -> [Memorable] {
-        return memorables.sort({
-            $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
-        })
-    }
-
     private func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
-        return self.memorablesByMonth[indexPath.section] [indexPath.row]
+        return self.memorablesByMonth[indexPath.section][indexPath.row]
     }
 
-    // func addMemorablesByDay(day: Int, month: Int, year: Int, memorable: Memorable) {
-    // let components = NSDateComponents()
-    // components.year = year
-    // components.month = month
-    // components.day = day
-    //
-    // if var mems = allMemorables[components] {
-    // mems.append(memorable)
-    // }
-    // }
-    //
-    // func addMemorablesByDay(day: Int, month: Int, year: Int, memorables: [Memorable]) {
-    // let components = NSDateComponents()
-    // components.year = year
-    // components.month = month
-    // components.day = day
-    //
-    // if var mems = allMemorables[components] {
-    // mems += memorables
-    // }
-    // }
-
-    // func getMemorablesByMonth(month: Int, year: Int) -> [Memorable] {
-    // let matchMonth = NSDateComponents()
-    // matchMonth.year = year
-    // matchMonth.month = month
-    // return allMemorables.filter {
-    // calendar.date($0.creationDate, matchesComponents: matchMonth)
-    // }
-    // }
 }

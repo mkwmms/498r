@@ -17,19 +17,19 @@ class MonthCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.dataSource!.addMetaDataFrom(FBAdapter())
-        self.dataSource!.addMetaDataFrom(CalendarLibraryAdapter())
-        self.dataSource!.addMetaDataFrom(PhotoLibraryAdapter())
-
         // Init our datasource and setup the closure to handle our cell
         // FIXME
-        self.dataSource = MonthCollectionViewDataSource(memorablesByMonth: self.memorablesByMonth, cellIdentifier: "Cell", configureBlock: { (cell, item) -> () in
+        self.dataSource = MonthCollectionViewDataSource(cellIdentifier: "MemCell", configureBlock: { (cell, item) -> () in
             if let actualCell = cell as? MonthCollectionViewCell {
                 if let actualItem = item as? Memorable {
                     actualCell.configureForItem(actualItem)
                 }
             }
         })
+
+        self.dataSource!.addMetaDataFrom(FBAdapter())
+        self.dataSource!.addMetaDataFrom(CalendarLibraryAdapter())
+        self.dataSource!.addMetaDataFrom(PhotoLibraryAdapter())
 
         self.collectionView!.dataSource = self.dataSource
 
