@@ -35,6 +35,8 @@
 		FA709E821C89EE7F00AAAF06 /* FBAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */; };
 		FA709E841C89FBDF00AAAF06 /* FBMemorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E831C89FBDF00AAAF06 /* FBMemorable.swift */; };
 		FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E851C8A060400AAAF06 /* Adapter.swift */; };
+		FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */; };
+		FAD10BA31C920A88001262A6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		FA709E811C89EE7F00AAAF06 /* FBAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAdapter.swift; sourceTree = "<group>"; };
 		FA709E831C89FBDF00AAAF06 /* FBMemorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBMemorable.swift; sourceTree = "<group>"; };
 		FA709E851C8A060400AAAF06 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
+		FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,8 @@
 				97ED8C6F1C8D18C0009DAA01 /* FBSDKCoreKit.framework */,
 				97ED8C701C8D18C0009DAA01 /* FBSDKLoginKit.framework */,
 				FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */,
+				FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */,
+				FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */,
 			);
 			path = Membot;
 			sourceTree = "<group>";
@@ -404,11 +410,13 @@
 				9768B9761C86070800019860 /* AppDelegate.swift in Sources */,
 				9744840B1C8F3B1C001DF7CC /* MemorablePhoto.swift in Sources */,
 				FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */,
+				FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */,
 				FA709E841C89FBDF00AAAF06 /* FBMemorable.swift in Sources */,
 				971466B71C88946B000C07FC /* Memorable.swift in Sources */,
 				FA1399921C8612330050678C /* MonthCollectionViewCell.swift in Sources */,
 				FA13998A1C8611430050678C /* DayCollectionViewController.swift in Sources */,
 				FA13998E1C8611D00050678C /* MonthHeaderCollectionReusableView.swift in Sources */,
+				FAD10BA31C920A88001262A6 /* SettingsTableViewCell.swift in Sources */,
 				FA1399961C8612490050678C /* MemorableCollectionViewCell.swift in Sources */,
 				FA1399981C8612930050678C /* MemorableCollectionReusableView.swift in Sources */,
 			);
