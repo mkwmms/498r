@@ -13,7 +13,6 @@ class CalendarLibraryAdapter: Adapter {
 
     func retrieveMetaData(completion: ([Memorable]) -> ()) {
         let eventStore = EKEventStore()
-
         eventStore.requestAccessToEntityType(.Event, completion: { [eventStore]
             granted, error in
             guard error == nil else {
@@ -21,8 +20,8 @@ class CalendarLibraryAdapter: Adapter {
                 return
             }
 
-            // let endDate = NSDate(timeIntervalSinceNow: 604800 * 10); // This is 10 weeks in seconds
-            let predicate = eventStore.predicateForEventsWithStartDate(NSDate(), endDate: NSDate(), calendars: nil)
+            let startDate = NSDate(timeIntervalSinceNow: -(60 * 60 * 24 * 7 * 52 * 3)) // 3 years into past
+            let predicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: NSDate(), calendars: nil)
             let events = eventStore.eventsMatchingPredicate(predicate)
             // let events = NSMutableArray(array: eventStore.eventsMatchingPredicate(predicate))
 
