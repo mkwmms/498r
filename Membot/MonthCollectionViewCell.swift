@@ -13,7 +13,7 @@ class MonthCollectionViewCell: UICollectionViewCell {
 //    @IBOutlet weak var monthCellImage: UIImageView!
     
     // Example cell configuration
-    func configureForItem(item: Any) {
-        // TODO do something with the cell...
+    func configureForItem(memorable: Any) {
+       print(memorable)
     }
 }
