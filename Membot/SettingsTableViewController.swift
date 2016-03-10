@@ -10,8 +10,11 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    let settings = ["Photos", "Calendar Events", "Facebook Photos"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.registerClass(SettingsTableViewCell.self(<#T##NSObject#>), forCellReuseIdentifier: <#T##String#>)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,15 +32,15 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return settings.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
@@ -45,7 +48,7 @@ class SettingsTableViewController: UITableViewController {
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
