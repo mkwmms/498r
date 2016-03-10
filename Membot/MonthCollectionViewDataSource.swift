@@ -24,36 +24,39 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        print("total count: ", memorablesByMonth.count)
+        print("total count:", memorablesByMonth.count)
         return memorablesByMonth.count
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("section: ", section, " ", memorablesByMonth[section].count)
+        print("section:", section, memorablesByMonth[section].count)
         return memorablesByMonth[section].count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.itemIdentifier!, forIndexPath: indexPath) as UICollectionViewCell
 
-        let memorable: Memorable = self.itemAtIndexPath(indexPath)
-        self.configureCellBlock(cell: cell, memorable: memorable)
+        if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
+            self.configureCellBlock(cell: cell, memorable: memorable)
+            cell.backgroundColor = UIColor.greenColor()
+        } else {
+            cell.backgroundColor = UIColor.redColor()
+        }
 
-        cell.backgroundColor = UIColor.redColor()
         return cell
     }
 
     // FIXME does not sort correctly...
     func sortMemorablesByMonth() {
-        guard MemorableMetadata.sharedInstance.allMemorables.count > 0 else {
+        guard MemorableMetadataCache.sharedInstance.allMemorables.count > 0 else {
             return
         }
 
         let calendar = NSCalendar.currentCalendar()
-        var currentDate = MemorableMetadata.sharedInstance.allMemorables[0].creationDate
+        var currentDate = MemorableMetadataCache.sharedInstance.allMemorables[0].creationDate
         var memorablesInCurrentMonth = [Memorable]()
         // Build up 2D array memorablesByMonth
-        for mem in MemorableMetadata.sharedInstance.allMemorables {
+        for mem in MemorableMetadataCache.sharedInstance.allMemorables {
             if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) {
                 memorablesInCurrentMonth.append(mem)
             } else {

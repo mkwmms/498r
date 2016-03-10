@@ -8,11 +8,11 @@
 
 import Foundation
 
-class MemorableMetadata {
+class MemorableMetadataCache {
 
     var allMemorables: [Memorable] // TODO should this be private?
 
-    static let sharedInstance = MemorableMetadata()
+    static let sharedInstance = MemorableMetadataCache()
 
     private init() {
         allMemorables = []
@@ -24,7 +24,7 @@ class MemorableMetadata {
         // $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
         // })
 
-        adapter.retrieveMetaData { (memorables) -> () in
+        adapter.retrieveMetadata { (memorables) -> () in
             self.allMemorables += memorables
         }
     }
