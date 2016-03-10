@@ -14,7 +14,6 @@ class PhotoLibraryAdapter: Adapter {
 
     func retrieveMetaData(completion: ([Memorable]) -> ()) {
         let assets = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
-        
         var photoMemorables = [Memorable]()
         assets.enumerateObjectsUsingBlock({ (obj, index, stop) in
             // TODO add extension to PHFetchResult so we don't have to enumerate these objects and just add them directly?
@@ -22,8 +21,8 @@ class PhotoLibraryAdapter: Adapter {
                 photoMemorables.append(MemorablePhoto(date: asset.creationDate!, data: asset))
             }
         })
-        // call this callback within some kind of Photos callback?
         completion(photoMemorables)
+        // call this callback within some kind of Photos callback?
     }
 
     func retrieveData(completed: ([Memorable]) -> ()) {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		971036CF1C92100200C9628E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CD1C92100200C9628E /* FBSDKCoreKit.framework */; };
+		971036D01C92100200C9628E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CE1C92100200C9628E /* FBSDKLoginKit.framework */; };
 		971466B71C88946B000C07FC /* Memorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971466B51C88946B000C07FC /* Memorable.swift */; };
 		974484051C8F29A3001DF7CC /* CalendarLibraryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */; };
 		974484071C8F2A53001DF7CC /* MemorableCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */; };
@@ -35,8 +37,6 @@
 		FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E851C8A060400AAAF06 /* Adapter.swift */; };
 		FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */; };
 		FAD10BA31C920A88001262A6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */; };
-		FAD10BAA1C920B73001262A6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD10BA81C920B73001262A6 /* FBSDKCoreKit.framework */; };
-		FAD10BAB1C920B73001262A6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD10BA91C920B73001262A6 /* FBSDKLoginKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		971036CD1C92100200C9628E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		971036CE1C92100200C9628E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		971466B51C88946B000C07FC /* Memorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memorable.swift; sourceTree = "<group>"; };
 		974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLibraryAdapter.swift; sourceTree = "<group>"; };
 		974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCalendarEvent.swift; sourceTree = "<group>"; };
@@ -92,8 +94,6 @@
 		FA709E851C8A060400AAAF06 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
 		FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		FAD10BA81C920B73001262A6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		FAD10BA91C920B73001262A6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAD10BAB1C920B73001262A6 /* FBSDKLoginKit.framework in Frameworks */,
-				FAD10BAA1C920B73001262A6 /* FBSDKCoreKit.framework in Frameworks */,
+				971036D01C92100200C9628E /* FBSDKLoginKit.framework in Frameworks */,
+				971036CF1C92100200C9628E /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,9 +204,9 @@
 				9768B9811C86070800019860 /* LaunchScreen.storyboard */,
 				9768B9841C86070800019860 /* Info.plist */,
 				9768B97C1C86070800019860 /* Membot.xcdatamodeld */,
+				971036CD1C92100200C9628E /* FBSDKCoreKit.framework */,
+				971036CE1C92100200C9628E /* FBSDKLoginKit.framework */,
 				FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */,
-				FAD10BA81C920B73001262A6 /* FBSDKCoreKit.framework */,
-				FAD10BA91C920B73001262A6 /* FBSDKLoginKit.framework */,
 				FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */,
 				FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */,
 			);

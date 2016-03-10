@@ -43,6 +43,6 @@ class MemorablePhoto: Memorable, CustomDebugStringConvertible {
     }
 
     var debugDescription: String {
-        return String(format: "<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
+        return String(format: "MemorablePhoto<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }
