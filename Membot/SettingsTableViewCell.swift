@@ -10,6 +10,10 @@ import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
 
+
+    @IBOutlet weak var settingLabel: UILabel!
+    @IBOutlet weak var settingSwitch: UISwitch!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

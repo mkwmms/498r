@@ -11,10 +11,10 @@ import UIKit
 class SettingsTableViewController: UITableViewController {
 
     let settings = ["Photos", "Calendar Events", "Facebook Photos"]
+    let reuseIdentifier = "SettingsTableViewCell"
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.tableView.registerClass(SettingsTableViewCell.self(X<#T##NSObject#>), forCellReuseIdentifier: <#T##String#>)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,9 +42,11 @@ class SettingsTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
+       
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SettingsTableViewCell
+        
+        cell.settingLabel.text = settings[indexPath.item]
+        cell.settingSwitch.selected = false
 
         return cell
     }
