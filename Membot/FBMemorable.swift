@@ -35,6 +35,6 @@ class FBMemorable: Memorable, CustomDebugStringConvertible {
     }
     
     var debugDescription: String {
-        return String(format: "<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
+        return String(format: "MemorableFacebookItem<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }

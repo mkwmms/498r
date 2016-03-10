@@ -14,7 +14,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.registerClass(SettingsTableViewCell.self(<#T##NSObject#>), forCellReuseIdentifier: <#T##String#>)
+//        self.tableView.registerClass(SettingsTableViewCell.self(X<#T##NSObject#>), forCellReuseIdentifier: <#T##String#>)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
