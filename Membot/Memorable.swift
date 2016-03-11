@@ -28,12 +28,13 @@ extension NSDate {
 
 protocol Memorable {
 
+    var adapter: Adapter { get set }
+    var metadata: Any { get set }
+    var displayableData: Any? { get set }
+
     var creationDate: NSDate { get set }
     var tags: [String]? { get set }
     var isFavorite: Bool? { get set }
-
-    var data: Any { get set }
-    var displayableData: Any? { get set }
 
     func refreshData()
 }

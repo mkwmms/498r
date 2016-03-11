@@ -8,9 +8,9 @@
 
 import Foundation
 
-class FBAdapter: Adapter {
+class FacebookPhotosAdapter: Adapter {
 
-    func retrieveMetaData(completion: ([Memorable]) -> ()) {
+    func retrieveMetadata(completion: ([Memorable]) -> Void) {
 
         let parameters = ["fields": "picture.type(large),photos{images, created_time}"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler { (connection, result, error) -> Void in
@@ -18,20 +18,20 @@ class FBAdapter: Adapter {
                 print(error)
                 return
             }
-        
+
             let resultImages = result.objectForKey("photos")!.objectForKey("data")!
 
             var facebookMemorables = [Memorable]()
             for var i = 0; i < resultImages.count; i++ {
                 // FIXME largest image might not always be the first item
-                let fbImageMetaData = resultImages[i].objectForKey("images")![0].objectForKey("source")
+                let fbImageMetadata = resultImages[i].objectForKey("images")![0].objectForKey("source")
                 let fbImageCreationDate = resultImages[i].objectForKey("created_time")!
 
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                 let date = dateFormatter.dateFromString(fbImageCreationDate as! String)
 
-                facebookMemorables.append(FBMemorable(creationDate: date!, data: fbImageMetaData!))
+                facebookMemorables.append(MemorableFacebookPhoto(adapter: self, metadata: fbImageMetadata!, creationDate: date!))
             }
 //            print("FBAdapter:", MemorableData.sharedInstance.getMemorablesByDay().count)
             completion(facebookMemorables)
@@ -39,7 +39,7 @@ class FBAdapter: Adapter {
         }
     }
 
-    func retrieveData(completion: ([Memorable]) -> ()) {
+    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
         /*
          let url = NSURL(string: (result.objectForKey("photos")!.objectForKey("data")![0].objectForKey("images")![0]!.objectForKey("source") as! String))
 

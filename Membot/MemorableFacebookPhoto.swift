@@ -8,32 +8,34 @@
 
 import Foundation
 
-class FBMemorable: Memorable, CustomDebugStringConvertible {
-
-    init(creationDate: NSDate, data: Any) {
-        self.creationDate = creationDate
-        self.data = data
-    }
-
-    init(creationDate: NSDate, tags: [String], isFavorite: Bool, data: Any, displayableData: Any) {
-        self.creationDate = creationDate
-        self.tags = tags
-        self.isFavorite = isFavorite
-        self.data = data
-        self.displayableData = displayableData
-    }
+class MemorableFacebookPhoto: Memorable, CustomDebugStringConvertible {
 
     var creationDate: NSDate
     var tags: [String]?
     var isFavorite: Bool?
 
-    var data: Any
+    var adapter: Adapter
+    var metadata: Any
     var displayableData: Any?
+
+    init(adapter: Adapter, metadata: Any, creationDate: NSDate) {
+        self.adapter = adapter
+        self.metadata = metadata
+        self.creationDate = creationDate
+    }
+
+    init(adapter: Adapter, metadata: Any, creationDate: NSDate, tags: [String], isFavorite: Bool) {
+        self.adapter = adapter
+        self.metadata = metadata
+        self.creationDate = creationDate
+        self.tags = tags
+        self.isFavorite = isFavorite
+    }
 
     func refreshData() {
         // TODO
     }
-    
+
     var debugDescription: String {
         return String(format: "MemorableFacebookItem<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }

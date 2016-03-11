@@ -12,26 +12,13 @@ private let reuseIdentifier = "MonthCollectionCellIdentifier"
 
 class MonthCollectionViewController: UICollectionViewController {
 
-    var dataSource: MonthCollectionViewDataSource?
+    var monthDataSource: MonthCollectionViewDataSource?
 
-//    override func viewWillAppear(animated: Bool) {
-//        code
-//    }
-//    
-//    override func viewDidappear(animated: bool) {
-//        dataSource!.addMetaDataFrom(collectionView!, adapter: FBAdapter())
-//        dataSource!.addMetaDataFrom(collectionView!, adapter: CalendarLibraryAdapter())
-//        dataSource!.addMetaDataFrom(collectionView!, adapter: PhotoLibraryAdapter())
-//
-//    }
-    
     override func viewDidLoad() {
-        
-        print("in month controller")
+        super.viewDidLoad()
 
         // Init our datasource and setup the closure to handle our cell
-        // FIXME
-        self.dataSource = MonthCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> () in
+        monthDataSource = MonthCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> Void in
             if let actualCell = cell as? MonthCollectionViewCell {
                 if let mem = memorable as? Memorable {
                     actualCell.configureForItem(mem)
@@ -39,20 +26,15 @@ class MonthCollectionViewController: UICollectionViewController {
             }
         })
 
-//        dataSource!.addMetaDataFrom(collectionView!, adapter: FBAdapter())
-        dataSource!.addMetaDataFrom(collectionView!, adapter: CalendarLibraryAdapter())
-        dataSource!.addMetaDataFrom(collectionView!, adapter: PhotoLibraryAdapter())
+        monthDataSource?.sortMemorablesByMonth()
 
-        collectionView!.dataSource = self.dataSource
-        collectionView!.backgroundColor = UIColor.grayColor()
-
-        super.viewDidLoad()
+        collectionView!.dataSource = monthDataSource
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-         self.collectionView!.registerClass(MonthCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.registerClass(MonthCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
     override func didReceiveMemoryWarning() {

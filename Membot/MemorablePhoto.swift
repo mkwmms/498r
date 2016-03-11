@@ -11,31 +11,27 @@ import UIKit
 import Photos
 
 class MemorablePhoto: Memorable, CustomDebugStringConvertible {
+    
+    var adapter: Adapter
+    var metadata: Any
+    var displayableData: Any?
+    
     var creationDate: NSDate
     var tags: [String]?
     var isFavorite: Bool?
-//    var location: CLLocation?
 
-    var data: Any
-    var displayableData: Any?
-
-    init(date: NSDate, data: PHAsset) {
-        self.creationDate = date
-        self.data = data
+    init(adapter: Adapter, metadata: PHAsset, creationDate: NSDate) {
+        self.adapter = adapter
+        self.metadata = metadata
+        self.creationDate = creationDate
     }
 
-    init(date: NSDate, data: PHAsset, displayableData: UIImage) {
-        self.creationDate = date
-        self.data = data
-        self.displayableData = displayableData
-    }
-
-    init(date: NSDate, tags: [String], isFavorite: Bool, data: PHAsset, displayableData: UIImage) {
-        self.creationDate = date
+    init(adapter: Adapter, metadata: PHAsset, creationDate: NSDate, tags: [String], isFavorite: Bool) {
+        self.adapter = adapter
+        self.metadata = metadata
+        self.creationDate = creationDate
         self.tags = tags
         self.isFavorite = isFavorite
-        self.data = data
-        self.displayableData = displayableData
     }
 
     func refreshData() {

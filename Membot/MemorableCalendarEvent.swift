@@ -11,18 +11,27 @@ import EventKit
 import UIKit
 
 class MemorableCalendarEvent: Memorable, CustomDebugStringConvertible {
+
+    var adapter: Adapter
+    var metadata: Any
+    var displayableData: Any?
+
     var creationDate: NSDate
     var tags: [String]?
     var isFavorite: Bool?
-    
-//    var location: CLLocation?
 
-    var data: Any
-    var displayableData: Any?
-    
-    init(data: EKEvent) {
-        self.data = data
-        self.creationDate = data.startDate
+    init(adapter: Adapter, metadata: EKEvent, creationDate: NSDate) {
+        self.metadata = metadata
+        self.adapter = adapter
+        self.creationDate = creationDate
+    }
+
+    init(adapter: Adapter, metadata: EKEvent, creationDate: NSDate, tags: [String], isFavorite: Bool) {
+        self.adapter = adapter
+        self.metadata = metadata
+        self.creationDate = creationDate
+        self.tags = tags
+        self.isFavorite = isFavorite
     }
     
     func refreshData() -> Void {
@@ -31,7 +40,7 @@ class MemorableCalendarEvent: Memorable, CustomDebugStringConvertible {
 //        event.refresh()
 //        creationDate = event.startDate
     }
-    
+
     var debugDescription: String {
         return String(format: "MemorableCalendarEvent<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }

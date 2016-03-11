@@ -11,7 +11,7 @@ import EventKit
 
 class CalendarLibraryAdapter: Adapter {
 
-    func retrieveMetaData(completion: ([Memorable]) -> ()) {
+    func retrieveMetadata(completion: ([Memorable]) -> Void) {
         let eventStore = EKEventStore()
         eventStore.requestAccessToEntityType(.Event, completion: { [eventStore]
             granted, error in
@@ -28,13 +28,13 @@ class CalendarLibraryAdapter: Adapter {
             // TODO is it possible to not have to loop through this array?
             var memorableEvents = [Memorable]()
             for event in events {
-                memorableEvents.append(MemorableCalendarEvent(data: event))
+                memorableEvents.append(MemorableCalendarEvent(adapter: self, metadata: event, creationDate: event.creationDate!))
             }
             completion(memorableEvents)
         })
     }
 
-    func retrieveData(completion: ([Memorable]) -> ()) {
+    func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
         // TODO
     }
 }
