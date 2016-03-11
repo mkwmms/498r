@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "MonthCollectionCellIdentifier"
 
-class MonthCollectionViewController: UICollectionViewController {
+class MonthCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var monthDataSource: MonthCollectionViewDataSource?
 
@@ -42,6 +42,13 @@ class MonthCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - FlowLayout
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let cellSize = UIScreen.mainScreen().bounds.width / 10
+        return CGSize(width: cellSize, height: cellSize)
+    }
+    
     /*
      // MARK: - Navigation
 

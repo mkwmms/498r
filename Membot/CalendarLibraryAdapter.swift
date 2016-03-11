@@ -35,6 +35,8 @@ class CalendarLibraryAdapter: Adapter {
     }
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
+        let image = UIImage(named: "peaches")
+        completion(image as UIImage!)
         // TODO
     }
 }

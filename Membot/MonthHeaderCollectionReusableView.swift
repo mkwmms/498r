@@ -9,5 +9,6 @@
 import UIKit
 
 class MonthHeaderCollectionReusableView: UICollectionReusableView {
-        
+//    let headerText = UILabel()
+    @IBOutlet weak var monthHeaderDescription: UILabel!
 }

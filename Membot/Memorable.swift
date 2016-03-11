@@ -10,12 +10,19 @@ import Foundation
 
 extension NSDate {
 
-    func toString() -> String {
-        return NSDateFormatter.localizedStringFromDate(
-            self,
-            dateStyle: .MediumStyle,
-            timeStyle: .NoStyle // Do not display the time
-        )
+    func monthDescription() -> String {
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMMM y"
+        return formatter.stringFromDate(self)
+                
+//        let calendar = NSCalendar.currentCalendar()
+//        let components = calendar.components([.Month, .Year], fromDate: self)
+//        return "\(components.month) \(components.year)"
+    }
+    
+    func dayDescription() -> String {
+        return NSDateFormatter.localizedStringFromDate(self, dateStyle: .MediumStyle, timeStyle: .NoStyle)
     }
 
 //    func stringToNSDate(dateString: String) -> NSDate {

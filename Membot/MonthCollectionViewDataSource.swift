@@ -15,6 +15,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
     var memorablesByMonth = [[Memorable]]()
     private var cellIdentifier: String?
+    private var monthHeaderIdentifier = "MonthHeaderCollectionReusableView"
     private var configureCellBlock: CollectionViewCellConfigureBlock
 
     init(cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
@@ -24,12 +25,12 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        print("total count:", memorablesByMonth.count)
+//        print("total count:", memorablesByMonth.count)
         return memorablesByMonth.count
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("section:", section, memorablesByMonth[section].count)
+//        print("section:", section, memorablesByMonth[section].count)
         return memorablesByMonth[section].count
     }
 
@@ -43,19 +44,34 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        let headerView =
+        collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+            withReuseIdentifier: monthHeaderIdentifier,
+            forIndexPath: indexPath)
+            as! MonthHeaderCollectionReusableView
+        
+        headerView.monthHeaderDescription.text = memorablesByMonth[indexPath.section][0].creationDate.monthDescription()
+        
+        return headerView
+    }
 
 // FIXME does not sort correctly...
     func sortMemorablesByMonth() {
+    
         guard MemorableMetadataCache.sharedInstance.allMemorables.count > 0 else {
             return
         }
 
+//        debugPrint(MemorableMetadataCache.sharedInstance.allMemorables)
         let calendar = NSCalendar.currentCalendar()
         var currentDate = MemorableMetadataCache.sharedInstance.allMemorables[0].creationDate
         var memorablesInCurrentMonth = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
-            if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) {
+            if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) && !(mem is MemorableCalendarEvent) {
                 memorablesInCurrentMonth.append(mem)
             } else {
                 currentDate = mem.creationDate

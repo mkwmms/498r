@@ -40,6 +40,7 @@ class FacebookPhotosAdapter: Adapter {
     }
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
+//        print("SOURCE",source)
         /*
          let url = NSURL(string: (result.objectForKey("photos")!.objectForKey("data")![0].objectForKey("images")![0]!.objectForKey("source") as! String))
 
@@ -47,5 +48,10 @@ class FacebookPhotosAdapter: Adapter {
 
          let fbImage = UIImage(data: imageDataFromURL!)
          */
+        let url = NSURL(string: source as! String)
+        let imageDataFromURL = NSData(contentsOfURL: url!)
+        
+        let fbImage = UIImage(data: imageDataFromURL!)
+        completion(fbImage as UIImage!)
     }
 }
