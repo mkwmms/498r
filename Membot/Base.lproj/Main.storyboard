@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" id="R3z-Lz-mqt" customClass="SettingsTableViewCell" customModule="Membot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R3z-Lz-mqt" id="7Of-bQ-WIV">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -53,14 +53,14 @@
                     <navigationItem key="navigationItem" title="Membot Settings" id="hli-K4-CYq">
                         <barButtonItem key="rightBarButtonItem" title="Month" id="9Cd-0i-aFO">
                             <connections>
-                                <segue destination="rYD-RJ-Ja0" kind="show" id="Tap-5d-wbS"/>
+                                <segue destination="dIA-mm-2FS" kind="show" id="Tap-5d-wbS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZbB-cw-dir" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1073" y="-1223"/>
+            <point key="canvasLocation" x="261" y="-551"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="8zQ-A0-1of">
@@ -82,14 +82,14 @@
                     </view>
                     <connections>
                         <outlet property="fbProfilePicture" destination="Ijy-pa-dWh" id="IaQ-i0-6AE"/>
-                        <segue destination="rYD-RJ-Ja0" kind="show" identifier="LoginToMonthViewController" id="LU1-MH-lSH"/>
+                        <segue destination="dIA-mm-2FS" kind="show" identifier="LoginToMonthViewController" id="LU1-MH-lSH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TXZ-IU-YG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="261" y="-539"/>
+            <point key="canvasLocation" x="-1321" y="-551"/>
         </scene>
-        <!--Month Collection View Controller-->
+        <!--Months-->
         <scene sceneID="2GQ-St-CtO">
             <objects>
                 <collectionViewController id="rYD-RJ-Ja0" customClass="MonthCollectionViewController" customModule="Membot" customModuleProvider="target" sceneMemberID="viewController">
@@ -137,15 +137,27 @@
                             <outlet property="delegate" destination="rYD-RJ-Ja0" id="eOE-1S-P9i"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Months" id="soa-bj-gzp">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="9A9-Gj-Iin">
+                            <connections>
+                                <segue destination="HhP-Ry-jse" kind="show" id="fK4-MO-FB3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Days" id="KAn-eU-9Dp">
+                            <connections>
+                                <segue destination="IAO-2q-VQQ" kind="show" id="LV6-gy-C5i"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="YiX-6F-9OE" kind="show" id="HUg-VU-cei"/>
+                        <segue destination="IAO-2q-VQQ" kind="show" id="HUg-VU-cei"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIZ-wo-xOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="241" y="249"/>
+            <point key="canvasLocation" x="261" y="229"/>
         </scene>
-        <!--Day Collection View Controller-->
+        <!--Days-->
         <scene sceneID="AhG-fC-Dxz">
             <objects>
                 <collectionViewController id="YiX-6F-9OE" customClass="DayCollectionViewController" customModule="Membot" customModuleProvider="target" sceneMemberID="viewController">
@@ -186,13 +198,25 @@
                             <outlet property="delegate" destination="YiX-6F-9OE" id="Nqy-e7-Nzj"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Days" id="xgY-RD-jsJ">
+                        <barButtonItem key="leftBarButtonItem" title="Months" id="Et5-FI-hP8">
+                            <connections>
+                                <segue destination="rYD-RJ-Ja0" kind="show" id="i5Q-Da-n1c"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Memory" id="VrY-4O-CEI">
+                            <connections>
+                                <segue destination="cJe-K7-TbS" kind="show" id="J5b-CO-q8J"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="cJe-K7-TbS" kind="show" id="Qmc-od-Nn0"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWA-sq-yfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="261" y="913"/>
+            <point key="canvasLocation" x="261" y="1017"/>
         </scene>
         <!--Memorable Collection View Controller-->
         <scene sceneID="UHb-k4-fo0">
@@ -230,7 +254,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pkZ-pe-wWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="261" y="1625"/>
+            <point key="canvasLocation" x="261" y="1859"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bsS-gA-BW9">
@@ -248,10 +272,50 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Amy-TT-AvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="261" y="-1223"/>
+            <point key="canvasLocation" x="-551" y="-551"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dLD-g2-s6h">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dIA-mm-2FS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S5u-wK-j1U">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rYD-RJ-Ja0" kind="relationship" relationship="rootViewController" id="4yY-1s-dKA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ydt-2L-1nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-551" y="229"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="62f-cQ-Ss8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IAO-2q-VQQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mt6-gl-18L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YiX-6F-9OE" kind="relationship" relationship="rootViewController" id="ZaT-eP-dly"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D92-52-nbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-551" y="1017"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tap-5d-wbS"/>
+        <segue reference="LV6-gy-C5i"/>
+        <segue reference="i5Q-Da-n1c"/>
+        <segue reference="fK4-MO-FB3"/>
+        <segue reference="Qmc-od-Nn0"/>
+        <segue reference="LU1-MH-lSH"/>
     </inferredMetricsTieBreakers>
 </document>
