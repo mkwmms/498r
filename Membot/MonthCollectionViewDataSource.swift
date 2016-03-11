@@ -34,25 +34,13 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!, forIndexPath: indexPath) as! MonthCollectionViewCell
 
-//        if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
-//            configureCellBlock(cell: cell, memorable: memorable)
-//        }
-        let mem = self.itemAtIndexPath(indexPath)
-
-        let targetSize = CGSize(width: 40, height: 40)
-//        var cellImage = UIImage()
-        mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: cell.sizeThatFits(targetSize), completion: { (image) -> Void in
-            debugPrint("MonthCollectionViewCell:", image)
-            // FIXME monthCellImageView does not exist yet?
-//            cell.monthCellImageView?.image = image as? UIImage
-//            cellImage = image as! UIImage
-            cell.monthCellImageView?.image = image as? UIImage
-//            let imageView = UIImageView(image: image as? UIImage)
-//            cell.addSubview(imageView)
-//            imageView.center = cell.center
-        })
+        if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
+            configureCellBlock(cell: cell, memorable: memorable)
+        }
+        
         return cell
     }
 

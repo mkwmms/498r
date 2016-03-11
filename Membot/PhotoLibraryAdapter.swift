@@ -28,7 +28,7 @@ class PhotoLibraryAdapter: Adapter {
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
         manager.requestImageForAsset(source as! PHAsset, targetSize: dimensions, contentMode: .AspectFit, options: nil, resultHandler: { (result, info) -> Void in
             debugPrint("requestImageForAsset closure:", result)
-            completion(result)
+            completion(result as UIImage!)
         })
     }
 }
