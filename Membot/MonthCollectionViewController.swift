@@ -21,7 +21,6 @@ class MonthCollectionViewController: UICollectionViewController {
         monthDataSource = MonthCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> Void in
             if let actualCell = cell as? MonthCollectionViewCell {
                 if let mem = memorable as? Memorable {
-                    debugPrint(mem)
                     actualCell.configureForItem(mem)
                 }
             }
