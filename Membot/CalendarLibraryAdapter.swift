@@ -28,6 +28,9 @@ class CalendarLibraryAdapter: Adapter {
             // TODO is it possible to not have to loop through this array?
             var memorableEvents = [Memorable]()
             for event in events {
+                guard event.creationDate != nil else {
+                    continue
+                }
                 memorableEvents.append(MemorableCalendarEvent(adapter: self, metadata: event, creationDate: event.creationDate!))
             }
             completion(memorableEvents)

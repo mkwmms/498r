@@ -24,7 +24,8 @@ class FacebookPhotosAdapter: Adapter {
             var facebookMemorables = [Memorable]()
             for var i = 0; i < resultImages.count; i++ {
                 // FIXME largest image might not always be the first item
-                let fbImageMetadata = resultImages[i].objectForKey("images")![0].objectForKey("source")
+                print(resultImages[i].objectForKey("images")!)
+                let fbImageMetadata = resultImages[i].objectForKey("images")![6].objectForKey("source")
                 let fbImageCreationDate = resultImages[i].objectForKey("created_time")!
 
                 let dateFormatter = NSDateFormatter()
@@ -40,14 +41,6 @@ class FacebookPhotosAdapter: Adapter {
     }
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
-//        print("SOURCE",source)
-        /*
-         let url = NSURL(string: (result.objectForKey("photos")!.objectForKey("data")![0].objectForKey("images")![0]!.objectForKey("source") as! String))
-
-         let imageDataFromURL = NSData(contentsOfURL: url!)
-
-         let fbImage = UIImage(data: imageDataFromURL!)
-         */
         let url = NSURL(string: source as! String)
         let imageDataFromURL = NSData(contentsOfURL: url!)
         

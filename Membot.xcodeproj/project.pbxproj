@@ -23,6 +23,9 @@
 		9768B9831C86070800019860 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9768B9811C86070800019860 /* LaunchScreen.storyboard */; };
 		9768B98E1C86070900019860 /* MembotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B98D1C86070900019860 /* MembotTests.swift */; };
 		9768B9991C86070900019860 /* MembotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768B9981C86070900019860 /* MembotUITests.swift */; };
+		978C4E071C985A3A005CF3FE /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978C4E061C985A3A005CF3FE /* Haneke.framework */; };
+		978C4E081C985A3A005CF3FE /* Haneke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 978C4E061C985A3A005CF3FE /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		978C4E0C1C985A75005CF3FE /* Haneke.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 978C4E0B1C985A75005CF3FE /* Haneke.framework.dSYM */; };
 		FA1399881C86112F0050678C /* MonthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399871C86112F0050678C /* MonthCollectionViewController.swift */; };
 		FA13998A1C8611430050678C /* DayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399891C8611430050678C /* DayCollectionViewController.swift */; };
 		FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */; };
@@ -58,6 +61,30 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		978C4E091C985A3A005CF3FE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				978C4E081C985A3A005CF3FE /* Haneke.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		978C4E0A1C985A5B005CF3FE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				978C4E0C1C985A75005CF3FE /* Haneke.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		971036CD1C92100200C9628E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		971036CE1C92100200C9628E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -81,6 +108,8 @@
 		9768B9941C86070900019860 /* MembotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MembotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9768B9981C86070900019860 /* MembotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembotUITests.swift; sourceTree = "<group>"; };
 		9768B99A1C86070900019860 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		978C4E061C985A3A005CF3FE /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = ../Carthage/Build/iOS/Haneke.framework; sourceTree = "<group>"; };
+		978C4E0B1C985A75005CF3FE /* Haneke.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Haneke.framework.dSYM; path = ../Carthage/Build/iOS/Haneke.framework.dSYM; sourceTree = "<group>"; };
 		FA1399871C86112F0050678C /* MonthCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewController.swift; sourceTree = "<group>"; };
 		FA1399891C8611430050678C /* DayCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewController.swift; sourceTree = "<group>"; };
 		FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +136,7 @@
 			files = (
 				971036D01C92100200C9628E /* FBSDKLoginKit.framework in Frameworks */,
 				971036CF1C92100200C9628E /* FBSDKCoreKit.framework in Frameworks */,
+				978C4E071C985A3A005CF3FE /* Haneke.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +242,8 @@
 				9768B9811C86070800019860 /* LaunchScreen.storyboard */,
 				9768B9841C86070800019860 /* Info.plist */,
 				9768B97C1C86070800019860 /* Membot.xcdatamodeld */,
+				978C4E0B1C985A75005CF3FE /* Haneke.framework.dSYM */,
+				978C4E061C985A3A005CF3FE /* Haneke.framework */,
 				971036CD1C92100200C9628E /* FBSDKCoreKit.framework */,
 				971036CE1C92100200C9628E /* FBSDKLoginKit.framework */,
 				FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */,
@@ -278,6 +310,8 @@
 				9768B96E1C86070800019860 /* Sources */,
 				9768B96F1C86070800019860 /* Frameworks */,
 				9768B9701C86070800019860 /* Resources */,
+				978C4E091C985A3A005CF3FE /* Embed Frameworks */,
+				978C4E0A1C985A5B005CF3FE /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -572,6 +606,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Membot",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Membot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -590,6 +625,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Membot",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Membot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
