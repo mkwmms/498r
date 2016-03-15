@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lgb-Tl-7r0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7Ih-c9-RWX">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -82,7 +82,7 @@
                     </view>
                     <connections>
                         <outlet property="fbProfilePicture" destination="Ijy-pa-dWh" id="IaQ-i0-6AE"/>
-                        <segue destination="dIA-mm-2FS" kind="show" identifier="LoginToMonthViewController" id="LU1-MH-lSH"/>
+                        <segue destination="lgb-Tl-7r0" kind="show" identifier="LoginToSettingsSegue" id="e83-dE-MQI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TXZ-IU-YG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,6 +328,5 @@
         <segue reference="i5Q-Da-n1c"/>
         <segue reference="fK4-MO-FB3"/>
         <segue reference="Qmc-od-Nn0"/>
-        <segue reference="LU1-MH-lSH"/>
     </inferredMetricsTieBreakers>
 </document>

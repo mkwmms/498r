@@ -10,10 +10,16 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+//    let settings = Settings()
     let settings = ["Photos", "Calendar Events", "Facebook Photos"]
     let reuseIdentifier = "SettingsTableViewCell"
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // SUPREME HACK
+        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
+        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
+        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -37,7 +43,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return settings.count
+        return self.settings.count
     }
 
     

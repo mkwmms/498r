@@ -45,7 +45,7 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: - FlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let cellSize = UIScreen.mainScreen().bounds.width / 10
+        let cellSize = UIScreen.mainScreen().bounds.width / 5
         return CGSize(width: cellSize, height: cellSize)
     }
     
