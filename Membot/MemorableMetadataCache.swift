@@ -18,6 +18,7 @@ class MemorableMetadataCache {
         allMemorables = []
     }
 
+    // TODO: remove duplicate items... or use a set or something...
     func retrieveMetadataFrom(adapter: Adapter) {
         // FIXME do not do this every time we add memorables?
         // memorables.sortInPlace({
