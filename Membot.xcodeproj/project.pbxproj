@@ -38,7 +38,7 @@
 		FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E851C8A060400AAAF06 /* Adapter.swift */; };
 		FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */; };
 		FAD10BA31C920A88001262A6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */; };
-		FAD10BAD1C9357AF001262A6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BAC1C9357AF001262A6 /* Settings.swift */; };
+		FAD10BAD1C9357AF001262A6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BAC1C9357AF001262A6 /* AppSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +97,7 @@
 		FA709E851C8A060400AAAF06 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
 		FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		FAD10BAC1C9357AF001262A6 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		FAD10BAC1C9357AF001262A6 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +204,7 @@
 				9768B9751C86070800019860 /* AppDelegate.swift */,
 				FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */,
 				FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */,
-				FAD10BAC1C9357AF001262A6 /* Settings.swift */,
+				FAD10BAC1C9357AF001262A6 /* AppSettings.swift */,
 				971036BA1C91D6F600C9628E /* Model */,
 				971036BE1C91D73C00C9628E /* UI */,
 				9768B9791C86070800019860 /* Main.storyboard */,
@@ -407,7 +407,7 @@
 				FA1399941C86123D0050678C /* DayCollectionViewCell.swift in Sources */,
 				974484071C8F2A53001DF7CC /* MemorableCalendarEvent.swift in Sources */,
 				FA709E821C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift in Sources */,
-				FAD10BAD1C9357AF001262A6 /* Settings.swift in Sources */,
+				FAD10BAD1C9357AF001262A6 /* AppSettings.swift in Sources */,
 				FA1399901C8611DB0050678C /* DayHeaderCollectionReusableView.swift in Sources */,
 				9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */,
 				FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */,

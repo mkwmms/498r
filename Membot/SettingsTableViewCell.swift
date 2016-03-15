@@ -9,10 +9,9 @@
 import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
-
-
-    @IBOutlet weak var settingLabel: UILabel!
-    @IBOutlet weak var settingSwitch: UISwitch!
+    
+    @IBOutlet weak var settingCellLabel: UILabel!
+    @IBOutlet weak var settingCellSwitch: UISwitch!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +20,11 @@ class SettingsTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 
+    @IBAction func settingsCellSwitchChanged(sender: AnyObject) {
+        print("eat worms")
+    }
 }
