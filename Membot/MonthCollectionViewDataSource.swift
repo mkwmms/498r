@@ -35,37 +35,40 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
+
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!, forIndexPath: indexPath) as! MonthCollectionViewCell
 
         if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
             configureCellBlock(cell: cell, memorable: memorable)
         }
-        
+
         return cell
     }
-    
+
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        
+
         let headerView =
-        collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-            withReuseIdentifier: monthHeaderIdentifier,
-            forIndexPath: indexPath)
-            as! MonthHeaderCollectionReusableView
-        
+            collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                withReuseIdentifier: monthHeaderIdentifier,
+                forIndexPath: indexPath)
+        as! MonthHeaderCollectionReusableView
+
         headerView.monthHeaderDescription.text = memorablesByMonth[indexPath.section][0].creationDate.monthDescription()
-        
+
         return headerView
     }
 
-// FIXME does not sort correctly...
     func sortMemorablesByMonth() {
-    
+
         guard MemorableMetadataCache.sharedInstance.allMemorables.count > 0 else {
             return
         }
 
-//        debugPrint(MemorableMetadataCache.sharedInstance.allMemorables)
+        // FIXME: noticably slow... should we have an isSorted member?
+        MemorableMetadataCache.sharedInstance.allMemorables.sortInPlace({
+            $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
+        })
+
         let calendar = NSCalendar.currentCalendar()
         var currentDate = MemorableMetadataCache.sharedInstance.allMemorables[0].creationDate
         var memorablesInCurrentMonth = [Memorable]()
@@ -81,7 +84,6 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 }
             }
         }
-//        debugPrint(self.memorablesByMonth)
     }
 
     private func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
