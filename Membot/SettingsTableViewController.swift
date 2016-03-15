@@ -10,12 +10,17 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    let settings = ["Photos", "Calendar Events", "Facebook Photos"]
+    let appSettings = AppSettings()
     let reuseIdentifier = "SettingsTableViewCell"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        // SUPREME HACK
+        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
+        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
+        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,7 +42,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return settings.count
+        return self.appSettings.settings.count
     }
 
     
@@ -45,8 +50,8 @@ class SettingsTableViewController: UITableViewController {
        
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SettingsTableViewCell
         
-        cell.settingLabel.text = settings[indexPath.item]
-        cell.settingSwitch.selected = false
+        cell.settingCellLabel.text = appSettings.settings[indexPath.item].displayableName
+        cell.settingCellSwitch.selected = appSettings.settings[indexPath.item].isEnabled
 
         return cell
     }

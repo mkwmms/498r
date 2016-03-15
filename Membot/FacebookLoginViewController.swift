@@ -27,7 +27,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
         if FBSDKAccessToken.currentAccessToken() != nil {
 //            fbAdapter.retrieveMetaData()
-            self.performSegueWithIdentifier("LoginToMonthViewController", sender: self.loginButton)
+            self.performSegueWithIdentifier("LoginToSettingsSegue", sender: self.loginButton)
         } else {
             view.addSubview(loginButton)
             loginButton.center = view.center
