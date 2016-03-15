@@ -11,24 +11,35 @@ import Foundation
 class MemorableSourceSetting {
     
     var displayableName: String
-    var isEnabled: Bool
+    var isOn: Bool
     
-    init(displayableName: String, isEnabled: Bool) {
+    init(displayableName: String, isOn: Bool) {
         self.displayableName = displayableName
-        self.isEnabled = isEnabled
+        self.isOn = isOn
     }
 }
 
 class AppSettings {
     
-    private let facebookSetting = MemorableSourceSetting(displayableName: "Facebook", isEnabled: false)
-    private let photosSetting = MemorableSourceSetting(displayableName: "Photos", isEnabled: false)
-    private let calendarEventsSetting = MemorableSourceSetting(displayableName: "Calendar Events", isEnabled: false)
+    // AppSetting singleton to acces in AppDelegate
+    static let sharedInstance = AppSettings()
+    
+    private let facebookSetting = MemorableSourceSetting(displayableName: "Facebook", isOn: false)
+    private let photosSetting = MemorableSourceSetting(displayableName: "Photos", isOn: false)
+    private let calendarEventsSetting = MemorableSourceSetting(displayableName: "Calendar Events", isOn: false)
     
     var settings: [MemorableSourceSetting]
 
     init() {
         settings = [facebookSetting, photosSetting, calendarEventsSetting]
+    }
+    
+    func updateSetting(displayableName: String, isOn: Bool) {
+        for appSetting in settings {
+            if appSetting.displayableName == displayableName {
+                appSetting.isOn = isOn
+            }
+        }
     }
 }
 

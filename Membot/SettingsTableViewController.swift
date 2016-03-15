@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    let appSettings = AppSettings()
+    let appSettings = AppSettings.sharedInstance.settings
     let reuseIdentifier = "SettingsTableViewCell"
 
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.appSettings.settings.count
+        return AppSettings.sharedInstance.settings.count
     }
 
     
@@ -50,8 +50,8 @@ class SettingsTableViewController: UITableViewController {
        
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SettingsTableViewCell
         
-        cell.settingCellLabel.text = appSettings.settings[indexPath.item].displayableName
-        cell.settingCellSwitch.selected = appSettings.settings[indexPath.item].isEnabled
+        cell.settingCellLabel.text = AppSettings.sharedInstance.settings[indexPath.item].displayableName
+        cell.settingCellSwitch.on = AppSettings.sharedInstance.settings[indexPath.item].isOn
 
         return cell
     }

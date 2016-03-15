@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsTableViewCell: UITableViewCell {
     
@@ -25,6 +26,26 @@ class SettingsTableViewCell: UITableViewCell {
     }
 
     @IBAction func settingsCellSwitchChanged(sender: AnyObject) {
-        print("eat worms")
+                
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entityDescription = NSEntityDescription.entityForName("Setting",
+            inManagedObjectContext: managedContext)
+        let request = NSFetchRequest()
+        request.entity = entityDescription
+        let predicate = NSPredicate(format: "(displayableName = %@)", settingCellLabel.text!)
+        request.predicate = predicate
+        do {
+            let results = try managedContext.executeFetchRequest(request)
+            let result = results[0] as! NSManagedObject
+            let displayableName = result.valueForKey("displayableName")
+            result.setValue(self.settingCellSwitch.on, forKey: "isOn")
+            try managedContext.save()
+            AppSettings.sharedInstance.updateSetting(displayableName as! String, isOn: self.settingCellSwitch.on)
+            
+        } catch let error as NSError {
+            print("Could not save \(error), \(error.userInfo)")
+
+        }
     }
 }

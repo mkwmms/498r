@@ -15,11 +15,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
 
+        // Initialize AppSettings
+        var coreDataAppSettings = [NSManagedObject]()
+        let fetchRequest = NSFetchRequest(entityName: "Setting")
+        do {
+            let results =
+            try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            coreDataAppSettings = results as! [NSManagedObject]
+            if coreDataAppSettings.count > 0 {
+                // update the AppSettings to reflect what the user has saved to CoreData
+                print("Update Settings")
+                updateAppSettings(results)
+            } else {
+                // do nothing and use AppSettings as we have initialized them
+                print("No Settings")
+                addAppSettingsToCoreData()
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        // Set up for FB use
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-
+        
         return true
+    }
+    
+    func updateAppSettings(results: [AnyObject]) {
+        print ("updating")
+        for result in results {
+            let setting = result as! NSManagedObject
+            if let displayableName = setting.valueForKey("displayableName"), isOn = setting.valueForKey("isOn") {
+                for setting in AppSettings.sharedInstance.settings {
+                    if setting.displayableName == displayableName as! String {
+                        setting.isOn = isOn as! Bool
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    func addAppSettingsToCoreData() {
+        for setting in AppSettings.sharedInstance.settings {
+            let entity =  NSEntityDescription.entityForName("Setting",
+                inManagedObjectContext:self.managedObjectContext)
+            
+            let settingEntity = NSManagedObject(entity: entity!,
+                insertIntoManagedObjectContext: self.managedObjectContext)
+            
+            settingEntity.setValue(setting.displayableName, forKey: "displayableName")
+            settingEntity.setValue(setting.isOn, forKey: "isOn")
+            
+            do {
+                try self.managedObjectContext.save()
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            }
+
+        }
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
