@@ -8,6 +8,10 @@
 
 import Foundation
 
+
+/*
+    If we ever figure out how to do programmatic viewcontrollers, we should not make this a singleton.
+*/
 class MemorableSourceSetting {
     
     var displayableName: String
@@ -24,12 +28,12 @@ class AppSettings {
     // AppSetting singleton to acces in AppDelegate
     static let sharedInstance = AppSettings()
     
-    private let facebookSetting = MemorableSourceSetting(displayableName: "Facebook", isOn: false)
-    private let photosSetting = MemorableSourceSetting(displayableName: "Photos", isOn: false)
-    private let calendarEventsSetting = MemorableSourceSetting(displayableName: "Calendar Events", isOn: false)
+    let facebookSetting = MemorableSourceSetting(displayableName: "Facebook", isOn: false)
+    let photosSetting = MemorableSourceSetting(displayableName: "Photos", isOn: false)
+    let calendarEventsSetting = MemorableSourceSetting(displayableName: "Calendar Events", isOn: false)
     
     var settings: [MemorableSourceSetting]
-
+    
     init() {
         settings = [facebookSetting, photosSetting, calendarEventsSetting]
     }

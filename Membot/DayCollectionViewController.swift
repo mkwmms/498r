@@ -9,6 +9,8 @@
 import UIKit
 
 private let reuseIdentifier = "DayCollectionCellIdentifier"
+private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
+
 
 class DayCollectionViewController: UICollectionViewController {
 
@@ -16,15 +18,26 @@ class DayCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.collectionView?.backgroundColor = UIColor.whiteColor()
 
-//        collectionView!.dataSource = dayDataSource
+        dayDataSource = DayCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> Void in
+            if let actualCell = cell as? DayCollectionViewCell {
+                if let mem = memorable as? Memorable {
+                    actualCell.configureForItem(mem)
+                }
+            }
+        })
+        
+        dayDataSource?.sortMemorablesByDay()
+        
+        collectionView!.dataSource = dayDataSource
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
 //        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         // Do any additional setup after loading the view.
     }
 

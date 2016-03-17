@@ -13,6 +13,13 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     var memorablesByDay = [[Memorable]]()
     private var cellIdentifier: String?
     private var dayHeaderIdentifier = "DayHeaderCollectionReusableView"
+    private var configureCellBlock: CollectionViewCellConfigureBlock
+    
+    init(cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
+        self.cellIdentifier = cellIdentifier
+        self.configureCellBlock = configureBlock
+        super.init()
+    }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         print(memorablesByDay.count)
@@ -27,7 +34,10 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!, forIndexPath: indexPath) as! DayCollectionViewCell
-        
+
+        if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
+            configureCellBlock(cell: cell, memorable: memorable)
+        }
         return cell
     }
     
@@ -36,10 +46,13 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         collectionView.dequeueReusableSupplementaryViewOfKind(kind,
             withReuseIdentifier: dayHeaderIdentifier,
             forIndexPath: indexPath) as! DayHeaderCollectionReusableView
+        
+        headerView.dayHeaderDescription.sizeToFit()
+        headerView.dayHeaderDescription.text = memorablesByDay[indexPath.section][0].creationDate.dayDescription()
         return headerView
     }
     
-    func sortMemorablesByMonth() {
+    func sortMemorablesByDay() {
         
         guard MemorableMetadataCache.sharedInstance.allMemorables.count > 0 else {
             return
@@ -55,16 +68,21 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         var memorablesInCurrentDay = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
-//            if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) && !(mem is MemorableCalendarEvent) {
-            if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Day) {
-                memorablesInCurrentDay.append(mem)
-            } else {
-                currentDate = mem.creationDate
-                if memorablesInCurrentDay.count > 0 {
-                    memorablesByDay.append(memorablesInCurrentDay)
-                    memorablesInCurrentDay = [Memorable]()
+            if mem is MemorableFacebookPhoto && AppSettings.sharedInstance.facebookSetting.isOn || mem is MemorablePhoto && AppSettings.sharedInstance.photosSetting.isOn || mem is MemorableCalendarEvent && AppSettings.sharedInstance.calendarEventsSetting.isOn {
+                if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Day) {
+                    memorablesInCurrentDay.append(mem)
+                } else {
+                    currentDate = mem.creationDate
+                    if memorablesInCurrentDay.count > 0 {
+                        memorablesByDay.append(memorablesInCurrentDay)
+                        memorablesInCurrentDay = [Memorable]()
+                    }
                 }
             }
         }
+    }
+    
+    private func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
+        return memorablesByDay[indexPath.section][indexPath.row]
     }
 }

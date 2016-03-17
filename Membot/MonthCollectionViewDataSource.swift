@@ -64,23 +64,24 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             return
         }
 
-        // FIXME: noticably slow... should we have an isSorted member?
         MemorableMetadataCache.sharedInstance.allMemorables.sortInPlace({
             $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
         })
-
+        
         let calendar = NSCalendar.currentCalendar()
         var currentDate = MemorableMetadataCache.sharedInstance.allMemorables[0].creationDate
         var memorablesInCurrentMonth = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
-            if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) && !(mem is MemorableCalendarEvent) {
-                memorablesInCurrentMonth.append(mem)
-            } else {
-                currentDate = mem.creationDate
-                if memorablesInCurrentMonth.count > 0 {
-                    memorablesByMonth.append(memorablesInCurrentMonth)
-                    memorablesInCurrentMonth = [Memorable]()
+            if mem is MemorableFacebookPhoto && AppSettings.sharedInstance.facebookSetting.isOn || mem is MemorablePhoto && AppSettings.sharedInstance.photosSetting.isOn {
+                if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) && !(mem is MemorableCalendarEvent) {
+                    memorablesInCurrentMonth.append(mem)
+                } else {
+                    currentDate = mem.creationDate
+                    if memorablesInCurrentMonth.count > 0 {
+                        memorablesByMonth.append(memorablesInCurrentMonth)
+                        memorablesInCurrentMonth = [Memorable]()
+                    }
                 }
             }
         }

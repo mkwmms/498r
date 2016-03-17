@@ -9,5 +9,6 @@
 import UIKit
 
 class DayHeaderCollectionReusableView: UICollectionReusableView {
-        
+
+    @IBOutlet weak var dayHeaderDescription: UILabel!
 }
