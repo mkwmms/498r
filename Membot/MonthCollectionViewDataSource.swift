@@ -73,7 +73,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         var memorablesInCurrentMonth = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
-            if mem is MemorableFacebookPhoto && AppSettings.sharedInstance.facebookSetting.isOn || mem is MemorablePhoto && AppSettings.sharedInstance.photosSetting.isOn {
+            if AppSettings.sharedInstance.memTypeIsOn(mem) {
                 if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) && !(mem is MemorableCalendarEvent) {
                     memorablesInCurrentMonth.append(mem)
                 } else {

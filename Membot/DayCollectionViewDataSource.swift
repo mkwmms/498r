@@ -68,7 +68,7 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         var memorablesInCurrentDay = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
-            if mem is MemorableFacebookPhoto && AppSettings.sharedInstance.facebookSetting.isOn || mem is MemorablePhoto && AppSettings.sharedInstance.photosSetting.isOn || mem is MemorableCalendarEvent && AppSettings.sharedInstance.calendarEventsSetting.isOn {
+            if AppSettings.sharedInstance.memTypeIsOn(mem) {
                 if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Day) {
                     memorablesInCurrentDay.append(mem)
                 } else {

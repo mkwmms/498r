@@ -25,11 +25,9 @@ class SettingsTableViewCell: UITableViewCell {
     }
 
     @IBAction func settingsCellSwitchChanged(sender: AnyObject) {
-        
+        self.didTurnOnFacebook()
         if self.settingCellSwitch.on {
             retrieveMetaDataForOnSettings()
-        } else {
-            removeMetaDataForOffSettings()
         }
         saveSwitchToAppSettings()
     }
@@ -71,7 +69,11 @@ class SettingsTableViewCell: UITableViewCell {
         }
     }
     
-    func removeMetaDataForOffSettings() {
-        
+    func didTurnOnFacebook() -> Bool {
+        if self.settingCellLabel.text == "Facebook" && self.settingCellSwitch.on {
+            return true
+        } else {
+            return false
+        }
     }
 }

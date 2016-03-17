@@ -45,5 +45,15 @@ class AppSettings {
             }
         }
     }
+    
+    func memTypeIsOn(memorable: Memorable) -> Bool {
+        if memorable is MemorableFacebookPhoto && facebookSetting.isOn || memorable is MemorablePhoto && photosSetting.isOn || memorable is MemorableCalendarEvent && calendarEventsSetting.isOn {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
 }
 
