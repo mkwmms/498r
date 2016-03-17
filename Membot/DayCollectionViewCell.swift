@@ -9,28 +9,21 @@
 import UIKit
 
 class DayCollectionViewCell: UICollectionViewCell {
-    
-    func addImageToCell() {
-        let image = UIImage(named: "peaches")
-        let imageView = UIImageView(image: image)
-        self.addSubview(imageView)
-    }
-    
+
     func configureForItem(memorable: Any) {
-        let targetWidth = UIScreen.mainScreen().bounds.width
-        let targetSize = CGSize(width: targetWidth, height: targetWidth)
-        let dayImageView: UIImageView = UIImageView()
+        
+//        self.backgroundColor = UIColor.lightGrayColor()
+        
+        let screenSize = UIScreen.mainScreen().bounds
+        let imageTargetSize = UIScreen.mainScreen().bounds
+        let targetSize = CGSize(width: imageTargetSize.width, height: imageTargetSize.width)
         if let mem = memorable as? Memorable {
-            if let url = mem.metadata as? NSURL {
-                dayImageView.hnk_setImageFromURL(url)
-            } else {
-                mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (image) -> Void in
-                    dayImageView.image = image as? UIImage
-                })
-            }
+            mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (image) -> Void in
+                let dayImageView: UIImageView = UIImageView(image: image as? UIImage)
+                dayImageView.frame = CGRectMake(0,0, screenSize.height * 0.9, screenSize.width * 0.9)
+                dayImageView.contentMode = .ScaleAspectFit
+                self.contentView.addSubview(dayImageView)
+            })
         }
-        self.addSubview(dayImageView)
-        self.addImageToCell()
     }
-    
 }

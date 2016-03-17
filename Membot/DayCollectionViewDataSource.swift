@@ -22,12 +22,10 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        print(memorablesByDay.count)
         return memorablesByDay.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(memorablesByDay[section].count)
         return memorablesByDay[section].count
     }
     
