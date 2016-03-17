@@ -25,17 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             coreDataAppSettings = results as! [NSManagedObject]
             if coreDataAppSettings.count > 0 {
                 // update the AppSettings to reflect what the user has saved to CoreData
-                print("Update Settings")
                 updateAppSettings(results)
             } else {
                 // do nothing and use AppSettings as we have initialized them
-                print("No Settings")
                 addAppSettingsToCoreData()
             }
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
-        retrieveMetaDataForOnSettings()
+        retrieveMetadataForOnSettings()
         
         // Set up for FB use
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -44,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func updateAppSettings(results: [AnyObject]) {
-        print ("updating")
         for result in results {
             let setting = result as! NSManagedObject
             if let displayableName = setting.valueForKey("displayableName"), isOn = setting.valueForKey("isOn") {
@@ -78,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func retrieveMetaDataForOnSettings() {
+    func retrieveMetadataForOnSettings() {
         for setting in AppSettings.sharedInstance.settings {
             if setting.isOn {
                 switch setting.displayableName {
@@ -118,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         // TODO refresh the cache
-        retrieveMetaDataForOnSettings()
+        retrieveMetadataForOnSettings()
     }
 
     func applicationWillTerminate(application: UIApplication) {

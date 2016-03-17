@@ -25,12 +25,10 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-//        print("total count:", memorablesByMonth.count)
         return memorablesByMonth.count
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        print("section:", section, memorablesByMonth[section].count)
         return memorablesByMonth[section].count
     }
 

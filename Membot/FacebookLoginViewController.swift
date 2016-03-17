@@ -41,7 +41,6 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        print("completed login")
 //        self.performSegueWithIdentifier("LoginToMonthViewController", sender: self)
     }
 
