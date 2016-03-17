@@ -8,31 +8,6 @@
 
 import Foundation
 
-extension NSDate {
-
-    func monthDescription() -> String {
-        
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MMMM y"
-        return formatter.stringFromDate(self)
-                
-//        let calendar = NSCalendar.currentCalendar()
-//        let components = calendar.components([.Month, .Year], fromDate: self)
-//        return "\(components.month) \(components.year)"
-    }
-    
-    func dayDescription() -> String {
-        return NSDateFormatter.localizedStringFromDate(self, dateStyle: .MediumStyle, timeStyle: .NoStyle)
-    }
-
-//    func stringToNSDate(dateString: String) -> NSDate {
-
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//        return dateFormatter.dateFromString(dateString)!
-//    }
-}
-
 protocol Memorable {
 
     var adapter: Adapter { get set }
@@ -42,6 +17,29 @@ protocol Memorable {
     var creationDate: NSDate { get set }
     var tags: [String]? { get set }
     var isFavorite: Bool? { get set }
+}
 
-    func refreshData()
+//protocol MemorableMetadata {
+//    var source: Any { get set }
+//    var size: CGSize { get set } // TODO should this be CGSize or Any?
+//}
+//
+//protocol MemorableDisplayable {
+//    var data: Any { get set }
+//    
+//}
+
+extension NSDate {
+    
+    func monthDescription() -> String {
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMMM y"
+        return formatter.stringFromDate(self)
+    }
+    
+    func dayDescription() -> String {
+        
+        return NSDateFormatter.localizedStringFromDate(self, dateStyle: .MediumStyle, timeStyle: .NoStyle)
+    }
 }

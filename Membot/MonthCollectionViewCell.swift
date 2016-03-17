@@ -14,7 +14,8 @@ class MonthCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var monthCellImageView: UIImageView!
 
     func configureForItem(memorable: Any) {
-        let targetSize = CGSize(width: 200, height: 200)
+        let targetWidth = UIScreen.mainScreen().bounds.width / 5
+        let targetSize = CGSize(width: targetWidth, height: targetWidth)
         if let mem = memorable as? Memorable {
             if let url = mem.metadata as? NSURL {
                 monthCellImageView.hnk_setImageFromURL(url)

@@ -32,10 +32,6 @@ class MemorableFacebookPhoto: Memorable, CustomDebugStringConvertible {
         self.isFavorite = isFavorite
     }
 
-    func refreshData() {
-        // TODO
-    }
-
     var debugDescription: String {
         return String(format: "MemorableFacebookItem<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }

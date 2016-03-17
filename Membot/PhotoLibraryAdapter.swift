@@ -10,7 +10,7 @@ import Foundation
 import Photos
 
 class PhotoLibraryAdapter: Adapter {
-    let manager = PHImageManager.defaultManager()
+    let manager = PHImageManager.defaultManager() // TODO make this a caching manager
 
     func retrieveMetadata(completion: ([Memorable]) -> Void) {
         let assets = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
@@ -22,12 +22,10 @@ class PhotoLibraryAdapter: Adapter {
             }
         })
         completion(photoMemorables)
-        // call this callback within some kind of Photos callback?
     }
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
         manager.requestImageForAsset(source as! PHAsset, targetSize: dimensions, contentMode: .AspectFit, options: nil, resultHandler: { (result, info) -> Void in
-//            debugPrint("requestImageForAsset closure:", result)
             completion(result as UIImage!)
         })
     }
