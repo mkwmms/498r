@@ -13,17 +13,15 @@ class CalendarLibraryAdapter: Adapter {
 
     func retrieveMetadata(completion: ([Memorable]) -> Void) {
         let eventStore = EKEventStore()
-        eventStore.requestAccessToEntityType(.Event, completion: { [eventStore]
-            granted, error in
+        eventStore.requestAccessToEntityType(.Event, completion: { [eventStore] granted, error in
             guard error == nil else {
-                print("ERROR: do not have access to calendar.")
+                print(error)
                 return
             }
 
             let startDate = NSDate(timeIntervalSinceNow: -(60 * 60 * 24 * 7 * 52 * 3)) // 3 years into past
             let predicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: NSDate(), calendars: nil)
             let events = eventStore.eventsMatchingPredicate(predicate)
-            // let events = NSMutableArray(array: eventStore.eventsMatchingPredicate(predicate))
 
             // TODO is it possible to not have to loop through this array?
             var memorableEvents = [Memorable]()
@@ -41,5 +39,8 @@ class CalendarLibraryAdapter: Adapter {
         let image = UIImage(named: "peaches")
         completion(image as UIImage!)
         // TODO
+        // event = self.data as! EKEvent
+        // event.refresh()
+        // creationDate = event.startDate
     }
 }
