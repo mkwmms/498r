@@ -39,5 +39,8 @@ class CalendarLibraryAdapter: Adapter {
         let image = UIImage(named: "peaches")
         completion(image as UIImage!)
         // TODO
+        // event = self.data as! EKEvent
+        // event.refresh()
+        // creationDate = event.startDate
     }
 }

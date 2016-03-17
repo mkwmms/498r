@@ -33,13 +33,6 @@ class MemorableCalendarEvent: Memorable, CustomDebugStringConvertible {
         self.tags = tags
         self.isFavorite = isFavorite
     }
-    
-    func refreshData() -> Void {
-        // TODO
-//        event = self.data as! EKEvent
-//        event.refresh()
-//        creationDate = event.startDate
-    }
 
     var debugDescription: String {
         return String(format: "MemorableCalendarEvent<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
