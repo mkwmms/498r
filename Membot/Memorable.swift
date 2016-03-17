@@ -19,16 +19,6 @@ protocol Memorable {
     var isFavorite: Bool? { get set }
 }
 
-//protocol MemorableMetadata {
-//    var source: Any { get set }
-//    var size: CGSize { get set } // TODO should this be CGSize or Any?
-//}
-//
-//protocol MemorableDisplayable {
-//    var data: Any { get set }
-//    
-//}
-
 extension NSDate {
     
     func monthDescription() -> String {

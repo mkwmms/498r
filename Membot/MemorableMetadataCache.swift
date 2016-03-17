@@ -10,6 +10,8 @@ import Foundation
 
 class MemorableMetadataCache {
 
+    // TODO use Haneke here?
+    
     var allMemorables: [Memorable] // TODO should this be private?
 
     static let sharedInstance = MemorableMetadataCache()

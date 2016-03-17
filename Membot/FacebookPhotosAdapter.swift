@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import Haneke
 
 class FacebookPhotosAdapter: Adapter {
 
-    // TODO add haneke cache
+    let cache = Shared.imageCache
 
     func retrieveMetadata(completion: ([Memorable]) -> Void) {
 
@@ -49,7 +50,7 @@ class FacebookPhotosAdapter: Adapter {
     }
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
-        
+
         if let metadata = source as? [MemorableFacebookMetadata] {
             var url = metadata[0].source // TODO have a "smarter" default
             for meta in metadata {
@@ -58,9 +59,9 @@ class FacebookPhotosAdapter: Adapter {
                     break // match on first found
                 }
             }
-            let imageDataFromURL = NSData(contentsOfURL: url)
-            let fbImage = UIImage(data: imageDataFromURL!)
-            completion(fbImage as UIImage!)
+            cache.fetch(URL: url).onSuccess { image in
+                completion(image)
+            }
         }
     }
 }

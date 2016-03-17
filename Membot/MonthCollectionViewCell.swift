@@ -17,13 +17,9 @@ class MonthCollectionViewCell: UICollectionViewCell {
         let targetWidth = UIScreen.mainScreen().bounds.width / 5
         let targetSize = CGSize(width: targetWidth, height: targetWidth)
         if let mem = memorable as? Memorable {
-            if let url = mem.metadata as? NSURL {
-                monthCellImageView.hnk_setImageFromURL(url)
-            } else {
-                mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (image) -> Void in
-                    self.monthCellImageView.image = image as? UIImage
-                })
-            }
+            mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (image) -> Void in
+                self.monthCellImageView.image = image as? UIImage
+            })
         }
     }
 }
