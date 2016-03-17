@@ -10,7 +10,13 @@ import Foundation
 import EventKit
 import UIKit
 
-class MemorableCalendarEvent: Memorable, CustomDebugStringConvertible {
+func == (lhs: MemorableCalendarEvent, rhs: MemorableCalendarEvent) -> Bool {
+    return lhs.uniqueId == rhs.uniqueId
+}
+
+class MemorableCalendarEvent: Memorable, Equatable, CustomDebugStringConvertible {
+
+    var uniqueId: String
 
     var adapter: Adapter
     var metadata: Any
@@ -20,13 +26,15 @@ class MemorableCalendarEvent: Memorable, CustomDebugStringConvertible {
     var tags: [String]?
     var isFavorite: Bool?
 
-    init(adapter: Adapter, metadata: EKEvent, creationDate: NSDate) {
-        self.metadata = metadata
+    init(uniqueId: String, adapter: Adapter, metadata: EKEvent, creationDate: NSDate) {
+        self.uniqueId = uniqueId
         self.adapter = adapter
+        self.metadata = metadata
         self.creationDate = creationDate
     }
 
-    init(adapter: Adapter, metadata: EKEvent, creationDate: NSDate, tags: [String], isFavorite: Bool) {
+    init(uniqueId: String, adapter: Adapter, metadata: EKEvent, creationDate: NSDate, tags: [String], isFavorite: Bool) {
+        self.uniqueId = uniqueId
         self.adapter = adapter
         self.metadata = metadata
         self.creationDate = creationDate

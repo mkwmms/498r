@@ -8,7 +8,13 @@
 
 import Foundation
 
-class MemorableFacebookPhoto: Memorable, CustomDebugStringConvertible {
+func == (lhs: MemorableFacebookPhoto, rhs: MemorableFacebookPhoto) -> Bool {
+    return lhs.uniqueId == rhs.uniqueId
+}
+
+class MemorableFacebookPhoto: Memorable, Equatable, CustomDebugStringConvertible {
+
+    var uniqueId: String
 
     var creationDate: NSDate
     var tags: [String]?
@@ -18,20 +24,22 @@ class MemorableFacebookPhoto: Memorable, CustomDebugStringConvertible {
     var metadata: Any
     var displayableData: Any?
 
-    init(adapter: Adapter, metadata: Any, creationDate: NSDate) {
+    init(uniqueId: String, adapter: Adapter, metadata: [MemorableFacebookMetadata], creationDate: NSDate) {
+        self.uniqueId = uniqueId
         self.adapter = adapter
         self.metadata = metadata
         self.creationDate = creationDate
     }
 
-    init(adapter: Adapter, metadata: Any, creationDate: NSDate, tags: [String], isFavorite: Bool) {
+    init(uniqueId: String, adapter: Adapter, metadata: [MemorableFacebookMetadata], creationDate: NSDate, tags: [String], isFavorite: Bool) {
+        self.uniqueId = uniqueId
         self.adapter = adapter
         self.metadata = metadata
         self.creationDate = creationDate
         self.tags = tags
         self.isFavorite = isFavorite
     }
-
+ 
     var debugDescription: String {
         return String(format: "MemorableFacebookItem<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
