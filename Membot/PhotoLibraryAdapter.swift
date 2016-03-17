@@ -22,7 +22,8 @@ class PhotoLibraryAdapter: Adapter {
         assets.enumerateObjectsUsingBlock({ (obj, index, stop) in
             // TODO add extension to PHFetchResult so we don't have to enumerate these objects and just add them directly?
             if let asset = obj as? PHAsset {
-                photoMemorables.append(MemorablePhoto(adapter: self, metadata: asset, creationDate: asset.creationDate!))
+                photoMemorables.append(MemorablePhoto(uniqueId: asset.localIdentifier,
+                    adapter: self, metadata: asset, creationDate: asset.creationDate!))
             }
         })
         completion(photoMemorables)

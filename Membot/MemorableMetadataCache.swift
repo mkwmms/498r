@@ -11,7 +11,7 @@ import Foundation
 class MemorableMetadataCache {
 
     // TODO use Haneke here?
-    
+
     var allMemorables: [Memorable] // TODO should this be private?
 
     static let sharedInstance = MemorableMetadataCache()
@@ -20,15 +20,21 @@ class MemorableMetadataCache {
         allMemorables = []
     }
 
-    // TODO: remove duplicate items... or use a set or something...
     func retrieveMetadataFrom(adapter: Adapter) {
-        // FIXME do not do this every time we add memorables?
-        // memorables.sortInPlace({
-        // $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
-        // })
-
         adapter.retrieveMetadata { (memorables) -> Void in
-            self.allMemorables += memorables
+            self.allMemorables += self.union(self.allMemorables, with: memorables)
         }
+    }
+
+    // TODO make this a generic extension to array and make memorable conform to equatable 
+    //      or at least use the map or filter function
+    private func union(existing: [Memorable], with: [Memorable]) -> [Memorable] {
+        var uninion = [Memorable]()
+        for mem in with {
+            if !existing.contains({ $0.uniqueId == mem.uniqueId }) {
+                uninion.append(mem)
+            }
+        }
+        return uninion
     }
 }

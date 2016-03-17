@@ -29,7 +29,8 @@ class CalendarLibraryAdapter: Adapter {
                 guard event.creationDate != nil else {
                     continue
                 }
-                memorableEvents.append(MemorableCalendarEvent(adapter: self, metadata: event, creationDate: event.creationDate!))
+                memorableEvents.append(MemorableCalendarEvent(uniqueId: event.eventIdentifier,
+                    adapter: self, metadata: event, creationDate: event.creationDate!))
             }
             completion(memorableEvents)
         })
