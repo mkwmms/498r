@@ -13,7 +13,11 @@ class PhotoLibraryAdapter: Adapter {
     let manager = PHImageManager.defaultManager() // TODO make this a caching manager
 
     func retrieveMetadata(completion: ([Memorable]) -> Void) {
-        let assets = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
+        let options = PHFetchOptions()
+        options.sortDescriptors = [
+            NSSortDescriptor(key: "creationDate", ascending: true)
+        ]
+        let assets = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
         var photoMemorables = [Memorable]()
         assets.enumerateObjectsUsingBlock({ (obj, index, stop) in
             // TODO add extension to PHFetchResult so we don't have to enumerate these objects and just add them directly?
@@ -25,8 +29,9 @@ class PhotoLibraryAdapter: Adapter {
     }
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
-        manager.requestImageForAsset(source as! PHAsset, targetSize: dimensions, contentMode: .AspectFit, options: nil, resultHandler: { (result, info) -> Void in
-            completion(result as UIImage!)
+        manager.requestImageForAsset(source as! PHAsset, targetSize: dimensions,
+            contentMode: .AspectFit, options: nil, resultHandler: { (result, info) -> Void in
+                completion(result as UIImage!)
         })
     }
 }
