@@ -21,15 +21,20 @@ class SettingsTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Maybe in the future we'll show a description of each option when user taps row
-        
         self.selectionStyle = .None
     }
 
     @IBAction func settingsCellSwitchChanged(sender: AnyObject) {
         
-        retrieveMetaDataForOnSettings()
+        if self.settingCellSwitch.on {
+            retrieveMetaDataForOnSettings()
+        } else {
+            removeMetaDataForOffSettings()
+        }
+        saveSwitchToAppSettings()
+    }
+    
+    func saveSwitchToAppSettings() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let entityDescription = NSEntityDescription.entityForName("Setting",
@@ -48,13 +53,13 @@ class SettingsTableViewCell: UITableViewCell {
             
         } catch let error as NSError {
             print("Could not save \(error), \(error.userInfo)")
-
+            
         }
     }
     
     func retrieveMetaDataForOnSettings() {
-        if self.settingCellSwitch.on {
-            switch self.settingCellLabel.text! {
+        
+        switch self.settingCellLabel.text! {
             case "Facebook":
                 MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
             case "Photos":
@@ -62,10 +67,11 @@ class SettingsTableViewCell: UITableViewCell {
             case "Calendar Events":
                 MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
             default:
-                MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
-                MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
-                MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
-            }
+                print("No item selected")
         }
+    }
+    
+    func removeMetaDataForOffSettings() {
+        
     }
 }
