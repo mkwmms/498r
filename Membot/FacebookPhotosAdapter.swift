@@ -26,7 +26,7 @@ class FacebookPhotosAdapter: Adapter {
             var facebookMemorables = [Memorable]()
             for var i = 0; i < resultImages.count; ++i {
                 let resultMetadata = resultImages[i].objectForKey("images")!
-                
+
                 var fbImageMetadata = [MemorableFacebookMetadata]()
                 for var j = 0; j < resultMetadata.count; ++j {
                     // FIXME lots of sketchy casting is going down here
@@ -49,9 +49,15 @@ class FacebookPhotosAdapter: Adapter {
     }
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
+        
         if let metadata = source as? [MemorableFacebookMetadata] {
-            // TODO add logic to pick best size from metadata based on requested dimensions
-            let url = metadata[0].source
+            var url = metadata[0].source // TODO have a "smarter" default
+            for meta in metadata {
+                if meta.size.isWithin(100, from: dimensions) {
+                    url = meta.source
+                    break // match on first found
+                }
+            }
             let imageDataFromURL = NSData(contentsOfURL: url)
             let fbImage = UIImage(data: imageDataFromURL!)
             completion(fbImage as UIImage!)
