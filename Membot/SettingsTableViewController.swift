@@ -17,9 +17,9 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // SUPREME HACK
-        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
-        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
-        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
+//        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
+//        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
+//        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -54,6 +54,10 @@ class SettingsTableViewController: UITableViewController {
         cell.settingCellSwitch.on = AppSettings.sharedInstance.settings[indexPath.item].isOn
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
 
 

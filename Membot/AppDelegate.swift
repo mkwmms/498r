@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
+        retrieveMetaDataForOnSettings()
         
         // Set up for FB use
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -76,6 +77,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
     }
+    
+    func retrieveMetaDataForOnSettings() {
+        for setting in AppSettings.sharedInstance.settings {
+            if setting.isOn {
+                switch setting.displayableName {
+                    case "Facebook":
+                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
+                    case "Photos":
+                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
+                    case "Calendar Events":
+                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
+                    default:
+                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
+                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
+                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
+                }
+            }
+        }
+    }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
@@ -98,6 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         // TODO refresh the cache
+        retrieveMetaDataForOnSettings()
     }
 
     func applicationWillTerminate(application: UIApplication) {
