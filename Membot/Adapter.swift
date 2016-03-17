@@ -14,3 +14,23 @@ protocol Adapter {
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void)
 }
+
+extension CGSize {
+    func isWithin(amount: Int, from: CGSize) -> Bool {
+        let amt = CGFloat(amount)
+
+        let targetWidthMinus = from.width - amt
+        let targetWidthPlus = from.width + amt
+        if targetWidthMinus ... targetWidthPlus ~= self.width {
+            return true
+        }
+
+        let targetHeightMinus = from.height - amt
+        let targetHeightPlus = from.height + amt
+        if targetHeightMinus ... targetHeightPlus ~= self.height {
+            return true
+        }
+
+        return false
+    }
+}
