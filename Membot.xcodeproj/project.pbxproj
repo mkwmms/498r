@@ -35,6 +35,7 @@
 		FA1399941C86123D0050678C /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399931C86123D0050678C /* DayCollectionViewCell.swift */; };
 		FA1399961C8612490050678C /* MemorableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */; };
 		FA1399981C8612930050678C /* MemorableCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */; };
+		FA60B28F1C98AB7B00FA73F5 /* DayCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60B28E1C98AB7B00FA73F5 /* DayCollectionViewDataSource.swift */; };
 		FA709E801C88C10E00AAAF06 /* FacebookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E7F1C88C10E00AAAF06 /* FacebookLoginViewController.swift */; };
 		FA709E821C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E811C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift */; };
 		FA709E841C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E831C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift */; };
@@ -119,6 +120,7 @@
 		FA1399931C86123D0050678C /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionReusableView.swift; sourceTree = "<group>"; };
+		FA60B28E1C98AB7B00FA73F5 /* DayCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Membot-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA709E7F1C88C10E00AAAF06 /* FacebookLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginViewController.swift; sourceTree = "<group>"; };
 		FA709E811C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPhotosAdapter.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				FA1399891C8611430050678C /* DayCollectionViewController.swift */,
 				FA13998F1C8611DB0050678C /* DayHeaderCollectionReusableView.swift */,
 				FA1399931C86123D0050678C /* DayCollectionViewCell.swift */,
+				FA60B28E1C98AB7B00FA73F5 /* DayCollectionViewDataSource.swift */,
 			);
 			name = DayCollectionView;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 			files = (
 				FA1399881C86112F0050678C /* MonthCollectionViewController.swift in Sources */,
 				974484051C8F29A3001DF7CC /* CalendarLibraryAdapter.swift in Sources */,
+				FA60B28F1C98AB7B00FA73F5 /* DayCollectionViewDataSource.swift in Sources */,
 				FA1399941C86123D0050678C /* DayCollectionViewCell.swift in Sources */,
 				974484071C8F2A53001DF7CC /* MemorableCalendarEvent.swift in Sources */,
 				FA709E821C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift in Sources */,

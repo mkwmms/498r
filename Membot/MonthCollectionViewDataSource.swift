@@ -50,9 +50,9 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         let headerView =
             collectionView.dequeueReusableSupplementaryViewOfKind(kind,
                 withReuseIdentifier: monthHeaderIdentifier,
-                forIndexPath: indexPath)
-        as! MonthHeaderCollectionReusableView
+                forIndexPath: indexPath) as! MonthHeaderCollectionReusableView
 
+        headerView.monthHeaderDescription.sizeToFit()
         headerView.monthHeaderDescription.text = memorablesByMonth[indexPath.section][0].creationDate.monthDescription()
 
         return headerView

@@ -24,7 +24,7 @@ class FacebookPhotosAdapter: Adapter {
             var facebookMemorables = [Memorable]()
             for var i = 0; i < resultImages.count; i++ {
                 // FIXME largest image might not always be the first item
-                print(resultImages[i].objectForKey("images")!)
+//                print(resultImages[i].objectForKey("images")!)
                 let fbImageMetadata = resultImages[i].objectForKey("images")![6].objectForKey("source")
                 let fbImageCreationDate = resultImages[i].objectForKey("created_time")!
 
