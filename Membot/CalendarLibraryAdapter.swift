@@ -8,6 +8,7 @@
 
 import Foundation
 import EventKit
+import CocoaLumberjackSwift
 
 class CalendarLibraryAdapter: Adapter {
 
@@ -15,7 +16,7 @@ class CalendarLibraryAdapter: Adapter {
         let eventStore = EKEventStore()
         eventStore.requestAccessToEntityType(.Event, completion: { [eventStore] granted, error in
             guard error == nil else {
-                print(error)
+                DDLogError("\(error?.localizedFailureReason) \(error?.localizedDescription)")
                 return
             }
 

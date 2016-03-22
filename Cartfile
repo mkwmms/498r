@@ -1,1 +1,2 @@
 github "Haneke/HanekeSwift"
+github "CocoaLumberjack/CocoaLumberjack" "master"

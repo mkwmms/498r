@@ -8,14 +8,20 @@
 
 import UIKit
 import CoreData
+import CocoaLumberjackSwift
+import CocoaLumberjack.DDDispatchQueueLogFormatter
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+        // Setup logging
+        defaultDebugLevel = DDLogLevel.All
+        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: .Info) // TTY = Xcode console
+        DDTTYLogger.sharedInstance().logFormatter = MembotLogFormatter()
+        
         // Initialize AppSettings
         var coreDataAppSettings = [NSManagedObject]()
         let fetchRequest = NSFetchRequest(entityName: "Setting")
@@ -31,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 addAppSettingsToCoreData()
             }
         } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
+            DDLogError("Could not fetch \(error), \(error.userInfo)")
         }
         retrieveMetadataForOnSettings()
         
@@ -69,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try self.managedObjectContext.save()
             } catch let error as NSError  {
-                print("Could not save \(error), \(error.userInfo)")
+                DDLogError("Could not save \(error), \(error.userInfo)")
             }
 
         }
@@ -156,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+            DDLogError("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
 
@@ -181,9 +187,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                DDLogError("Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
             }
         }
+    }
+}
+
+class MembotLogFormatter: DDDispatchQueueLogFormatter {
+//    let dateFormatter: NSDateFormatter
+    
+//    override init() {
+//        dateFormatter = NSDateFormatter()
+//        dateFormatter.formatterBehavior = .Behavior10_4
+//        dateFormatter.dateFormat = "HH:mm"
+//        
+//        super.init()
+//    }
+    
+    override func formatLogMessage(logMessage: DDLogMessage!) -> String {
+//        let dateAndTime = dateFormatter.stringFromDate(logMessage.timestamp)
+        return "[\(logMessage.function)@\(logMessage.fileName):\(logMessage.line)]: \(logMessage.message)"
+//        return "[\(logMessage.fileName):\(logMessage.line)]: \(logMessage.message)"
     }
 }

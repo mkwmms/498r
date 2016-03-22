@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaLumberjackSwift
 
 class SettingsTableViewController: UITableViewController {
 
@@ -55,7 +56,7 @@ class SettingsTableViewController: UITableViewController {
 
         // see if the cell was fb and flagged as yes, if so, present view controller
         if cell.didTurnOnFacebook() {
-            print("did turn on fb, presentviewcontroller")
+            DDLogVerbose("Did turn on fb, presentviewcontroller")
         }
         return cell
     }

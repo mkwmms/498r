@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CocoaLumberjackSwift
 
 class SettingsTableViewCell: UITableViewCell {
     
@@ -50,7 +51,7 @@ class SettingsTableViewCell: UITableViewCell {
             AppSettings.sharedInstance.updateSetting(displayableName as! String, isOn: self.settingCellSwitch.on)
             
         } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
+            DDLogError("Could not save \(error), \(error.userInfo)")
             
         }
     }
@@ -65,7 +66,7 @@ class SettingsTableViewCell: UITableViewCell {
             case "Calendar Events":
                 MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
             default:
-                print("No item selected")
+                DDLogInfo("No item selected")
         }
     }
     

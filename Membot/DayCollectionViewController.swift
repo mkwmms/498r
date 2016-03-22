@@ -13,10 +13,10 @@ private let reuseIdentifier = "DayCollectionCellIdentifier"
 private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
 
 class DayCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+
     var dayDataSource: DayCollectionViewDataSource?
     var memorableFromSegue: Memorable?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,21 +33,19 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         dayDataSource?.sortMemorablesByDay()
 
         collectionView!.dataSource = dayDataSource
-        
+
         if memorableFromSegue != nil {
             collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(memorableFromSegue!), atScrollPosition: .Top, animated: false)
         }
-        print("COUNT IN DAY:", MemorableMetadataCache.sharedInstance.allMemorables.count)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MonthCellToDayController" {
-
         }
     }
 
@@ -57,15 +55,11 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         let cellSize = UIScreen.mainScreen().bounds.width
         return CGSize(width: cellSize, height: cellSize)
     }
-    
+
     private func indexPathFromMemorable(memorable: Memorable) -> NSIndexPath {
-//        print("ALL_MEMORABLES:", self.dayDataSource?.memorablesByDay, "\n\n")
-        for var section = 0; section < self.dayDataSource!.memorablesByDay.count; section++ {
+        for section in 0 ..< self.dayDataSource!.memorablesByDay.count {
             if let row = self.dayDataSource?.memorablesByDay[section].indexOf({ $0.uniqueId == memorable.uniqueId }) {
-                print("ForRow:", row, "ForSection:", section)
                 return NSIndexPath(forRow: row, inSection: section)
-            } else if section == 2 {
-                print("memorableToMatch", memorable)
             }
         }
         return NSIndexPath(forRow: 0, inSection: 0)
