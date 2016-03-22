@@ -29,13 +29,6 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         monthDataSource?.sortMemorablesByMonth()
 
         collectionView!.dataSource = monthDataSource
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.registerClass(MonthCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        print("COUNT IN MONTH:", MemorableMetadataCache.sharedInstance.allMemorables.count)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +44,6 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
     }
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // TODO what behavior do we want this to implement?
-        print("Section:", indexPath.section, "Row:", indexPath.row)
         let memorableToSend = monthDataSource?.memorablesByMonth[indexPath.section][indexPath.row]
         performSegueWithIdentifier("MonthCellToDayController", sender: memorableToSend as? AnyObject)
     }
