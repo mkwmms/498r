@@ -35,6 +35,7 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
 
         // Register cell classes
 //        self.collectionView!.registerClass(MonthCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        print("COUNT IN MONTH:", MemorableMetadataCache.sharedInstance.allMemorables.count)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +43,19 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         // Dispose of any resources that can be recreated.
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "MonthCellToDayController") {
+            let dayCollectionViewController = segue.destinationViewController as! DayCollectionViewController
+            dayCollectionViewController.memorableFromSegue = sender as? Memorable
+        }
+    }
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // TODO what behavior do we want this to implement?
+        print("Section:", indexPath.section, "Row:", indexPath.row)
+        let memorableToSend = monthDataSource?.memorablesByMonth[indexPath.section][indexPath.row]
+        performSegueWithIdentifier("MonthCellToDayController", sender: memorableToSend as? AnyObject)
+    }
+    
     // MARK: - FlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
