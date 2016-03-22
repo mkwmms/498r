@@ -29,12 +29,12 @@ class MemorableMetadataCache {
     // TODO make this a generic extension to array and make memorable conform to equatable 
     //      or at least use the map or filter function
     private func union(existing: [Memorable], with: [Memorable]) -> [Memorable] {
-        var uninion = [Memorable]()
+        var union = [Memorable]()
         for mem in with {
             if !existing.contains({ $0.uniqueId == mem.uniqueId }) {
-                uninion.append(mem)
+                union.append(mem)
             }
         }
-        return uninion
+        return union
     }
 }

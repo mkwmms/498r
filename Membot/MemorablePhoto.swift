@@ -10,11 +10,7 @@ import Foundation
 import UIKit
 import Photos
 
-func == (lhs: MemorablePhoto, rhs: MemorablePhoto) -> Bool {
-    return lhs.uniqueId == rhs.uniqueId
-}
-
-class MemorablePhoto: Memorable, Equatable, CustomDebugStringConvertible {
+class MemorablePhoto: Memorable, CustomDebugStringConvertible {
 
     var uniqueId: String
 
@@ -43,6 +39,6 @@ class MemorablePhoto: Memorable, Equatable, CustomDebugStringConvertible {
     }
 
     var debugDescription: String {
-        return String(format: "MemorablePhoto<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
+        return String(format: "MemorablePhoto<uniqueId: \(uniqueId), creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }

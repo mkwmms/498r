@@ -8,11 +8,7 @@
 
 import Foundation
 
-func == (lhs: MemorableFacebookPhoto, rhs: MemorableFacebookPhoto) -> Bool {
-    return lhs.uniqueId == rhs.uniqueId
-}
-
-class MemorableFacebookPhoto: Memorable, Equatable, CustomDebugStringConvertible {
+class MemorableFacebookPhoto: Memorable, CustomDebugStringConvertible {
 
     var uniqueId: String
 
@@ -41,6 +37,6 @@ class MemorableFacebookPhoto: Memorable, Equatable, CustomDebugStringConvertible
     }
  
     var debugDescription: String {
-        return String(format: "MemorableFacebookItem<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
+        return String(format: "MemorableFacebookItem<uniqueId: \(uniqueId), creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }

@@ -10,11 +10,7 @@ import Foundation
 import EventKit
 import UIKit
 
-func == (lhs: MemorableCalendarEvent, rhs: MemorableCalendarEvent) -> Bool {
-    return lhs.uniqueId == rhs.uniqueId
-}
-
-class MemorableCalendarEvent: Memorable, Equatable, CustomDebugStringConvertible {
+class MemorableCalendarEvent: Memorable, CustomDebugStringConvertible {
 
     var uniqueId: String
 
@@ -43,6 +39,6 @@ class MemorableCalendarEvent: Memorable, Equatable, CustomDebugStringConvertible
     }
 
     var debugDescription: String {
-        return String(format: "MemorableCalendarEvent<creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
+        return String(format: "MemorableCalendarEvent<uniqueId: \(uniqueId), creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }

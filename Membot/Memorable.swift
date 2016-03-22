@@ -9,8 +9,7 @@
 import Foundation
 
 // TODO split this up into 2+ protocols? eg. DisplayableMemorable...
-// TODO make Memorable also conform to Equatable but there are compiler errors about having a Self type
-//      but maybe they don't need to? see line 36ish of MemorableMetaDataCache
+
 protocol Memorable {
 
     var uniqueId: String { get set }
@@ -23,6 +22,16 @@ protocol Memorable {
     var tags: [String]? { get set }
     var isFavorite: Bool? { get set }
 }
+
+//extension Memorable where Self : Equatable {
+//    // otherObject could also be 'Any'
+//    func equals(otherObject: Memorable) -> Bool {
+//        if let otherAsSelf = otherObject as? Self {
+//            return otherAsSelf == self
+//        }
+//        return false
+//    }
+//}
 
 // TODO default implementation...
 //extension Memorable {
