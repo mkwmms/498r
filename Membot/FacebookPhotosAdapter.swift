@@ -8,6 +8,7 @@
 
 import Foundation
 import Haneke
+import CocoaLumberjackSwift
 
 class FacebookPhotosAdapter: Adapter {
 
@@ -18,19 +19,19 @@ class FacebookPhotosAdapter: Adapter {
         let parameters = ["fields": "picture.type(large),photos{images, created_time}"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler { (connection, result, error) -> Void in
             guard error == nil else {
-                print(error)
+                DDLogError("\(error?.localizedFailureReason) \(error?.localizedDescription)")
                 return
             }
 
             let resultImages = result.objectForKey("photos")!.objectForKey("data")!
 
             var facebookMemorables = [Memorable]()
-            for var i = 0; i < resultImages.count; ++i {
+            for i in 0 ..< resultImages.count {
                 let fbImage = resultImages[i]
                 let resultMetadatas = resultImages[i].objectForKey("images")!
 
                 var fbImageMetadata = [MemorableFacebookMetadata]()
-                for var j = 0; j < resultMetadatas.count; ++j {
+                for j in 0 ..< resultMetadatas.count {
                     // FIXME lots of sketchy casting is going down here
                     let metadata = resultMetadatas[j]
                     let width = metadata.objectForKey("width") as! Double

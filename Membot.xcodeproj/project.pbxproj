@@ -11,6 +11,18 @@
 		971036D01C92100200C9628E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CE1C92100200C9628E /* FBSDKLoginKit.framework */; };
 		971036D21C92135C00C9628E /* MemorableMetadataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971036D11C92135C00C9628E /* MemorableMetadataCache.swift */; };
 		971466B71C88946B000C07FC /* Memorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971466B51C88946B000C07FC /* Memorable.swift */; };
+		97342B1F1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 97342B1D1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM */; };
+		97342B201CA1D994005AEF95 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */; };
+		97342B231CA1DAF6005AEF95 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */; };
+		97342B241CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 97342B221CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM */; };
+		97342B251CA1DB71005AEF95 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */; };
+		97342B261CA1DB71005AEF95 /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97342B271CA1DB71005AEF95 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */; };
+		97342B281CA1DB71005AEF95 /* CocoaLumberjackSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97342B291CA1DB71005AEF95 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CD1C92100200C9628E /* FBSDKCoreKit.framework */; };
+		97342B2A1CA1DB71005AEF95 /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CD1C92100200C9628E /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97342B2B1CA1DB71005AEF95 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CE1C92100200C9628E /* FBSDKLoginKit.framework */; };
+		97342B2C1CA1DB71005AEF95 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CE1C92100200C9628E /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		974484051C8F29A3001DF7CC /* CalendarLibraryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */; };
 		974484071C8F2A53001DF7CC /* MemorableCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */; };
 		974484091C8F3ABF001DF7CC /* PhotoLibraryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484081C8F3ABF001DF7CC /* PhotoLibraryAdapter.swift */; };
@@ -70,7 +82,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				97342B261CA1DB71005AEF95 /* CocoaLumberjack.framework in Embed Frameworks */,
+				97342B2A1CA1DB71005AEF95 /* FBSDKCoreKit.framework in Embed Frameworks */,
+				97342B2C1CA1DB71005AEF95 /* FBSDKLoginKit.framework in Embed Frameworks */,
 				978C4E081C985A3A005CF3FE /* Haneke.framework in Embed Frameworks */,
+				97342B281CA1DB71005AEF95 /* CocoaLumberjackSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +108,10 @@
 		971036CE1C92100200C9628E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		971036D11C92135C00C9628E /* MemorableMetadataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableMetadataCache.swift; sourceTree = "<group>"; };
 		971466B51C88946B000C07FC /* Memorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memorable.swift; sourceTree = "<group>"; };
+		97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = SOURCE_ROOT; };
+		97342B1D1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjackSwift.framework.dSYM; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework.dSYM; sourceTree = SOURCE_ROOT; };
+		97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/iOS/CocoaLumberjack.framework; sourceTree = SOURCE_ROOT; };
+		97342B221CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjack.framework.dSYM; path = Carthage/Build/iOS/CocoaLumberjack.framework.dSYM; sourceTree = SOURCE_ROOT; };
 		974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarLibraryAdapter.swift; sourceTree = "<group>"; };
 		974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCalendarEvent.swift; sourceTree = "<group>"; };
 		974484081C8F3ABF001DF7CC /* PhotoLibraryAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryAdapter.swift; sourceTree = "<group>"; };
@@ -140,7 +160,13 @@
 			files = (
 				971036D01C92100200C9628E /* FBSDKLoginKit.framework in Frameworks */,
 				971036CF1C92100200C9628E /* FBSDKCoreKit.framework in Frameworks */,
+				97342B2B1CA1DB71005AEF95 /* FBSDKLoginKit.framework in Frameworks */,
+				97342B231CA1DAF6005AEF95 /* CocoaLumberjack.framework in Frameworks */,
 				978C4E071C985A3A005CF3FE /* Haneke.framework in Frameworks */,
+				97342B271CA1DB71005AEF95 /* CocoaLumberjackSwift.framework in Frameworks */,
+				97342B291CA1DB71005AEF95 /* FBSDKCoreKit.framework in Frameworks */,
+				97342B251CA1DB71005AEF95 /* CocoaLumberjack.framework in Frameworks */,
+				97342B201CA1D994005AEF95 /* CocoaLumberjackSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,8 +273,12 @@
 				9768B9811C86070800019860 /* LaunchScreen.storyboard */,
 				9768B9841C86070800019860 /* Info.plist */,
 				9768B97C1C86070800019860 /* Membot.xcdatamodeld */,
-				978C4E0B1C985A75005CF3FE /* Haneke.framework.dSYM */,
+				97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */,
+				97342B221CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM */,
+				97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */,
+				97342B1D1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM */,
 				978C4E061C985A3A005CF3FE /* Haneke.framework */,
+				978C4E0B1C985A75005CF3FE /* Haneke.framework.dSYM */,
 				971036CD1C92100200C9628E /* FBSDKCoreKit.framework */,
 				971036CE1C92100200C9628E /* FBSDKLoginKit.framework */,
 				FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */,
@@ -415,6 +445,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97342B241CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM in Resources */,
+				97342B1F1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM in Resources */,
 				9768B9831C86070800019860 /* LaunchScreen.storyboard in Resources */,
 				9768B9801C86070800019860 /* Assets.xcassets in Resources */,
 				9768B97B1C86070800019860 /* Main.storyboard in Resources */,

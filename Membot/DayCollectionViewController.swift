@@ -13,10 +13,10 @@ private let reuseIdentifier = "DayCollectionCellIdentifier"
 private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
 
 class DayCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+
     var dayDataSource: DayCollectionViewDataSource?
     var memorableFromSegue: Memorable?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,7 +33,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         dayDataSource?.sortMemorablesByDay()
 
         collectionView!.dataSource = dayDataSource
-        
+
         if memorableFromSegue != nil {
             collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(memorableFromSegue!), atScrollPosition: .Top, animated: false)
         }
@@ -43,10 +43,9 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MonthCellToDayController" {
-
         }
     }
 
@@ -56,7 +55,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         let cellSize = UIScreen.mainScreen().bounds.width
         return CGSize(width: cellSize, height: cellSize)
     }
-    
+
     private func indexPathFromMemorable(memorable: Memorable) -> NSIndexPath {
         for var section = 0; section < self.dayDataSource!.memorablesByDay.count; section++ {
             if let row = self.dayDataSource?.memorablesByDay[section].indexOf({ $0.uniqueId == memorable.uniqueId }) {
