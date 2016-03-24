@@ -68,18 +68,17 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         var memorablesInCurrentDay = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
-            if AppSettings.sharedInstance.memTypeIsOn(mem) {
-                if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Day) {
-                    memorablesInCurrentDay.append(mem)
-                } else {
-                    currentDate = mem.creationDate
-                    if memorablesInCurrentDay.count > 0 {
-                        memorablesByDay.append(memorablesInCurrentDay)
-                        memorablesInCurrentDay = [Memorable]()
-                    }
-                }
+            guard AppSettings.sharedInstance.memTypeIsOn(mem) else {
+                continue
             }
+            if !(calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Day)) {
+                currentDate = mem.creationDate
+                memorablesByDay.append(memorablesInCurrentDay)
+                memorablesInCurrentDay = [Memorable]()
+            }
+            memorablesInCurrentDay.append(mem)
         }
+        memorablesByDay.append(memorablesInCurrentDay)
     }
     
     private func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {

@@ -57,7 +57,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func sortMemorablesByMonth() {
-
+        
         guard MemorableMetadataCache.sharedInstance.allMemorables.count > 0 else {
             return
         }
@@ -71,18 +71,17 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         var memorablesInCurrentMonth = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
-            if AppSettings.sharedInstance.memTypeIsOn(mem) {
-                if calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month) && !(mem is MemorableCalendarEvent) {
-                    memorablesInCurrentMonth.append(mem)
-                } else {
-                    currentDate = mem.creationDate
-                    if memorablesInCurrentMonth.count > 0 {
-                        memorablesByMonth.append(memorablesInCurrentMonth)
-                        memorablesInCurrentMonth = [Memorable]()
-                    }
-                }
+            guard AppSettings.sharedInstance.memTypeIsOn(mem) && !(mem is MemorableCalendarEvent) else {
+              continue
             }
+            if !(calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month))  {
+                currentDate = mem.creationDate
+                memorablesByMonth.append(memorablesInCurrentMonth)
+                memorablesInCurrentMonth = [Memorable]()
+            }
+            memorablesInCurrentMonth.append(mem)
         }
+        memorablesByMonth.append(memorablesInCurrentMonth)
     }
 
     private func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {

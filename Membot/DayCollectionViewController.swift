@@ -68,7 +68,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
     }
 
     private func indexPathFromMemorable(memorable: Memorable) -> NSIndexPath {
-        for section in 0 ..< self.dayDataSource!.memorablesByDay.count {
+        for var section = 0; section < self.dayDataSource!.memorablesByDay.count; section++ {
             if let row = self.dayDataSource?.memorablesByDay[section].indexOf({ $0.uniqueId == memorable.uniqueId }) {
                 return NSIndexPath(forRow: row, inSection: section)
             }

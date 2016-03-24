@@ -55,9 +55,9 @@ class SettingsTableViewController: UITableViewController {
         cell.settingCellSwitch.on = AppSettings.sharedInstance.settings[indexPath.item].isOn
 
         // see if the cell was fb and flagged as yes, if so, present view controller
-        if cell.didTurnOnFacebook() {
-            DDLogVerbose("Did turn on fb, presentviewcontroller")
-        }
+//        if cell.didTurnOnFacebook() {
+//            print("did turn on fb, presentviewcontroller")
+//        }
         return cell
     }
     
