@@ -33,6 +33,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         dayDataSource?.sortMemorablesByDay()
 
         collectionView!.dataSource = dayDataSource
+        collectionView!.delegate = self
 
         if memorableFromSegue != nil {
             collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(memorableFromSegue!), atScrollPosition: .Top, animated: false)
@@ -52,6 +53,16 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
     // MARK: - FlowLayout
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+//        if let cellImage = self.dayDataSource?.memorablesByDay[indexPath.section][indexPath.row].displayableData as? UIImage {
+//            return cellImage.size
+//        }
+
+        if let cellMem = self.dayDataSource?.memorablesByDay[indexPath.section][indexPath.row] as? MemorablePhoto {
+            let cellImage = cellMem.displayableData as! UIImage
+            return cellImage.size
+        }
+        
         let cellSize = UIScreen.mainScreen().bounds.width
         return CGSize(width: cellSize, height: cellSize)
     }

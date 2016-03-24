@@ -30,8 +30,11 @@ class PhotoLibraryAdapter: Adapter {
     }
 
     func retrieveDisplayableData(source: Any, dimensions: CGSize, completion: (Any) -> Void) {
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .Opportunistic
+        
         manager.requestImageForAsset(source as! PHAsset, targetSize: dimensions,
-            contentMode: .AspectFit, options: nil, resultHandler: { (result, info) -> Void in
+            contentMode: .AspectFit, options: options, resultHandler: { (result, info) -> Void in
                 completion(result as UIImage!)
         })
     }
