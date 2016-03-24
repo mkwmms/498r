@@ -23,12 +23,12 @@ class FacebookPhotosAdapter: Adapter {
                 return
             }
 
-            let resultImages = result.objectForKey("photos")!.objectForKey("data")!
+            let resultImages = result.objectForKey("photos")!.objectForKey("data")! as! [AnyObject]
 
             var facebookMemorables = [Memorable]()
             for i in 0 ..< resultImages.count {
                 let fbImage = resultImages[i]
-                let resultMetadatas = resultImages[i].objectForKey("images")!
+                let resultMetadatas = resultImages[i].objectForKey("images")! as! [AnyObject]
 
                 var fbImageMetadata = [MemorableFacebookMetadata]()
                 for j in 0 ..< resultMetadatas.count {
