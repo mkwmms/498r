@@ -50,6 +50,11 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 withReuseIdentifier: monthHeaderIdentifier,
                 forIndexPath: indexPath) as! MonthHeaderCollectionReusableView
 
+        guard memorablesByMonth.count > 0 && memorablesByMonth[indexPath.section].count > 0 else {
+            headerView.monthHeaderDescription.text = "" // remove the place holder text
+            return headerView
+        }
+
         headerView.monthHeaderDescription.sizeToFit()
         headerView.monthHeaderDescription.text = memorablesByMonth[indexPath.section][0].creationDate.monthDescription()
 
@@ -57,7 +62,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func sortMemorablesByMonth() {
-        
+
         guard MemorableMetadataCache.sharedInstance.allMemorables.count > 0 else {
             return
         }
@@ -65,16 +70,16 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         MemorableMetadataCache.sharedInstance.allMemorables.sortInPlace({
             $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
         })
-        
+
         let calendar = NSCalendar.currentCalendar()
         var currentDate = MemorableMetadataCache.sharedInstance.allMemorables[0].creationDate
         var memorablesInCurrentMonth = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
             guard AppSettings.sharedInstance.memTypeIsOn(mem) && !(mem is MemorableCalendarEvent) else {
-              continue
+                continue
             }
-            if !(calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month))  {
+            if !(calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month)) {
                 currentDate = mem.creationDate
                 memorablesByMonth.append(memorablesInCurrentMonth)
                 memorablesInCurrentMonth = [Memorable]()
