@@ -10,39 +10,41 @@ import UIKit
 import EventKit
 
 class DayCollectionViewCell: UICollectionViewCell {
+    
+    var dayCollectionCellImage = UIImageView(image: UIImage(named: "peaches"))
+    var dayCollectionCellLabel = UILabel()
+    
+    func setUpViews() {
+        self.addSubview(self.dayCollectionCellImage)
+        self.addSubview(self.dayCollectionCellLabel)
+        print("Subviews:", self.contentView.subviews.count)
 
-    @IBOutlet weak var dayCollectionCellImage: UIImageView!
-
+    }
+    
     func configureForItem(memorable: Any) {
 
-//        let screenSize = UIScreen.mainScreen().bounds
-//        let imageTargetSize = UIScreen.mainScreen().bounds
-//        let targetSize = CGSize(width: imageTargetSize.width, height: imageTargetSize.width)
-        let targetSize = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+
+        self.contentView.subviews.forEach({ $0.removeFromSuperview() })
+        
         if let mem = memorable as? Memorable {
+            if let memEvent = mem.metadata as? EKEvent {
+                self.dayCollectionCellImage.hidden = true
+                let eventLabel = UILabel()
+                eventLabel.text = memEvent.title
+                self.dayCollectionCellLabel.center = self.contentView.center
+                return
+            }
+
+            let targetSize = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
             mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (result) -> Void in
 
-                if let memorableEvent = memorable as? MemorableCalendarEvent {
-                    if let eventDescription = memorableEvent.metadata as? EKEvent {
-                        let eventLabel = UILabel()
-                        eventLabel.text = eventDescription.title
-                        self.contentView.addSubview(eventLabel)
-                        self.dayCollectionCellImage.hidden = true
-                    }
-                } else if let mem = memorable as? MemorablePhoto {
-                    self.dayCollectionCellImage.contentMode = .ScaleAspectFit
-                    self.dayCollectionCellImage.image = result as? UIImage
-                    if let resultImage = result as? UIImage {
-                        print("Width:", resultImage.size.width, "Height:", resultImage.size.height)
-                    }
-                } else if let mem = memorable as? MemorableFacebookPhoto {
-                    self.dayCollectionCellImage.contentMode = .ScaleAspectFit
-                    self.dayCollectionCellImage.image = result as? UIImage
-                    if let resultImage = result as? UIImage {
-                        print("Width:", resultImage.size.width, "Height:", resultImage.size.height)
-                    }
-                }
+                self.dayCollectionCellLabel.hidden = true
+                self.dayCollectionCellImage.image = result as? UIImage
+//                let dayCollectionCellImage = UIImageView(image: result as! UIImage)
+                self.dayCollectionCellImage.contentMode = .ScaleAspectFit
+                self.dayCollectionCellImage.center = self.contentView.center
             })
         }
+        print("Subviews:", self.contentView.subviews.count)
     }
 }

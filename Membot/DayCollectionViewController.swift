@@ -58,6 +58,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         if let memorableEvent = memorable as? MemorableCalendarEvent {
             return CGSize(width: UIScreen.mainScreen().bounds.width, height: 30)
         }
+        
         let cellSize = UIScreen.mainScreen().bounds.width
         return CGSize(width: cellSize, height: cellSize)
     }

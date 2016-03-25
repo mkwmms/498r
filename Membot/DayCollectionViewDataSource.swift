@@ -33,6 +33,10 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!, forIndexPath: indexPath) as! DayCollectionViewCell
 
+        cell.setUpViews() 
+//        cell.contentView.subviews.forEach({ $0.removeFromSuperview() })
+        
+        
         if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
             configureCellBlock(cell: cell, memorable: memorable)
         }
