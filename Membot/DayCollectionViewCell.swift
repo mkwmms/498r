@@ -24,11 +24,18 @@ class DayCollectionViewCell: UICollectionViewCell {
 
                 if let memorableEvent = memorable as? MemorableCalendarEvent {
                     if let eventDescription = memorableEvent.metadata as? EKEvent {
-                        print("Description:", eventDescription.title)
-//                        self.dayCollectionCellImage.removeFromSuperview()
+                        let eventLabel = UILabel()
+                        eventLabel.text = eventDescription.title
+                        self.contentView.addSubview(eventLabel)
+                        self.dayCollectionCellImage.hidden = true
                     }
-                } else {
-//                    self.dayCollectionCellLabel.removeFromSuperview()
+                } else if let mem = memorable as? MemorablePhoto {
+                    self.dayCollectionCellImage.contentMode = .ScaleAspectFit
+                    self.dayCollectionCellImage.image = result as? UIImage
+                    if let resultImage = result as? UIImage {
+                        print("Width:", resultImage.size.width, "Height:", resultImage.size.height)
+                    }
+                } else if let mem = memorable as? MemorableFacebookPhoto {
                     self.dayCollectionCellImage.contentMode = .ScaleAspectFit
                     self.dayCollectionCellImage.image = result as? UIImage
                     if let resultImage = result as? UIImage {

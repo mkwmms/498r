@@ -52,6 +52,11 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
     // MARK: - FlowLayout
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        let memorable = dayDataSource?.memorablesByDay[indexPath.section][indexPath.row]
+        if let memorableEvent = memorable as? MemorableCalendarEvent {
+            return CGSize(width: UIScreen.mainScreen().bounds.width, height: 30)
+        }
         let cellSize = UIScreen.mainScreen().bounds.width
         return CGSize(width: cellSize, height: cellSize)
     }
