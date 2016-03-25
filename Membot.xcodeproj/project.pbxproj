@@ -12,16 +12,12 @@
 		971036D21C92135C00C9628E /* MemorableMetadataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971036D11C92135C00C9628E /* MemorableMetadataCache.swift */; };
 		971466B71C88946B000C07FC /* Memorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971466B51C88946B000C07FC /* Memorable.swift */; };
 		97342B1F1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 97342B1D1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM */; };
-		97342B201CA1D994005AEF95 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */; };
 		97342B231CA1DAF6005AEF95 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */; };
 		97342B241CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 97342B221CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM */; };
-		97342B251CA1DB71005AEF95 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */; };
 		97342B261CA1DB71005AEF95 /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97342B271CA1DB71005AEF95 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */; };
 		97342B281CA1DB71005AEF95 /* CocoaLumberjackSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		97342B291CA1DB71005AEF95 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CD1C92100200C9628E /* FBSDKCoreKit.framework */; };
 		97342B2A1CA1DB71005AEF95 /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CD1C92100200C9628E /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		97342B2B1CA1DB71005AEF95 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CE1C92100200C9628E /* FBSDKLoginKit.framework */; };
 		97342B2C1CA1DB71005AEF95 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CE1C92100200C9628E /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		974484051C8F29A3001DF7CC /* CalendarLibraryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484041C8F29A3001DF7CC /* CalendarLibraryAdapter.swift */; };
 		974484071C8F2A53001DF7CC /* MemorableCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974484061C8F2A53001DF7CC /* MemorableCalendarEvent.swift */; };
@@ -49,10 +45,12 @@
 		FA1399961C8612490050678C /* MemorableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */; };
 		FA1399981C8612930050678C /* MemorableCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */; };
 		FA60B28F1C98AB7B00FA73F5 /* DayCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60B28E1C98AB7B00FA73F5 /* DayCollectionViewDataSource.swift */; };
+		FA6B00881CA457B6004E871B /* DisplayableImageAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6B00871CA457B6004E871B /* DisplayableImageAdapter.swift */; };
 		FA709E801C88C10E00AAAF06 /* FacebookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E7F1C88C10E00AAAF06 /* FacebookLoginViewController.swift */; };
 		FA709E821C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E811C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift */; };
 		FA709E841C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E831C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift */; };
 		FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E851C8A060400AAAF06 /* Adapter.swift */; };
+		FAA919261CA45FAD001B1F46 /* DisplayableImageMemorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA919251CA45FAD001B1F46 /* DisplayableImageMemorable.swift */; };
 		FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */; };
 		FAD10BA31C920A88001262A6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */; };
 		FAD10BAD1C9357AF001262A6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BAC1C9357AF001262A6 /* AppSettings.swift */; };
@@ -143,11 +141,13 @@
 		FA1399951C8612490050678C /* MemorableCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA1399971C8612930050678C /* MemorableCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionReusableView.swift; sourceTree = "<group>"; };
 		FA60B28E1C98AB7B00FA73F5 /* DayCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		FA6B00871CA457B6004E871B /* DisplayableImageAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayableImageAdapter.swift; sourceTree = "<group>"; };
 		FA709E7A1C88BE8500AAAF06 /* Membot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Membot-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA709E7F1C88C10E00AAAF06 /* FacebookLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginViewController.swift; sourceTree = "<group>"; };
 		FA709E811C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPhotosAdapter.swift; sourceTree = "<group>"; };
 		FA709E831C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableFacebookPhoto.swift; sourceTree = "<group>"; };
 		FA709E851C8A060400AAAF06 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
+		FAA919251CA45FAD001B1F46 /* DisplayableImageMemorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayableImageMemorable.swift; sourceTree = "<group>"; };
 		FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		FAD10BAC1C9357AF001262A6 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
@@ -160,13 +160,9 @@
 			files = (
 				971036D01C92100200C9628E /* FBSDKLoginKit.framework in Frameworks */,
 				971036CF1C92100200C9628E /* FBSDKCoreKit.framework in Frameworks */,
-				97342B2B1CA1DB71005AEF95 /* FBSDKLoginKit.framework in Frameworks */,
 				97342B231CA1DAF6005AEF95 /* CocoaLumberjack.framework in Frameworks */,
 				978C4E071C985A3A005CF3FE /* Haneke.framework in Frameworks */,
 				97342B271CA1DB71005AEF95 /* CocoaLumberjackSwift.framework in Frameworks */,
-				97342B291CA1DB71005AEF95 /* FBSDKCoreKit.framework in Frameworks */,
-				97342B251CA1DB71005AEF95 /* CocoaLumberjack.framework in Frameworks */,
-				97342B201CA1D994005AEF95 /* CocoaLumberjackSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +189,8 @@
 				FA709E851C8A060400AAAF06 /* Adapter.swift */,
 				971466B51C88946B000C07FC /* Memorable.swift */,
 				971036D11C92135C00C9628E /* MemorableMetadataCache.swift */,
+				FA6B00871CA457B6004E871B /* DisplayableImageAdapter.swift */,
+				FAA919251CA45FAD001B1F46 /* DisplayableImageMemorable.swift */,
 				971036BB1C91D70600C9628E /* Facebook */,
 				971036BC1C91D71700C9628E /* Calendar */,
 				971036BD1C91D72600C9628E /* Photos */,
@@ -401,7 +399,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Sneakywolf;
 				TargetAttributes = {
 					9768B9711C86070800019860 = {
@@ -480,6 +478,7 @@
 				FA1399941C86123D0050678C /* DayCollectionViewCell.swift in Sources */,
 				974484071C8F2A53001DF7CC /* MemorableCalendarEvent.swift in Sources */,
 				FA709E821C89EE7F00AAAF06 /* FacebookPhotosAdapter.swift in Sources */,
+				FAA919261CA45FAD001B1F46 /* DisplayableImageMemorable.swift in Sources */,
 				FAD10BAD1C9357AF001262A6 /* AppSettings.swift in Sources */,
 				FA1399901C8611DB0050678C /* DayHeaderCollectionReusableView.swift in Sources */,
 				9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */,
@@ -500,6 +499,7 @@
 				FAD10BA31C920A88001262A6 /* SettingsTableViewCell.swift in Sources */,
 				FA1399961C8612490050678C /* MemorableCollectionViewCell.swift in Sources */,
 				FA1399981C8612930050678C /* MemorableCollectionReusableView.swift in Sources */,
+				FA6B00881CA457B6004E871B /* DisplayableImageAdapter.swift in Sources */,
 				971036D21C92135C00C9628E /* MemorableMetadataCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

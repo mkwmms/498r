@@ -13,6 +13,7 @@ class MonthCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var monthCellImageView: UIImageView!
 
     func configureForItem(memorable: Any) {
+        
         let targetWidth = UIScreen.mainScreen().bounds.width / 5
         let targetSize = CGSize(width: targetWidth, height: targetWidth)
         if let mem = memorable as? Memorable {

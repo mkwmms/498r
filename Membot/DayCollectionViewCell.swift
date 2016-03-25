@@ -16,8 +16,9 @@ class DayCollectionViewCell: UICollectionViewCell {
     func configureForItem(memorable: Any) {
 
 //        let screenSize = UIScreen.mainScreen().bounds
-        let imageTargetSize = UIScreen.mainScreen().bounds
-        let targetSize = CGSize(width: imageTargetSize.width, height: imageTargetSize.width)
+//        let imageTargetSize = UIScreen.mainScreen().bounds
+//        let targetSize = CGSize(width: imageTargetSize.width, height: imageTargetSize.width)
+        let targetSize = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
         if let mem = memorable as? Memorable {
             mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (result) -> Void in
 
@@ -28,8 +29,11 @@ class DayCollectionViewCell: UICollectionViewCell {
                     }
                 } else {
 //                    self.dayCollectionCellLabel.removeFromSuperview()
-                    self.dayCollectionCellImage.contentMode = .ScaleAspectFill
+                    self.dayCollectionCellImage.contentMode = .ScaleAspectFit
                     self.dayCollectionCellImage.image = result as? UIImage
+                    if let resultImage = result as? UIImage {
+                        print("Width:", resultImage.size.width, "Height:", resultImage.size.height)
+                    }
                 }
             })
         }
