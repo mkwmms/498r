@@ -52,6 +52,7 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let cellSize = UIScreen.mainScreen().bounds.width / 5
+        
         return CGSize(width: cellSize, height: cellSize)
     }
 }

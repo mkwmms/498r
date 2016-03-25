@@ -33,6 +33,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         dayDataSource?.sortMemorablesByDay()
 
         collectionView!.dataSource = dayDataSource
+        collectionView!.delegate = self
 
         if memorableFromSegue != nil {
             collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(memorableFromSegue!), atScrollPosition: .Top, animated: false)
