@@ -7,6 +7,7 @@
 //
 
 import Foundation
+//import CocoaLumberjackSwift
 
 class MemorableMetadataCache {
 
@@ -32,6 +33,9 @@ class MemorableMetadataCache {
         var union = [Memorable]()
         for mem in with {
             if !existing.contains({ $0.uniqueId == mem.uniqueId }) {
+                if let memEvent = mem as? MemorableCalendarEvent {
+                    print(mem)
+                }
                 union.append(mem)
             }
         }

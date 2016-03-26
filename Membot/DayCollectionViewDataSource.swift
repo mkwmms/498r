@@ -37,7 +37,6 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             configureCellBlock(cell: cell, memorable: memorable)
         }
         
-        cell.backgroundColor = UIColor.lightGrayColor()
         return cell
     }
     

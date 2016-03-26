@@ -12,35 +12,30 @@ import EventKit
 class DayCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var dayCollectionCellImage: UIImageView!
+    @IBOutlet weak var dayCollectionCellLabel: UILabel!
 
     func configureForItem(memorable: Any) {
-
-//        let screenSize = UIScreen.mainScreen().bounds
-//        let imageTargetSize = UIScreen.mainScreen().bounds
-//        let targetSize = CGSize(width: imageTargetSize.width, height: imageTargetSize.width)
+        
         let targetSize = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
         if let mem = memorable as? Memorable {
+            
+            if let memEvent = mem.metadata as? EKEvent {
+                self.dayCollectionCellImage.hidden = true
+                self.dayCollectionCellLabel.hidden = false
+                self.dayCollectionCellLabel.text = memEvent.title + " " + (memEvent.creationDate?.dayDescription())!
+                self.dayCollectionCellImage.sizeToFit()
+                self.dayCollectionCellLabel.center = self.contentView.center
+                print("Title:", memEvent.title)
+                return
+            }
+            
             mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (result) -> Void in
-
-                if let memorableEvent = memorable as? MemorableCalendarEvent {
-                    if let eventDescription = memorableEvent.metadata as? EKEvent {
-                        let eventLabel = UILabel()
-                        eventLabel.text = eventDescription.title
-                        self.contentView.addSubview(eventLabel)
-                        self.dayCollectionCellImage.hidden = true
-                    }
-                } else if let mem = memorable as? MemorablePhoto {
+                
+                if let resultImage = result as? UIImage {
+                    self.dayCollectionCellLabel.hidden = true
+                    self.dayCollectionCellImage.hidden = false
                     self.dayCollectionCellImage.contentMode = .ScaleAspectFit
-                    self.dayCollectionCellImage.image = result as? UIImage
-                    if let resultImage = result as? UIImage {
-                        print("Width:", resultImage.size.width, "Height:", resultImage.size.height)
-                    }
-                } else if let mem = memorable as? MemorableFacebookPhoto {
-                    self.dayCollectionCellImage.contentMode = .ScaleAspectFit
-                    self.dayCollectionCellImage.image = result as? UIImage
-                    if let resultImage = result as? UIImage {
-                        print("Width:", resultImage.size.width, "Height:", resultImage.size.height)
-                    }
+                    self.dayCollectionCellImage.image = resultImage
                 }
             })
         }
