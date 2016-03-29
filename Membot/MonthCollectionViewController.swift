@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaLumberjackSwift
 
 private let reuseIdentifier = "MonthCollectionCellIdentifier"
 
@@ -29,6 +30,7 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         monthDataSource?.sortMemorablesByMonth()
 
         collectionView!.dataSource = monthDataSource
+        DDLogDebug(MemorableMetadataCache.sharedInstance.allMemorables.description)
     }
 
     override func didReceiveMemoryWarning() {

@@ -35,8 +35,9 @@ class MemorableFacebookPhoto: Memorable, CustomDebugStringConvertible {
         self.tags = tags
         self.isFavorite = isFavorite
     }
- 
+
     var debugDescription: String {
-        return String(format: "MemorableFacebookItem<uniqueId: \(uniqueId), creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
+//        return String(format: "MemorableFacebookItem<uniqueId: \(uniqueId), creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
+        return "\nMemorableFacebookItem<uniqueId: \(uniqueId), creationDate: \(creationDate)>"
     }
 }

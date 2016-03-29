@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Setup logging
-        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: .All) // TTY = Xcode console
+        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: .Debug) // TTY = Xcode console
         DDTTYLogger.sharedInstance().logFormatter = MembotLogFormatter()
         
         // Initialize AppSettings
