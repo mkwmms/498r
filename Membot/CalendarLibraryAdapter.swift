@@ -24,7 +24,8 @@ class CalendarLibraryAdapter: Adapter {
             let predicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: NSDate(), calendars: nil)
             var memorableEvents = [Memorable]()
             eventStore.enumerateEventsMatchingPredicate(predicate, usingBlock: { (event, unsafePointer) -> Void in
-                if event.calendar.title != "US Holidays" {
+                // TODO: shouldn't need this additional duplicate check... but we do...
+                if event.calendar.title != "US Holidays" && !memorableEvents.contains({ $0.uniqueId == event.eventIdentifier }) {
                     memorableEvents.append(MemorableCalendarEvent(uniqueId: event.eventIdentifier,
                         adapter: self, metadata: event, creationDate: event.startDate))
                 }
