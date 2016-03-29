@@ -11,6 +11,7 @@
 		971036D01C92100200C9628E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 971036CE1C92100200C9628E /* FBSDKLoginKit.framework */; };
 		971036D21C92135C00C9628E /* MemorableMetadataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971036D11C92135C00C9628E /* MemorableMetadataCache.swift */; };
 		971466B71C88946B000C07FC /* Memorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971466B51C88946B000C07FC /* Memorable.swift */; };
+		972FCECB1CAAF902006D36C5 /* StickyHeaderFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972FCECA1CAAF902006D36C5 /* StickyHeaderFlowLayout.swift */; };
 		97342B1F1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 97342B1D1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM */; };
 		97342B231CA1DAF6005AEF95 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */; };
 		97342B241CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 97342B221CA1DAF6005AEF95 /* CocoaLumberjack.framework.dSYM */; };
@@ -106,6 +107,7 @@
 		971036CE1C92100200C9628E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		971036D11C92135C00C9628E /* MemorableMetadataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableMetadataCache.swift; sourceTree = "<group>"; };
 		971466B51C88946B000C07FC /* Memorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memorable.swift; sourceTree = "<group>"; };
+		972FCECA1CAAF902006D36C5 /* StickyHeaderFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyHeaderFlowLayout.swift; sourceTree = "<group>"; };
 		97342B1C1CA1D934005AEF95 /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = SOURCE_ROOT; };
 		97342B1D1CA1D934005AEF95 /* CocoaLumberjackSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjackSwift.framework.dSYM; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework.dSYM; sourceTree = SOURCE_ROOT; };
 		97342B211CA1DAF6005AEF95 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/iOS/CocoaLumberjack.framework; sourceTree = SOURCE_ROOT; };
@@ -229,6 +231,7 @@
 		971036BE1C91D73C00C9628E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				972FCECA1CAAF902006D36C5 /* StickyHeaderFlowLayout.swift */,
 				FA709E7F1C88C10E00AAAF06 /* FacebookLoginViewController.swift */,
 				FA1399991C8612C10050678C /* MonthCollectionView */,
 				FA13999A1C8612E10050678C /* DayCollectionView */,
@@ -501,6 +504,7 @@
 				FA1399981C8612930050678C /* MemorableCollectionReusableView.swift in Sources */,
 				FA6B00881CA457B6004E871B /* DisplayableImageAdapter.swift in Sources */,
 				971036D21C92135C00C9628E /* MemorableMetadataCache.swift in Sources */,
+				972FCECB1CAAF902006D36C5 /* StickyHeaderFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
