@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaLumberjackSwift
 
 // TODO what the heck?
 typealias CollectionViewCellConfigureBlock = (cell: UICollectionViewCell, memorable: Memorable) -> ()
@@ -45,12 +46,18 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
 
+        guard kind == UICollectionElementKindSectionHeader else {
+            assert(false, "Unsupported supplementary view kind")
+            return UICollectionReusableView()
+        }
+
         let headerView =
             collectionView.dequeueReusableSupplementaryViewOfKind(kind,
                 withReuseIdentifier: monthHeaderIdentifier,
                 forIndexPath: indexPath) as! MonthHeaderCollectionReusableView
 
         guard memorablesByMonth.count > 0 && memorablesByMonth[indexPath.section].count > 0 else {
+            DDLogWarn("memorablesByMonth.count < 0")
             headerView.monthHeaderDescription.text = "" // remove the place holder text
             return headerView
         }

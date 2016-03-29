@@ -49,12 +49,12 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         let memorableToSend = monthDataSource?.memorablesByMonth[indexPath.section][indexPath.row]
         performSegueWithIdentifier("MonthCellToDayController", sender: memorableToSend as? AnyObject)
     }
-    
+
     // MARK: - FlowLayout
-    
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let cellSize = UIScreen.mainScreen().bounds.width / 5
-        
+
         return CGSize(width: cellSize, height: cellSize)
     }
 }
