@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Setup logging
-        defaultDebugLevel = DDLogLevel.All
-        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: .Info) // TTY = Xcode console
+        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: .All) // TTY = Xcode console
         DDTTYLogger.sharedInstance().logFormatter = MembotLogFormatter()
         
         // Initialize AppSettings
@@ -207,7 +206,7 @@ class MembotLogFormatter: DDDispatchQueueLogFormatter {
     
     override func formatLogMessage(logMessage: DDLogMessage!) -> String {
 //        let dateAndTime = dateFormatter.stringFromDate(logMessage.timestamp)
-        return "[\(logMessage.function)@\(logMessage.fileName):\(logMessage.line)]: \(logMessage.message)"
+        return "[\(logMessage.function)@\(logMessage.fileName):\(logMessage.line)]: \(logMessage.message)\n"
 //        return "[\(logMessage.fileName):\(logMessage.line)]: \(logMessage.message)"
     }
 }

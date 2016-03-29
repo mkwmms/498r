@@ -8,6 +8,7 @@
 
 import UIKit
 import EventKit
+import CocoaLumberjackSwift
 
 class DayCollectionViewCell: UICollectionViewCell {
 
@@ -22,10 +23,13 @@ class DayCollectionViewCell: UICollectionViewCell {
             if let memEvent = mem.metadata as? EKEvent {
                 self.dayCollectionCellImage.hidden = true
                 self.dayCollectionCellLabel.hidden = false
-                self.dayCollectionCellLabel.text = memEvent.title + " " + (memEvent.creationDate?.dayDescription())!
+                self.dayCollectionCellLabel.text = memEvent.title
+//                if memEvent.creationDate != nil {
+//                    self.dayCollectionCellLabel.text += " " + (memEvent.creationDate?.dayDescription())!
+//                }
                 self.dayCollectionCellImage.sizeToFit()
                 self.dayCollectionCellLabel.center = self.contentView.center
-                print("Title:", memEvent.title)
+                DDLogVerbose("Title: " + memEvent.title)
                 return
             }
             

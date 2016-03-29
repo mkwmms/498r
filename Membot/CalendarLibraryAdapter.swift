@@ -22,17 +22,14 @@ class CalendarLibraryAdapter: Adapter {
 
             let startDate = NSDate(timeIntervalSinceNow: -(60 * 60 * 24 * 7 * 52 * 3)) // 3 years into past
             let predicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: NSDate(), calendars: nil)
-            let events = eventStore.eventsMatchingPredicate(predicate)
-
-            // TODO is it possible to not have to loop through this array?
             var memorableEvents = [Memorable]()
-            for event in events {
-                guard event.creationDate != nil else {
-                    continue
+            eventStore.enumerateEventsMatchingPredicate(predicate, usingBlock: { (event, unsafePointer) -> Void in
+                if event.calendar.title != "US Holidays" {
+                    memorableEvents.append(MemorableCalendarEvent(uniqueId: event.eventIdentifier,
+                        adapter: self, metadata: event, creationDate: event.startDate))
                 }
-                memorableEvents.append(MemorableCalendarEvent(uniqueId: event.eventIdentifier,
-                    adapter: self, metadata: event, creationDate: event.creationDate!))
-            }
+            })
+            DDLogVerbose(memorableEvents.description)
             completion(memorableEvents)
         })
     }

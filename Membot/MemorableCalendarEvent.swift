@@ -39,6 +39,6 @@ class MemorableCalendarEvent: Memorable, CustomDebugStringConvertible {
     }
 
     var debugDescription: String {
-        return String(format: "MemorableCalendarEvent<uniqueId: \(uniqueId), creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
+        return String(format: "MemorableCalendarEvent<title: \((metadata as? EKEvent)?.title), uniqueId: \(uniqueId), creationDate: \(creationDate), tags: \(tags), isFavorite \(isFavorite) %p>", arguments: [unsafeAddressOf(self)])
     }
 }

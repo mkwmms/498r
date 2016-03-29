@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//import CocoaLumberjackSwift
+import CocoaLumberjackSwift
 
 class MemorableMetadataCache {
 
@@ -23,22 +23,24 @@ class MemorableMetadataCache {
 
     func retrieveMetadataFrom(adapter: Adapter) {
         adapter.retrieveMetadata { (memorables) -> Void in
-            self.allMemorables += self.union(self.allMemorables, with: memorables)
+            let newMemorables = self.union(self.allMemorables, with: memorables)
+            if newMemorables.count > 0 {
+                self.allMemorables += newMemorables
+            }
         }
     }
 
-    // TODO make this a generic extension to array and make memorable conform to equatable 
-    //      or at least use the map or filter function
+    // TODO make this a generic extension to array and make memorable conform to equatable
+    // or at least use the map or filter function
     private func union(existing: [Memorable], with: [Memorable]) -> [Memorable] {
         var union = [Memorable]()
         for mem in with {
-            if !existing.contains({ $0.uniqueId == mem.uniqueId }) {
-                if let memEvent = mem as? MemorableCalendarEvent {
-                    print(mem)
-                }
+            if !existing.contains({ $0.uniqueId == mem.uniqueId })
+            && !union.contains({ $0.uniqueId == mem.uniqueId }) {
                 union.append(mem)
             }
         }
+        DDLogVerbose(union.description)
         return union
     }
 }
