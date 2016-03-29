@@ -14,14 +14,16 @@ private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
 
 class DayCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+//    @IBOutlet weak var pinchView: UIView!
+//    let pinchRec = UIPinchGestureRecognizer()
     var dayDataSource: DayCollectionViewDataSource?
     var memorableFromSegue: Memorable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.collectionView?.backgroundColor = UIColor.whiteColor()
-
+//        pinchView.addGestureRecognizer(pinchRec)
+//        pinchView.userInteractionEnabled = true
+        
         dayDataSource = DayCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> Void in
             if let actualCell = cell as? DayCollectionViewCell {
                 if let mem = memorable as? Memorable {
@@ -50,10 +52,16 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         }
     }
 
+//    func pinchedView(sender: UIPinchGestureRecognizer) {
+//        self.view.bringSubviewToFront(pinchView)
+//        sender.view!.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
+//        sender.scale = 1.0
+//    }
+
     // MARK: - FlowLayout
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
+
         let memorable = dayDataSource?.memorablesByDay[indexPath.section][indexPath.row]
         if let memorableEvent = memorable as? MemorableCalendarEvent {
             return CGSize(width: UIScreen.mainScreen().bounds.width, height: 30)

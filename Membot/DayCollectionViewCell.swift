@@ -23,6 +23,7 @@ class DayCollectionViewCell: UICollectionViewCell {
             if let memEvent = mem.metadata as? EKEvent {
                 self.dayCollectionCellImage.hidden = true
                 self.dayCollectionCellLabel.hidden = false
+//                self.dayCollectionCellLabel.backgroundColor =  UIColor(red: 110, green: 237, blue: 237, alpha: 1)
                 self.dayCollectionCellLabel.text = memEvent.title
 //                if memEvent.creationDate != nil {
 //                    self.dayCollectionCellLabel.text += " " + (memEvent.creationDate?.dayDescription())!
