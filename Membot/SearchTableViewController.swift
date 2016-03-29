@@ -1,33 +1,35 @@
 //
-//  SettingsTableViewController.swift
+//  SearchTableViewController.swift
 //  Membot
 //
-//  Created by Alex Andrews on 3/10/16.
+//  Created by Alex Andrews on 3/29/16.
 //  Copyright © 2016 Sneakywolf. All rights reserved.
 //
 
 import UIKit
-import CocoaLumberjackSwift
 
-class SettingsTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController {
 
-    let appSettings = AppSettings.sharedInstance.settings
-    let reuseIdentifier = "SettingsTableViewCell"
-
+    let reuseIdentifier = "SearchCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // SUPREME HACK
-//        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
-//        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
-//        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
+        print("barnacles")
+        let viewColor = UIColor.whiteColor()
+        viewColor.colorWithAlphaComponent(0.5)
+        self.tableView.backgroundColor = viewColor
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+//        let searchController = UISearchController(searchResultsController: nil)
+//        searchController.searchResultsUpdater = self
+//        searchController.dimsBackgroundDuringPresentation = false
+//        definesPresentationContext = true
+//        searchController.active = true
+//        self.tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func displayViewController(sender: UIBarButtonItem!) {
+        print("searching")
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,33 +41,23 @@ class SettingsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return AppSettings.sharedInstance.settings.count
+        return 0
     }
 
-    
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-       
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SettingsTableViewCell
-        
-        cell.settingCellLabel.text = AppSettings.sharedInstance.settings[indexPath.item].displayableName
-        cell.settingCellSwitch.on = AppSettings.sharedInstance.settings[indexPath.item].isOn
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
-        // see if the cell was fb and flagged as yes, if so, present view controller
-//        if cell.didTurnOnFacebook() {
-//            print("did turn on fb, presentviewcontroller")
-//        }
+        // Configure the cell...
+
         return cell
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-
+    */
 
     /*
     // Override to support conditional editing of the table view.
