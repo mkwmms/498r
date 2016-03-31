@@ -14,10 +14,11 @@ private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
 
 class DayCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-//    @IBOutlet weak var pinchView: UIView!
-//    let pinchRec = UIPinchGestureRecognizer()
+    let searchController = UISearchController(searchResultsController: SearchTableViewController())
     var dayDataSource: DayCollectionViewDataSource?
-    var memorableFromSegue: Memorable?
+    var currentlyViewedMemorable: Memorable?
+    var blurEffectView = UIVisualEffectView()
+//    var monthCollectionViewController = MonthCollectionViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +38,45 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         collectionView!.dataSource = dayDataSource
         collectionView!.delegate = self
 
-        if memorableFromSegue != nil {
-            collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(memorableFromSegue!), atScrollPosition: .Top, animated: false)
+        if currentlyViewedMemorable != nil {
+            collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!), atScrollPosition: .Top, animated: false)
         }
+        
+        let monthsNavigationItem = UIBarButtonItem(title: "Months", style: .Plain, target: self, action: #selector(self.segueToMonthController(_:)))
+        self.navigationItem.setLeftBarButtonItem(monthsNavigationItem, animated: false)
+        let searchNavigationItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(self.displaySearchController(_:)))
+        let memorableNavigationItem = UIBarButtonItem(title: "Full", style: .Plain, target: self, action: #selector(self.segueToMemorableController(_:)))
+        self.navigationItem.setRightBarButtonItems([ memorableNavigationItem, searchNavigationItem ], animated: false)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func displaySearchController(sender: UIBarButtonItem!) {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        //always fill the view
+        blurEffectView.frame = self.collectionView!.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        let searchTableViewController = SearchTableViewController()
+        searchTableViewController.tableView.backgroundView = blurEffectView
+        let searchController = UISearchController(searchResultsController: searchTableViewController)
+        searchController.searchResultsController?.modalPresentationStyle = .OverCurrentContext
+        searchController.view.addSubview(blurEffectView)
+        
+        presentViewController(searchController, animated: true, completion: nil)
+    }
+    
+    func segueToMemorableController(sender: UIBarButtonItem!) {
+        print("segueToMemorableController")
+    }
+    
+    func segueToMonthController(sender: UIBarButtonItem!) {
+        performSegueWithIdentifier("DayCellToMonthController", sender: self)
+        print("segueToMonthController")
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

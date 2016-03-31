@@ -19,7 +19,9 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     private var monthHeaderIdentifier = "MonthHeaderCollectionReusableView"
 
     private var configureCellBlock: CollectionViewCellConfigureBlock
-
+    private var currentCellPath: NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+    
+    
     init(cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
         self.cellIdentifier = cellIdentifier
         self.configureCellBlock = configureBlock
