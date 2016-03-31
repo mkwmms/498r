@@ -34,7 +34,12 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         monthDataSource?.sortMemorablesByMonth()
 
         collectionView!.dataSource = monthDataSource
-        DDLogDebug(MemorableMetadataCache.sharedInstance.allMemorables.description)
+        
+        let dayNavigationItem = UIBarButtonItem(title: "Days", style: .Plain, target: self, action: #selector(self.segueToDayController(_:)))
+        let searchNavigationItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(self.displaySearchController(_:)))
+        self.navigationItem.setRightBarButtonItems([ dayNavigationItem, searchNavigationItem ], animated: false)
+        
+        
     }
     
     override func didReceiveMemoryWarning() {

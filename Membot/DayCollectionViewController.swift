@@ -14,8 +14,7 @@ private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
 
 class DayCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-//    @IBOutlet weak var pinchView: UIView!
-//    let pinchRec = UIPinchGestureRecognizer()
+    let searchController = UISearchController(searchResultsController: SearchTableViewController())
     var dayDataSource: DayCollectionViewDataSource?
     var currentlyViewedMemorable: Memorable?
     var blurEffectView = UIVisualEffectView()
@@ -76,7 +75,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
     }
     
     func segueToMonthController(sender: UIBarButtonItem!) {
-//        presentViewController(monthCollectionViewController, animated: true, completion: nil)
+        performSegueWithIdentifier("DayCellToMonthController", sender: self)
         print("segueToMonthController")
     }
 
