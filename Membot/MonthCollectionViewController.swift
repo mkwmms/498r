@@ -14,7 +14,9 @@ private let reuseIdentifier = "MonthCollectionCellIdentifier"
 class MonthCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var monthDataSource: MonthCollectionViewDataSource?
-
+//    let dayCollectionViewController = DayCollectionViewController()
+    var blurEffectView = UIVisualEffectView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,25 +29,49 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
             }
         })
 
+        
+        
         monthDataSource?.sortMemorablesByMonth()
 
         collectionView!.dataSource = monthDataSource
         DDLogDebug(MemorableMetadataCache.sharedInstance.allMemorables.description)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func displaySearchController(sender: UIBarButtonItem!) {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        //always fill the view
+        blurEffectView.frame = self.collectionView!.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+
+        let searchTableViewController = SearchTableViewController()
+        searchTableViewController.tableView.backgroundView = blurEffectView
+        let searchController = UISearchController(searchResultsController: searchTableViewController)
+        searchController.searchResultsController?.modalPresentationStyle = .OverCurrentContext
+        searchController.view.addSubview(blurEffectView)
+        presentViewController(searchController, animated: true, completion: nil)
+    }
+    func segueToDayController(sender: UIBarButtonItem!) {
+        //dayCollectionViewController.currentlyViewedMemorable =
+        performSegueWithIdentifier("MonthCellToDayController", sender: self)
+        print("segueToDayController")
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "MonthCellToDayController") {
             let dayCollectionViewController = segue.destinationViewController as! DayCollectionViewController
-            dayCollectionViewController.memorableFromSegue = sender as? Memorable
+            dayCollectionViewController.currentlyViewedMemorable = sender as? Memorable
         }
     }
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // TODO what behavior do we want this to implement?
+        print(indexPath.section, indexPath.row)
         let memorableToSend = monthDataSource?.memorablesByMonth[indexPath.section][indexPath.row]
         performSegueWithIdentifier("MonthCellToDayController", sender: memorableToSend as? AnyObject)
     }
