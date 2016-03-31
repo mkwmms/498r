@@ -23,7 +23,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         super.viewDidLoad()
 //        pinchView.addGestureRecognizer(pinchRec)
 //        pinchView.userInteractionEnabled = true
-        
+
         dayDataSource = DayCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> Void in
             if let actualCell = cell as? DayCollectionViewCell {
                 if let mem = memorable as? Memorable {

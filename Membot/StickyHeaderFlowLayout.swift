@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import CocoaLumberjackSwift
 
 class StickyHeaderFlowLayout: UICollectionViewFlowLayout {
 
@@ -11,7 +12,7 @@ class StickyHeaderFlowLayout: UICollectionViewFlowLayout {
         // Return true so we're asked for layout attributes as the content is scrolled
         return true
     }
-
+    
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         // Get the layout attributes for a standard UICollectionViewFlowLayout
         var elementsLayoutAttributes = super.layoutAttributesForElementsInRect(rect)
@@ -34,7 +35,7 @@ class StickyHeaderFlowLayout: UICollectionViewFlowLayout {
                 // If this is a set of layout attributes for a section header, replace them with modified attributes
                 if layoutAttributes.representedElementKind == UICollectionElementKindSectionHeader {
                     let newLayoutAttributes = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: layoutAttributes.indexPath)
-                    elementsLayoutAttributes![index] = newLayoutAttributes!
+                    elementsLayoutAttributes![index] = newLayoutAttributes
 
                     // Store the layout attributes in the dictionary so we know they've been dealt with
                     visibleSectionHeaderLayoutAttributes[section] = HeaderAttributes(layoutAttributes: newLayoutAttributes)
@@ -57,33 +58,29 @@ class StickyHeaderFlowLayout: UICollectionViewFlowLayout {
             // If the header for this section hasn't been set up, do it now
             if headerAttributes.layoutAttributes == nil {
                 let newAttributes = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: NSIndexPath(forItem: 0, inSection: section))
-                elementsLayoutAttributes!.append(newAttributes!)
+                elementsLayoutAttributes!.append(newAttributes)
             }
         }
 
         return elementsLayoutAttributes
     }
 
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
         // Get the layout attributes for a standard flow layout
         let attributes = super.layoutAttributesForSupplementaryViewOfKind(elementKind, atIndexPath: indexPath)
-
-        guard attributes != nil else {
-            return nil // FIXME! happends when indexPath[0][1] = 0
-        }
 
         // If this is a header, we should tweak it's attributes
         if elementKind == UICollectionElementKindSectionHeader {
             if let fullSectionFrame = frameForSection(indexPath.section) {
                 let minimumY = max(collectionView!.contentOffset.y + collectionView!.contentInset.top, fullSectionFrame.origin.y)
                 let maximumY = CGRectGetMaxY(fullSectionFrame) - headerReferenceSize.height - collectionView!.contentInset.bottom
-                
+
                 attributes!.frame = CGRect(x: 0, y: min(minimumY, maximumY), width: collectionView!.bounds.size.width, height: headerReferenceSize.height)
                 attributes!.zIndex = 1
             }
         }
 
-        return attributes
+        return attributes!
     }
 
     // MARK: Private helper methods
@@ -92,7 +89,7 @@ class StickyHeaderFlowLayout: UICollectionViewFlowLayout {
 
         // Sanity check
         let numberOfItems = collectionView!.numberOfItemsInSection(section)
-        if numberOfItems == 0 {
+        guard numberOfItems > 0 else {
             return nil
         }
 

@@ -46,6 +46,9 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             withReuseIdentifier: dayHeaderIdentifier,
             forIndexPath: indexPath) as! DayHeaderCollectionReusableView
         
+        // FIXME: The alpha cannot be set in the storyboard, the color cannot be changed here
+        headerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.95)
+        
         headerView.dayHeaderDescription.sizeToFit()
         headerView.dayHeaderDescription.text = memorablesByDay[indexPath.section][0].creationDate.dayDescription()
         return headerView

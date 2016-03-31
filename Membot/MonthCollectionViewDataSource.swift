@@ -17,6 +17,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     var memorablesByMonth = [[Memorable]]()
     private var cellIdentifier: String?
     private var monthHeaderIdentifier = "MonthHeaderCollectionReusableView"
+
     private var configureCellBlock: CollectionViewCellConfigureBlock
 
     init(cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
@@ -55,9 +56,12 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             collectionView.dequeueReusableSupplementaryViewOfKind(kind,
                 withReuseIdentifier: monthHeaderIdentifier,
                 forIndexPath: indexPath) as! MonthHeaderCollectionReusableView
+        
+        // FIXME: The alpha cannot be set in the storyboard, the color cannot be changed here
+        headerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.95)
+//        headerView.backgroundColor?.colorWithAlphaComponent(0.30)
 
         guard memorablesByMonth.count > 0 && memorablesByMonth[indexPath.section].count > 0 else {
-            DDLogWarn("memorablesByMonth.count < 0")
             headerView.monthHeaderDescription.text = "" // remove the place holder text
             return headerView
         }

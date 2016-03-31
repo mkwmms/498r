@@ -99,16 +99,16 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="K5x-Va-eAf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Baj-Vp-LiX" customClass="StickyHeaderFlowLayout" customModule="Membot" customModuleProvider="target">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="35"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MonthCollectionCellIdentifier" id="dCC-A9-btR" customClass="MonthCollectionViewCell" customModule="Membot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="99" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -120,12 +120,32 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="monthCellImageView" destination="WKD-HG-8J7" id="R3l-f3-cPs"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="center" reuseIdentifier="MonthHeaderCollectionReusableView" id="JNH-Wt-MPL" customClass="MonthHeaderCollectionReusableView" customModule="Membot" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="64" width="600" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r92-aL-7IJ" userLabel="Month Header Description">
+                                    <rect key="frame" x="10" y="8" width="42" height="19"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="r92-aL-7IJ" firstAttribute="top" secondItem="JNH-Wt-MPL" secondAttribute="topMargin" id="fsS-X3-gw7"/>
+                                <constraint firstItem="r92-aL-7IJ" firstAttribute="bottom" secondItem="JNH-Wt-MPL" secondAttribute="bottomMargin" id="oZu-Vp-kbQ"/>
+                                <constraint firstItem="r92-aL-7IJ" firstAttribute="leading" secondItem="JNH-Wt-MPL" secondAttribute="leadingMargin" constant="2" id="pB0-3p-7xP"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="monthHeaderDescription" destination="r92-aL-7IJ" id="t7U-NM-1Lu"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="rYD-RJ-Ja0" id="jOe-yP-XWj"/>
                             <outlet property="delegate" destination="rYD-RJ-Ja0" id="eOE-1S-P9i"/>
@@ -159,7 +179,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MRG-a7-Knk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LoT-G7-0mU" customClass="StickyHeaderFlowLayout" customModule="Membot" customModuleProvider="target">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="50" height="35"/>
@@ -168,7 +188,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DayCollectionCellIdentifier" id="X6R-BF-6p5" customClass="DayCollectionViewCell" customModule="Membot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="35" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="99" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -192,7 +212,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="XoL-Cr-JMU" firstAttribute="centerY" secondItem="zY1-mN-NVD" secondAttribute="centerY" id="FOn-uE-42i"/>
                                     <constraint firstItem="zY1-mN-NVD" firstAttribute="top" secondItem="X6R-BF-6p5" secondAttribute="topMargin" constant="6" id="NGv-Ds-PSZ"/>
@@ -207,21 +226,22 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DayHeaderCollectionReusableView" id="Bfp-Sb-A4O" customClass="DayHeaderCollectionReusableView" customModule="Membot" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="35"/>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" reuseIdentifier="DayHeaderCollectionReusableView" id="Bfp-Sb-A4O" customClass="DayHeaderCollectionReusableView" customModule="Membot" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="64" width="600" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QS3-qi-6h6">
-                                    <rect key="frame" x="0.0" y="14" width="42" height="21"/>
+                                    <rect key="frame" x="11" y="8" width="42" height="19"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="bottomMargin" secondItem="QS3-qi-6h6" secondAttribute="bottom" constant="-8" id="17H-fI-0K9"/>
-                                <constraint firstItem="QS3-qi-6h6" firstAttribute="leading" secondItem="Bfp-Sb-A4O" secondAttribute="leadingMargin" constant="-8" id="rAa-Vd-fn8"/>
+                                <constraint firstItem="QS3-qi-6h6" firstAttribute="leading" secondItem="Bfp-Sb-A4O" secondAttribute="leadingMargin" constant="3" id="5Tb-9O-79j"/>
+                                <constraint firstItem="QS3-qi-6h6" firstAttribute="top" secondItem="Bfp-Sb-A4O" secondAttribute="topMargin" id="CJd-lI-CYX"/>
+                                <constraint firstItem="QS3-qi-6h6" firstAttribute="bottom" secondItem="Bfp-Sb-A4O" secondAttribute="bottomMargin" id="gCE-lI-kvB"/>
                             </constraints>
                             <connections>
                                 <outlet property="dayHeaderDescription" destination="QS3-qi-6h6" id="TII-TZ-Jze"/>
@@ -267,7 +287,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemorableCollectionCellIdentifier" id="T7P-uy-ekV" customClass="MemorableCollectionViewCell" customModule="Membot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="114" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -277,7 +297,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PCL-2o-suD" customClass="MemorableCollectionReusableView" customModule="Membot" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </collectionReusableView>
                         <connections>
@@ -346,10 +366,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="J5b-CO-q8J"/>
         <segue reference="emg-4l-g2a"/>
         <segue reference="i5Q-Da-n1c"/>
         <segue reference="fK4-MO-FB3"/>
         <segue reference="HUg-VU-cei"/>
-        <segue reference="J5b-CO-q8J"/>
     </inferredMetricsTieBreakers>
 </document>
