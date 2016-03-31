@@ -108,7 +108,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MonthCollectionCellIdentifier" id="dCC-A9-btR" customClass="MonthCollectionViewCell" customModule="Membot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="35" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -126,7 +126,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="center" reuseIdentifier="MonthHeaderCollectionReusableView" id="JNH-Wt-MPL" customClass="MonthHeaderCollectionReusableView" customModule="Membot" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="64" width="600" height="35"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r92-aL-7IJ" userLabel="Month Header Description">
@@ -188,7 +188,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DayCollectionCellIdentifier" id="X6R-BF-6p5" customClass="DayCollectionViewCell" customModule="Membot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="35" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -196,15 +196,9 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XoL-Cr-JMU">
                                             <rect key="frame" x="-105" y="-39" width="260" height="128"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="260" id="5kb-a6-Ner"/>
-                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zY1-mN-NVD">
-                                            <rect key="frame" x="4" y="14" width="320" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="320" id="LBQ-PH-fAj"/>
-                                            </constraints>
+                                            <rect key="frame" x="10" y="8" width="34" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -213,12 +207,14 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="XoL-Cr-JMU" firstAttribute="centerY" secondItem="zY1-mN-NVD" secondAttribute="centerY" id="FOn-uE-42i"/>
-                                    <constraint firstItem="zY1-mN-NVD" firstAttribute="top" secondItem="X6R-BF-6p5" secondAttribute="topMargin" constant="6" id="NGv-Ds-PSZ"/>
-                                    <constraint firstItem="XoL-Cr-JMU" firstAttribute="centerX" secondItem="X6R-BF-6p5" secondAttribute="centerX" id="gm3-g2-Dg0"/>
-                                    <constraint firstItem="XoL-Cr-JMU" firstAttribute="top" secondItem="X6R-BF-6p5" secondAttribute="topMargin" constant="-47" id="mDh-tx-crP"/>
-                                    <constraint firstItem="zY1-mN-NVD" firstAttribute="leading" secondItem="X6R-BF-6p5" secondAttribute="leadingMargin" constant="-4" id="tzj-G5-Zyx"/>
-                                    <constraint firstItem="XoL-Cr-JMU" firstAttribute="centerY" secondItem="X6R-BF-6p5" secondAttribute="centerY" id="wFb-Fo-WSY"/>
+                                    <constraint firstItem="XoL-Cr-JMU" firstAttribute="leading" secondItem="X6R-BF-6p5" secondAttribute="leadingMargin" constant="-113" id="0Qi-BM-rOb"/>
+                                    <constraint firstItem="zY1-mN-NVD" firstAttribute="leading" secondItem="X6R-BF-6p5" secondAttribute="leadingMargin" constant="2" id="AMB-Te-CGl"/>
+                                    <constraint firstItem="zY1-mN-NVD" firstAttribute="top" secondItem="X6R-BF-6p5" secondAttribute="topMargin" id="Wni-hK-f9n"/>
+                                    <constraint firstItem="XoL-Cr-JMU" firstAttribute="top" secondItem="X6R-BF-6p5" secondAttribute="topMargin" constant="-47" id="Z7b-UV-nkr"/>
+                                    <constraint firstItem="zY1-mN-NVD" firstAttribute="bottom" secondItem="X6R-BF-6p5" secondAttribute="bottomMargin" id="dhg-hP-22u"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="XoL-Cr-JMU" secondAttribute="bottom" constant="-47" id="j64-8c-7s3"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="zY1-mN-NVD" secondAttribute="trailing" constant="-2" id="rY9-dh-wQO"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="XoL-Cr-JMU" secondAttribute="trailing" constant="-113" id="vaM-y7-LN3"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dayCollectionCellImage" destination="XoL-Cr-JMU" id="5qB-HL-Nha"/>
@@ -227,7 +223,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" reuseIdentifier="DayHeaderCollectionReusableView" id="Bfp-Sb-A4O" customClass="DayHeaderCollectionReusableView" customModule="Membot" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="64" width="600" height="35"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QS3-qi-6h6">
@@ -287,7 +283,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MemorableCollectionCellIdentifier" id="T7P-uy-ekV" customClass="MemorableCollectionViewCell" customModule="Membot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="114" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="50" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -297,7 +293,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PCL-2o-suD" customClass="MemorableCollectionReusableView" customModule="Membot" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </collectionReusableView>
                         <connections>
