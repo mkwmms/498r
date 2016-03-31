@@ -8,17 +8,17 @@
 
 import UIKit
 
-class SearchTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController, UISearchBarDelegate {
 
     let reuseIdentifier = "SearchCell"
+    var backgroundImage = UIImageView(image: UIImage(named: "peaches"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("barnacles")
-        let viewColor = UIColor.whiteColor()
-        viewColor.colorWithAlphaComponent(0.5)
-        self.tableView.backgroundColor = viewColor
+//        self.tableView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        self.tableView.backgroundColor = UIColor.clearColor()
         
 //        let searchController = UISearchController(searchResultsController: nil)
 //        searchController.searchResultsUpdater = self
@@ -26,6 +26,8 @@ class SearchTableViewController: UITableViewController {
 //        definesPresentationContext = true
 //        searchController.active = true
 //        self.tableView.tableHeaderView = searchController.searchBar
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+//        self.tableView.backgroundView = backgroundImage
     }
     
     func displayViewController(sender: UIBarButtonItem!) {
@@ -41,23 +43,29 @@ class SearchTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 5
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
 
         // Configure the cell...
+        cell.backgroundColor = UIColor.clearColor()
+//        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
 
+        cell.textLabel?.text = "hello world"
         return cell
     }
-    */
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        print("peas")
+    }
 
     /*
     // Override to support conditional editing of the table view.

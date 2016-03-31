@@ -17,6 +17,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
     let searchController = UISearchController(searchResultsController: SearchTableViewController())
     var dayDataSource: DayCollectionViewDataSource?
     var currentlyViewedMemorable: Memorable?
+    var blurEffectView = UIVisualEffectView()
 //    var monthCollectionViewController = MonthCollectionViewController()
 
     override func viewDidLoad() {
@@ -54,9 +55,19 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
     }
     
     func displaySearchController(sender: UIBarButtonItem!) {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        //always fill the view
+        blurEffectView.frame = self.collectionView!.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        let searchTableViewController = SearchTableViewController()
+        searchTableViewController.tableView.backgroundView = blurEffectView
+        let searchController = UISearchController(searchResultsController: searchTableViewController)
+        searchController.searchResultsController?.modalPresentationStyle = .OverCurrentContext
+        searchController.view.addSubview(blurEffectView)
         
         presentViewController(searchController, animated: true, completion: nil)
-        print("displaySearchController")
     }
     
     func segueToMemorableController(sender: UIBarButtonItem!) {

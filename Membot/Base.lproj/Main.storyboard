@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" id="R3z-Lz-mqt" customClass="SettingsTableViewCell" customModule="Membot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R3z-Lz-mqt" id="7Of-bQ-WIV">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -387,10 +387,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HUg-VU-cei"/>
         <segue reference="i5Q-Da-n1c"/>
         <segue reference="emg-4l-g2a"/>
         <segue reference="J5b-CO-q8J"/>
-        <segue reference="xZP-i2-d7I"/>
+        <segue reference="LV6-gy-C5i"/>
+        <segue reference="fK4-MO-FB3"/>
     </inferredMetricsTieBreakers>
 </document>

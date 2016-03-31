@@ -14,7 +14,7 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
 
     var monthDataSource: MonthCollectionViewDataSource?
 //    let dayCollectionViewController = DayCollectionViewController()
-    let searchController = UISearchController(searchResultsController: SearchTableViewController())
+    var blurEffectView = UIVisualEffectView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +37,33 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         let dayNavigationItem = UIBarButtonItem(title: "Days", style: .Plain, target: self, action: #selector(self.segueToDayController(_:)))
         let searchNavigationItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(self.displaySearchController(_:)))
         self.navigationItem.setRightBarButtonItems([ dayNavigationItem, searchNavigationItem ], animated: false)
+        
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func displaySearchController(sender: UIBarButtonItem!) {
-//        let searchTableViewController = SearchTableViewController()
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        //always fill the view
+        blurEffectView.frame = self.collectionView!.bounds
+        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+
+        let searchTableViewController = SearchTableViewController()
+        searchTableViewController.tableView.backgroundView = blurEffectView
+        let searchController = UISearchController(searchResultsController: searchTableViewController)
+        searchController.searchResultsController?.modalPresentationStyle = .OverCurrentContext
+        searchController.view.addSubview(blurEffectView)
         presentViewController(searchController, animated: true, completion: nil)
-        print("displaySearchController")
     }
     func segueToDayController(sender: UIBarButtonItem!) {
         //dayCollectionViewController.currentlyViewedMemorable =
+        performSegueWithIdentifier("MonthCellToDayController", sender: self)
         print("segueToDayController")
     }
 
