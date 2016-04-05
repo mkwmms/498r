@@ -16,7 +16,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("barnacles")
 //        self.tableView.backgroundColor = UIColor(white: 1, alpha: 0.5)
         self.tableView.backgroundColor = UIColor.clearColor()
         
@@ -59,7 +58,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate {
         cell.backgroundColor = UIColor.clearColor()
 //        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
 
-        cell.textLabel?.text = "hello world"
+        cell.textLabel?.text = "here will be the search results"
         return cell
     }
     

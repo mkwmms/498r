@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import EventKit
 
 private let reuseIdentifier = "DayCollectionCellIdentifier"
 private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
@@ -15,6 +16,7 @@ private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
 class DayCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let searchController = UISearchController(searchResultsController: SearchTableViewController())
+    
     var dayDataSource: DayCollectionViewDataSource?
     var currentlyViewedMemorable: Memorable?
     var blurEffectView = UIVisualEffectView()
@@ -39,7 +41,8 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         collectionView!.delegate = self
 
         if currentlyViewedMemorable != nil {
-            collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!), atScrollPosition: .Top, animated: false)
+            
+            collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!), atScrollPosition: .CenteredVertically, animated: false)
         }
         
         let monthsNavigationItem = UIBarButtonItem(title: "Months", style: .Plain, target: self, action: #selector(self.segueToMonthController(_:)))
@@ -47,6 +50,8 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         let searchNavigationItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(self.displaySearchController(_:)))
         let memorableNavigationItem = UIBarButtonItem(title: "Full", style: .Plain, target: self, action: #selector(self.segueToMemorableController(_:)))
         self.navigationItem.setRightBarButtonItems([ memorableNavigationItem, searchNavigationItem ], animated: false)
+        
+//        searchController.searchResultsUpdater = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,12 +80,30 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
     }
     
     func segueToMonthController(sender: UIBarButtonItem!) {
-        performSegueWithIdentifier("DayCellToMonthController", sender: self)
-        print("segueToMonthController")
+        performSegueWithIdentifier("DayNavToMonthController", sender: sender)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MonthCellToDayController" {
+        if segue.identifier == "DayNavToMonthController" {
+            let indexPaths = self.collectionView!.indexPathsForVisibleItems()
+            var section = 100
+            var row = 500
+            for indexPath in indexPaths {
+                if indexPath.section <= section {
+                    section = indexPath.section
+                    if indexPath.row < row {
+                        row = indexPath.row
+                    }
+                }
+            }
+            print("Section:", section, "Row:", row)
+            let monthCollectionViewController = segue.destinationViewController as! MonthCollectionViewController
+
+            let indexPath = NSIndexPath(forRow: row, inSection: section)
+            if let memorable = self.dayDataSource?.itemAtIndexPath(indexPath).metadata as? EKEvent {
+                monthCollectionViewController.currentlyViewedMemorable = self.dayDataSource?.itemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+            }
+            monthCollectionViewController.currentlyViewedMemorable = self.dayDataSource?.itemAtIndexPath(NSIndexPath(forRow: row, inSection: section))
         }
     }
 

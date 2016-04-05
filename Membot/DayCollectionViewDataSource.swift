@@ -83,7 +83,7 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         memorablesByDay.append(memorablesInCurrentDay)
     }
     
-    private func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
+    func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
         return memorablesByDay[indexPath.section][indexPath.row]
     }
 }

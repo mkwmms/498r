@@ -102,7 +102,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         memorablesByMonth.append(memorablesInCurrentMonth)
     }
 
-    private func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
+    func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
         return memorablesByMonth[indexPath.section][indexPath.row]
     }
 }

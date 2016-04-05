@@ -100,7 +100,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Baj-Vp-LiX" customClass="StickyHeaderFlowLayout" customModule="Membot" customModuleProvider="target">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Baj-Vp-LiX" customClass="StickyHeaderFlowLayout" customModule="Membot" customModuleProvider="target">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="50" height="35"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -166,6 +166,7 @@
                     <connections>
                         <segue destination="IAO-2q-VQQ" kind="show" id="HUg-VU-cei"/>
                         <segue destination="YiX-6F-9OE" kind="show" identifier="MonthCellToDayController" id="emg-4l-g2a"/>
+                        <segue destination="YiX-6F-9OE" kind="show" identifier="MonthNavToDayController" id="zqo-TZ-L6x"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIZ-wo-xOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -251,7 +252,7 @@
                     <navigationItem key="navigationItem" title="Days" id="xgY-RD-jsJ">
                         <barButtonItem key="leftBarButtonItem" title="Months" id="Et5-FI-hP8">
                             <connections>
-                                <segue destination="rYD-RJ-Ja0" kind="show" identifier="DayCellToMonthController" id="i5Q-Da-n1c"/>
+                                <segue destination="rYD-RJ-Ja0" kind="show" identifier="DayNavToMonthController" id="i5Q-Da-n1c"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Memory" id="VrY-4O-CEI">
@@ -399,10 +400,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="zqo-TZ-L6x"/>
         <segue reference="i5Q-Da-n1c"/>
-        <segue reference="emg-4l-g2a"/>
-        <segue reference="J5b-CO-q8J"/>
-        <segue reference="HUg-VU-cei"/>
+        <segue reference="LV6-gy-C5i"/>
         <segue reference="fK4-MO-FB3"/>
+        <segue reference="J5b-CO-q8J"/>
     </inferredMetricsTieBreakers>
 </document>
