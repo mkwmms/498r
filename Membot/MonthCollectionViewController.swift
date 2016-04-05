@@ -14,10 +14,10 @@ private let reuseIdentifier = "MonthCollectionCellIdentifier"
 class MonthCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var monthDataSource: MonthCollectionViewDataSource?
-//    let dayCollectionViewController = DayCollectionViewController()
     var blurEffectView = UIVisualEffectView()
     var currentlyViewedMemorable: Memorable?
-
+    var appToolBar = AppToolBar(frame: CGRectMake(0, UIScreen.mainScreen().bounds.height - 46, UIScreen.mainScreen().bounds.width, 46))
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +44,9 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
             self.collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!), atScrollPosition: .CenteredVertically, animated: false)
         }
         
-        let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height - 46, self.view.frame.size.width, 46))
-        let toolBarItem = UIBarButtonItem(barButtonSystemItem: .Add, target: nil, action: nil)
-        toolBar.setItems([toolBarItem], animated: false)
-        toolBar.backgroundColor = UIColor(white: 1, alpha: 0.9)
-        self.view.addSubview(toolBar)
+        self.appToolBar.currentViewController = self
+        self.view.addSubview(appToolBar)
+        print("Height", self.navigationController?.accessibilityFrame.height)
     }
     
     override func didReceiveMemoryWarning() {

@@ -20,7 +20,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
     var dayDataSource: DayCollectionViewDataSource?
     var currentlyViewedMemorable: Memorable?
     var blurEffectView = UIVisualEffectView()
-//    var monthCollectionViewController = MonthCollectionViewController()
+    var appToolBar = AppToolBar(frame: CGRectMake(0, UIScreen.mainScreen().bounds.height - 46, UIScreen.mainScreen().bounds.width, 46))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,8 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         let memorableNavigationItem = UIBarButtonItem(title: "Full", style: .Plain, target: self, action: #selector(self.segueToMemorableController(_:)))
         self.navigationItem.setRightBarButtonItems([ memorableNavigationItem, searchNavigationItem ], animated: false)
         
-//        searchController.searchResultsUpdater = self
+        self.appToolBar.currentViewController = self
+        self.view.addSubview(appToolBar)
     }
 
     override func didReceiveMemoryWarning() {
