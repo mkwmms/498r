@@ -13,19 +13,35 @@ import CocoaLumberjackSwift
 class FacebookPhotosAdapter: Adapter {
 
     let cache = Shared.imageCache
+    var count = 0
 
     func retrieveMetadata(completion: ([Memorable]) -> Void) {
+//        var facebookMemorables = [Memorable]()
+        recursivelyRetrieveMetadata(nil, completion: { (memorables) -> Void in
+            print("in outer space: ", memorables)
+            completion(memorables)
+        })
+    }
 
-        let parameters = ["fields": "picture.type(large),photos{images, created_time}"]
+    func recursivelyRetrieveMetadata(nextCursor: String?, completion: ([Memorable]) -> Void) {
+        var parameters = ["fields": "picture.type(large),photos{images, created_time}", "limit": "99"]
+        if nextCursor != nil {
+            parameters["after"] = nextCursor
+        }
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler { (connection, result, error) -> Void in
             guard error == nil else {
                 DDLogError("\(error?.localizedFailureReason) \(error?.localizedDescription)")
                 return
             }
-
+       
             let resultImages = result.objectForKey("photos")!.objectForKey("data")! as! [AnyObject]
-
+//            print(resultImages.count)
             var facebookMemorables = [Memorable]()
+            if self.count > 10 {
+                print("in innner space: ", facebookMemorables)
+                completion(facebookMemorables)
+                return
+            }
             for i in 0 ..< resultImages.count {
                 let fbImage = resultImages[i]
                 let resultMetadatas = resultImages[i].objectForKey("images")! as! [AnyObject]
@@ -51,7 +67,22 @@ class FacebookPhotosAdapter: Adapter {
                         adapter: self, metadata: fbImageMetadata, creationDate: date!))
                 }
             }
+//            print(result)
+
+//            if let after = ((result.objectForKey("paging") as? NSDictionary)?.objectForKey("cursors")
+//                as? NSDictionary)?.objectForKey("after") as? String {
+            if let after = result.objectForKey("photos")?.objectForKey("paging")?.objectForKey("cursors")?.objectForKey("after") as? String {
+                self.count++
+                print(self.count)
+                self.recursivelyRetrieveMetadata(after, completion: { (memorables) -> Void in
+//                    print(memorables)
+                    facebookMemorables += memorables
+//                    completion(facebookMemorables)
+                })
+            }
+//            print(facebookMemorables)
             completion(facebookMemorables)
+
         }
     }
 

@@ -11,7 +11,6 @@ import UIKit
 class SearchTableViewController: UITableViewController, UISearchBarDelegate {
 
     let reuseIdentifier = "SearchCell"
-    var backgroundImage = UIImageView(image: UIImage(named: "peaches"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
