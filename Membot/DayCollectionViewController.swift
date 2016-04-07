@@ -57,7 +57,10 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.appToolBar.frame = CGRectMake(0, UIScreen.mainScreen().bounds.width - 46, UIScreen.mainScreen().bounds.width, 46)
     }
     
     func displaySearchController(sender: UIBarButtonItem!) {

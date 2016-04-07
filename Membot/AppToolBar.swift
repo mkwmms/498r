@@ -19,14 +19,15 @@ class AppToolBar: UIToolbar {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        toolBarItemSettings.width = 44
+//        toolBarItemSettings.width = 44
         
         toolBarItemSettings.target = self
         toolBarItemCompose.target = self
-//        toolBarItemSettings.action = #selector(self.displaySettingsController(_:))
+        toolBarItemSettings.action = #selector(self.displaySettingsController(_:))
         toolBarItemCompose.action = #selector(self.displayComposeMemorableController(_:))
         self.setItems([flexibleSpaceBar1, toolBarItemSettings, flexibleSpaceBar2, toolBarItemCompose, flexibleSpaceBar3], animated: false)
         self.backgroundColor = UIColor(white: 1, alpha: 0.1)
+        self.autoresizingMask = .FlexibleWidth
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,9 +36,15 @@ class AppToolBar: UIToolbar {
     
     func displayComposeMemorableController(sender: UIBarButtonItem) {
         let composeMemorableViewController = ComposeMemorableViewController()
+//        composeMemorableViewController.previousViewController = currentViewController
         currentViewController.presentViewController(composeMemorableViewController, animated: true, completion: nil)
-        
-        print("apples")
+    }
+    
+    func displaySettingsController(sender: UIBarButtonItem) {
+//        let settingsTableViewController = SettingsTableViewController()
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let settingsTableViewController = storyBoard.instantiateViewControllerWithIdentifier("SettingsTableViewController")
+        currentViewController.presentViewController(settingsTableViewController, animated: true, completion: nil)
     }
     
     

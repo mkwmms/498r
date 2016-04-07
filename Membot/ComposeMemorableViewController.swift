@@ -7,38 +7,43 @@
 //
 
 import UIKit
+import CoreData
+import CocoaLumberjackSwift
 
-class ComposeMemorableViewController: UIViewController, UITextFieldDelegate {
+class ComposeMemorableViewController: UIViewController, UITextViewDelegate {
 
+    var previousViewController = UICollectionViewController()
+    let navigationBar = UINavigationBar()
+    let memorableComposition = UITextView()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let memorableEntry = UITextField(frame: UIScreen.mainScreen().bounds)
-        memorableEntry.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        memorableEntry.returnKeyType = UIReturnKeyType.Done
-        memorableEntry.contentVerticalAlignment = UIControlContentVerticalAlignment.Bottom
-        memorableEntry.becomeFirstResponder()
-
-//        let textFieldFrame = CGRect(x: UIScreen.mainScreen().bounds.maxX, y: UIScreen.mainScreen().bounds.maxY, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height + 100)
-//        let memorableEntry = UITextView(frame: textFieldFrame)
-//        memorableEntry.backgroundColor = UIColor(white: 1, alpha: 0.5)
-//        memorableEntry.becomeFirstResponder()
-
+        printCompositions()
         
-        self.view!.addSubview(memorableEntry)
+        self.displaySubviews()
+
+//        memorableComposition.delegate = self
+        memorableComposition.backgroundColor = UIColor.whiteColor()
+        memorableComposition.returnKeyType = UIReturnKeyType.Done
+        memorableComposition.font = UIFont.systemFontOfSize(UIFont.labelFontSize())
+        memorableComposition.becomeFirstResponder()
+        memorableComposition.autoresizingMask = .FlexibleWidth
+        memorableComposition.scrollEnabled = true
         
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 44)) // Offset by 20 pixels vertically to take the status bar into account
+        self.view!.addSubview(memorableComposition)
 
         navigationBar.backgroundColor = UIColor(white:1, alpha: 0.5)
-//        navigationBar.delegate = self;
+        navigationBar.autoresizingMask = .FlexibleWidth
         
         let navigationItem = UINavigationItem()
         navigationItem.title = "Comopse Entry"
         
-        let backButton =  UIBarButtonItem(title: "Back", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(self.btn_clicked(_:)))
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: nil)
+        let cancelButton =  UIBarButtonItem(title: "Cancel", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(self.cancelComposition(_:)))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.doneWithComposition(_:)))
         
-        navigationItem.leftBarButtonItem = backButton
+        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = doneButton
         
         // Assign the navigation item to the navigation bar
@@ -51,19 +56,73 @@ class ComposeMemorableViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func btn_clicked(sender: UIBarButtonItem) {
-        print("wrinkly")
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.displaySubviews()
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
-        print("kwi gon gin")
+    func displaySubviews() {
+        if UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft || UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight {
+            
+            self.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 32)
+            self.memorableComposition.frame = CGRect(x: 0, y: 32, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - 32)
+        } else if UIDevice.currentDevice().orientation == UIDeviceOrientation.PortraitUpsideDown || UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait {
+            
+            self.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 64)
+            self.memorableComposition.frame = CGRect(x: 0, y: 64, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - 64)
+        }
+    }
+    
+    func printCompositions() {
+        let fetchRequest = NSFetchRequest(entityName: "Composition")
+        var coreDataCompositions = [NSManagedObject]()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        do {
+            let results =
+                try managedContext.executeFetchRequest(fetchRequest)
+            coreDataCompositions = results as! [NSManagedObject]
+            if coreDataCompositions.count > 0 {
+                for composition in coreDataCompositions {
+                    print(composition.valueForKey("compositionText"))
+                }
+            }
+        } catch let error as NSError {
+            DDLogError("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
+    
+    func cancelComposition(sender: UIBarButtonItem) {
+        self.memorableComposition.resignFirstResponder()
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func doneWithComposition(sender: UIBarButtonItem) {
+        saveCompositionToCoreData()
+        self.memorableComposition.resignFirstResponder()
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func saveCompositionToCoreData() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entityDescription = NSEntityDescription.entityForName("Composition", inManagedObjectContext: managedContext)
+        
+        let compositionEntity = NSManagedObject(entity: entityDescription!, insertIntoManagedObjectContext: managedContext)
+        
+        compositionEntity.setValue(self.memorableComposition.text, forKey: "compositionText")
+        compositionEntity.setValue(NSDate(), forKey: "compositionDate")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError  {
+            DDLogError("Could not save \(error), \(error.userInfo)")
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print("kwi gon gin2")
+        print("itza marrio")
         return true
     }
 
