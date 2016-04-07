@@ -9,18 +9,15 @@
 import UIKit
 import Photos
 import EventKit
+import CocoaLumberjackSwift
 
 private let reuseIdentifier = "DayCollectionCellIdentifier"
 private let dayHeaderIdentifier = "DayHeaderCollectionReusableView"
 
 class DayCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    let searchController = UISearchController(searchResultsController: SearchTableViewController())
-    
     var dayDataSource: DayCollectionViewDataSource?
     var currentlyViewedMemorable: Memorable?
-    var blurEffectView = UIVisualEffectView()
-//    var monthCollectionViewController = MonthCollectionViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +38,15 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         collectionView!.delegate = self
 
         if currentlyViewedMemorable != nil {
-            
             collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!), atScrollPosition: .CenteredVertically, animated: false)
         }
-        
+
         let monthsNavigationItem = UIBarButtonItem(title: "Months", style: .Plain, target: self, action: #selector(self.segueToMonthController(_:)))
         self.navigationItem.setLeftBarButtonItem(monthsNavigationItem, animated: false)
-        let searchNavigationItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(self.displaySearchController(_:)))
-        let memorableNavigationItem = UIBarButtonItem(title: "Full", style: .Plain, target: self, action: #selector(self.segueToMemorableController(_:)))
-        self.navigationItem.setRightBarButtonItems([ memorableNavigationItem, searchNavigationItem ], animated: false)
-        
+//        let searchNavigationItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(self.displaySearchController(_:)))
+//        let memorableNavigationItem = UIBarButtonItem(title: "Full", style: .Plain, target: self, action: #selector(self.segueToMemorableController(_:)))
+//        self.navigationItem.setRightBarButtonItems([ memorableNavigationItem, searchNavigationItem ], animated: false)
+
 //        searchController.searchResultsUpdater = self
     }
 
@@ -58,27 +54,11 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func displaySearchController(sender: UIBarButtonItem!) {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
-        //always fill the view
-        blurEffectView.frame = self.collectionView!.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        
-        let searchTableViewController = SearchTableViewController()
-        searchTableViewController.tableView.backgroundView = blurEffectView
-        let searchController = UISearchController(searchResultsController: searchTableViewController)
-        searchController.searchResultsController?.modalPresentationStyle = .OverCurrentContext
-        searchController.view.addSubview(blurEffectView)
-        
-        presentViewController(searchController, animated: true, completion: nil)
-    }
-    
+
     func segueToMemorableController(sender: UIBarButtonItem!) {
-        print("segueToMemorableController")
+        DDLogVerbose("segueToMemorableController")
     }
-    
+
     func segueToMonthController(sender: UIBarButtonItem!) {
         performSegueWithIdentifier("DayNavToMonthController", sender: sender)
     }
@@ -96,7 +76,7 @@ class DayCollectionViewController: UICollectionViewController, UICollectionViewD
                     }
                 }
             }
-            print("Section:", section, "Row:", row)
+            DDLogVerbose("Section: " + section.description + "Row: " + row.description)
             let monthCollectionViewController = segue.destinationViewController as! MonthCollectionViewController
 
             let indexPath = NSIndexPath(forRow: row, inSection: section)

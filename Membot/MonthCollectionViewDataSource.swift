@@ -15,25 +15,27 @@ typealias CollectionViewCellConfigureBlock = (cell: UICollectionViewCell, memora
 class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
     var memorablesByMonth = [[Memorable]]()
+    var filteredMemorablesByMonth = [[Memorable]]()
+
     private var cellIdentifier: String?
     private var monthHeaderIdentifier = "MonthHeaderCollectionReusableView"
 
     private var configureCellBlock: CollectionViewCellConfigureBlock
     private var currentCellPath: NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-    
-    
+
     init(cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
+        filteredMemorablesByMonth = memorablesByMonth
         self.cellIdentifier = cellIdentifier
         self.configureCellBlock = configureBlock
         super.init()
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return memorablesByMonth.count
+        return filteredMemorablesByMonth.count
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memorablesByMonth[section].count
+        return filteredMemorablesByMonth[section].count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -58,18 +60,18 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             collectionView.dequeueReusableSupplementaryViewOfKind(kind,
                 withReuseIdentifier: monthHeaderIdentifier,
                 forIndexPath: indexPath) as! MonthHeaderCollectionReusableView
-        
+
         // FIXME: The alpha cannot be set in the storyboard, the color cannot be changed here
         headerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.95)
 //        headerView.backgroundColor?.colorWithAlphaComponent(0.30)
 
-        guard memorablesByMonth.count > 0 && memorablesByMonth[indexPath.section].count > 0 else {
+        guard filteredMemorablesByMonth.count > 0 && filteredMemorablesByMonth[indexPath.section].count > 0 else {
             headerView.monthHeaderDescription.text = "" // remove the place holder text
             return headerView
         }
 
         headerView.monthHeaderDescription.sizeToFit()
-        headerView.monthHeaderDescription.text = memorablesByMonth[indexPath.section][0].creationDate.monthDescription()
+        headerView.monthHeaderDescription.text = filteredMemorablesByMonth[indexPath.section][0].creationDate.monthDescription()
 
         return headerView
     }
@@ -100,9 +102,34 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             memorablesInCurrentMonth.append(mem)
         }
         memorablesByMonth.append(memorablesInCurrentMonth)
+        filteredMemorablesByMonth = memorablesByMonth
     }
 
     func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
-        return memorablesByMonth[indexPath.section][indexPath.row]
+        return filteredMemorablesByMonth[indexPath.section][indexPath.row]
+    }
+}
+
+// MARK: - Search
+
+extension MonthCollectionViewController: UISearchResultsUpdating {
+
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        var query = searchController.searchBar.text
+
+        if query == nil || query == "" {
+            self.monthDataSource!.filteredMemorablesByMonth = self.monthDataSource!.memorablesByMonth
+        } else {
+            query = query?.lowercaseString
+
+            let result = self.monthDataSource!.memorablesByMonth.filter { (memorables: [Memorable]) -> Bool in
+                return memorables.filter({ (mem) -> Bool in
+                    return mem.creationDate.monthDescription().lowercaseString.containsString(query!) ||
+                    mem.creationDate.dayDescription().lowercaseString.containsString(query!)
+                }).count > 0
+            }
+            self.monthDataSource!.filteredMemorablesByMonth = result
+        }
+        self.collectionView!.reloadData()
     }
 }
