@@ -31,11 +31,12 @@ class AppSettings {
     let facebookSetting = MemorableSourceSetting(displayableName: "Facebook", isOn: false)
     let photosSetting = MemorableSourceSetting(displayableName: "Photos", isOn: false)
     let calendarEventsSetting = MemorableSourceSetting(displayableName: "Calendar Events", isOn: false)
+    let compositionSetting = MemorableSourceSetting(displayableName: "Journal Entries", isOn: false)
     
     var settings: [MemorableSourceSetting]
     
     init() {
-        settings = [facebookSetting, photosSetting, calendarEventsSetting]
+        settings = [facebookSetting, photosSetting, calendarEventsSetting, compositionSetting]
     }
     
     func updateSetting(displayableName: String, isOn: Bool) {

@@ -41,12 +41,8 @@ class AppToolBar: UIToolbar {
     }
     
     func displaySettingsController(sender: UIBarButtonItem) {
-//        let settingsTableViewController = SettingsTableViewController()
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let settingsTableViewController = storyBoard.instantiateViewControllerWithIdentifier("SettingsTableViewController")
-//        currentViewController.presentViewController(settingsTableViewController, animated: true, completion: nil)
-        let settingsTableViewController = SettingsTableViewController()
-        self.currentViewController.presentViewController(settingsTableViewController, animated: true, completion: nil)
+        let settingsViewController = SettingsViewController()
+        self.currentViewController.presentViewController(settingsViewController, animated: true, completion: nil)
     }
     
     
