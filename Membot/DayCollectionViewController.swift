@@ -22,6 +22,9 @@ class DayCollectionViewController: UICollectionViewController {
     var resultSearchController = UISearchController()
     var searchButton: UIBarButtonItem!
 
+    var appToolBar = AppToolBar(frame: CGRectMake(0, UIScreen.mainScreen().bounds.height - 46,
+                                                     UIScreen.mainScreen().bounds.width, 46))
+
     // MARK: - Public Overrides
 
     override func viewDidLoad() {
@@ -44,6 +47,9 @@ class DayCollectionViewController: UICollectionViewController {
             collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!),
                 atScrollPosition: .CenteredVertically, animated: false)
         }
+        
+        appToolBar.currentViewController = self
+        view.addSubview(appToolBar)
 
         initSearchBar()
 
@@ -55,8 +61,10 @@ class DayCollectionViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        self.appToolBar.frame = CGRectMake(0, UIScreen.mainScreen().bounds.width - 46, UIScreen.mainScreen().bounds.width, 46)
+    override func viewWillTransitionToSize(size: CGSize,
+                                           withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.appToolBar.frame = CGRectMake(0, UIScreen.mainScreen().bounds.width - 46,
+                                           UIScreen.mainScreen().bounds.width, 46)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -138,7 +146,7 @@ extension DayCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
+
             let memorable = dayDataSource?.filteredMemorablesByDay[indexPath.section][indexPath.row]
             if let memorableEvent = memorable as? MemorableCalendarEvent {
                 return CGSize(width: UIScreen.mainScreen().bounds.width, height: 30)
