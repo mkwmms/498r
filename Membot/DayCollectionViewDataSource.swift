@@ -75,9 +75,7 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             return
         }
         
-        MemorableMetadataCache.sharedInstance.allMemorables.sortInPlace({
-            $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
-        })
+        MemorableMetadataCache.sharedInstance.sortInPlace()
         
         let calendar = NSCalendar.currentCalendar()
         var currentDate = MemorableMetadataCache.sharedInstance.allMemorables[0].creationDate
