@@ -56,7 +56,7 @@
 		FAA919261CA45FAD001B1F46 /* DisplayableImageMemorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA919251CA45FAD001B1F46 /* DisplayableImageMemorable.swift */; };
 		FACA331E1CB41B9A00807E8D /* AppToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA331D1CB41B9A00807E8D /* AppToolBar.swift */; };
 		FACA33221CB42B9A00807E8D /* ComposeMemorableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA33211CB42B9A00807E8D /* ComposeMemorableViewController.swift */; };
-		FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */; };
+		FAD10BA11C920A52001262A6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA01C920A52001262A6 /* SettingsViewController.swift */; };
 		FAD10BA31C920A88001262A6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */; };
 		FAD10BAD1C9357AF001262A6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BAC1C9357AF001262A6 /* AppSettings.swift */; };
 /* End PBXBuildFile section */
@@ -158,7 +158,7 @@
 		FAA919251CA45FAD001B1F46 /* DisplayableImageMemorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayableImageMemorable.swift; sourceTree = "<group>"; };
 		FACA331D1CB41B9A00807E8D /* AppToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppToolBar.swift; sourceTree = "<group>"; };
 		FACA33211CB42B9A00807E8D /* ComposeMemorableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeMemorableViewController.swift; sourceTree = "<group>"; };
-		FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		FAD10BA01C920A52001262A6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		FAD10BAC1C9357AF001262A6 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -275,7 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				9768B9751C86070800019860 /* AppDelegate.swift */,
-				FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */,
+				FAD10BA01C920A52001262A6 /* SettingsViewController.swift */,
 				FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */,
 				FAD10BAC1C9357AF001262A6 /* AppSettings.swift */,
 				971036BA1C91D6F600C9628E /* Model */,
@@ -515,7 +515,7 @@
 				9744840B1C8F3B1C001DF7CC /* MemorablePhoto.swift in Sources */,
 				97ED60D01CB8041E004C8BCC /* CompositionAdapter.swift in Sources */,
 				FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */,
-				FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */,
+				FAD10BA11C920A52001262A6 /* SettingsViewController.swift in Sources */,
 				FA709E841C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift in Sources */,
 				971466B71C88946B000C07FC /* Memorable.swift in Sources */,
 				97ED60D21CB80601004C8BCC /* MemorableComposition.swift in Sources */,

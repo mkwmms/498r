@@ -12,12 +12,26 @@ import CocoaLumberjackSwift
 
 class SettingsTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var settingCellLabel: UILabel!
-    @IBOutlet weak var settingCellSwitch: UISwitch!
+    var settingCellLabel: UILabel!
+    var settingCellSwitch: UISwitch!
+    var currentViewController: UIViewController!
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:)")
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.settingCellLabel = UILabel(frame: CGRect(x: 10, y: 0, width: 200, height: 50))
+        self.settingCellSwitch = UISwitch(frame: CGRect(x: UIScreen.mainScreen().bounds.width - 64, y: 5, width: 44, height: 44))
+        self.settingCellSwitch.addTarget(self, action: #selector(self.settingsCellSwitchChanged(_:)), forControlEvents: .ValueChanged)
+        self.contentView.addSubview(settingCellLabel)
+        self.contentView.addSubview(settingCellSwitch)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -25,7 +39,7 @@ class SettingsTableViewCell: UITableViewCell {
         self.selectionStyle = .None
     }
 
-    @IBAction func settingsCellSwitchChanged(sender: AnyObject) {
+    @IBAction func settingsCellSwitchChanged(sender: UISwitch!) {
         self.didTurnOnFacebook()
         if self.settingCellSwitch.on {
             retrieveMetaDataForOnSettings()
@@ -72,6 +86,9 @@ class SettingsTableViewCell: UITableViewCell {
     
     func didTurnOnFacebook() -> Bool {
         if self.settingCellLabel.text == "Facebook" && self.settingCellSwitch.on {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let fbLoginViewController = storyBoard.instantiateViewControllerWithIdentifier("FBLoginViewController")
+            self.currentViewController.presentViewController(fbLoginViewController, animated: true, completion: nil)
             return true
         } else {
             return false
