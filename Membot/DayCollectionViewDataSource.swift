@@ -9,30 +9,38 @@
 import UIKit
 
 class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
-
+    
     var memorablesByDay = [[Memorable]]()
-    private var cellIdentifier: String?
+    var filteredMemorablesByDay = [[Memorable]]()
+    
     private var dayHeaderIdentifier = "DayHeaderCollectionReusableView"
+    
+    private var cellIdentifier: String?
     private var configureCellBlock: CollectionViewCellConfigureBlock
     
     init(cellIdentifier: String, configureBlock: CollectionViewCellConfigureBlock) {
+        filteredMemorablesByDay = memorablesByDay
         self.cellIdentifier = cellIdentifier
         self.configureCellBlock = configureBlock
         super.init()
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return memorablesByDay.count
+        // Use filtered array in case we are searching. Both arrays are the same if we are not.
+        return filteredMemorablesByDay.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return memorablesByDay[section].count
+        // Use filtered array in case we are searching. Both arrays are the same if we are not.
+        return filteredMemorablesByDay[section].count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView,
+                        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell =
+            collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!,
+                                                                  forIndexPath: indexPath) as! DayCollectionViewCell
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!, forIndexPath: indexPath) as! DayCollectionViewCell
-
         if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
             configureCellBlock(cell: cell, memorable: memorable)
         }
@@ -40,35 +48,39 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let headerView =
-        collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-            withReuseIdentifier: dayHeaderIdentifier,
-            forIndexPath: indexPath) as! DayHeaderCollectionReusableView
+    func collectionView(collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                                                          atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                                                                               withReuseIdentifier: dayHeaderIdentifier,
+                                                                               forIndexPath: indexPath) as! DayHeaderCollectionReusableView
         
         // FIXME: The alpha cannot be set in the storyboard, the color cannot be changed here
         headerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.95)
         
+        guard filteredMemorablesByDay.count > 0 && filteredMemorablesByDay[indexPath.section].count > 0 else {
+            headerView.dayHeaderDescription.text = "" // remove the place holder text
+            return headerView
+        }
+        
         headerView.dayHeaderDescription.sizeToFit()
-        headerView.dayHeaderDescription.text = memorablesByDay[indexPath.section][0].creationDate.dayDescription()
+        headerView.dayHeaderDescription.text =
+            filteredMemorablesByDay[indexPath.section][0].creationDate.dayDescription()
+        
         return headerView
     }
     
     func sortMemorablesByDay() {
-        
         guard MemorableMetadataCache.sharedInstance.allMemorables.count > 0 else {
             return
         }
         
-        // FIXME: noticably slow... should we have an isSorted member?
-        MemorableMetadataCache.sharedInstance.allMemorables.sortInPlace({
-            $0.creationDate.compare($1.creationDate) == NSComparisonResult.OrderedAscending
-        })
+        MemorableMetadataCache.sharedInstance.sortInPlace()
         
         let calendar = NSCalendar.currentCalendar()
         var currentDate = MemorableMetadataCache.sharedInstance.allMemorables[0].creationDate
         var memorablesInCurrentDay = [Memorable]()
-        // Build up 2D array memorablesByMonth
+        // Build up 2D array memorablesByDay
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
             guard AppSettings.sharedInstance.memTypeIsOn(mem) else {
                 continue
@@ -81,9 +93,34 @@ class DayCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             memorablesInCurrentDay.append(mem)
         }
         memorablesByDay.append(memorablesInCurrentDay)
+        filteredMemorablesByDay = memorablesByDay
     }
     
     func itemAtIndexPath(indexPath: NSIndexPath) -> Memorable {
-        return memorablesByDay[indexPath.section][indexPath.row]
+        // Use filtered array in case we are searching. Both arrays are the same if we are not.
+        return filteredMemorablesByDay[indexPath.section][indexPath.row]
+    }
+}
+
+// MARK: - Search
+
+extension DayCollectionViewController: UISearchResultsUpdating {
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        var query = searchController.searchBar.text
+        
+        if query == nil || query == "" {
+            self.dayDataSource!.filteredMemorablesByDay = self.dayDataSource!.memorablesByDay
+        } else {
+            query = query?.lowercaseString
+            
+            let result = self.dayDataSource!.memorablesByDay.filter { (memorables: [Memorable]) -> Bool in
+                return memorables.filter({ (mem) -> Bool in
+                    return mem.doesMatch(query!)
+                }).count > 0
+            }
+            self.dayDataSource!.filteredMemorablesByDay = result
+        }
+        self.collectionView!.reloadData()
     }
 }

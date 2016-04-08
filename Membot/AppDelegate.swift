@@ -15,18 +15,18 @@ import CocoaLumberjack.DDDispatchQueueLogFormatter
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Setup logging
         DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: .Debug) // TTY = Xcode console
-        DDTTYLogger.sharedInstance().logFormatter = MembotLogFormatter()
-        
+        DDTTYLogger.sharedInstance().logFormatter = MembotConsoleLogFormatter()
+
         // Initialize AppSettings
         var coreDataAppSettings = [NSManagedObject]()
         let fetchRequest = NSFetchRequest(entityName: "Setting")
         do {
             let results =
-            try self.managedObjectContext.executeFetchRequest(fetchRequest)
+                try self.managedObjectContext.executeFetchRequest(fetchRequest)
             coreDataAppSettings = results as! [NSManagedObject]
             if coreDataAppSettings.count > 0 {
                 // update the AppSettings to reflect what the user has saved to CoreData
@@ -39,13 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DDLogError("Could not fetch \(error), \(error.userInfo)")
         }
         retrieveMetadataForOnSettings()
-        
+
         // Set up for FB use
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
+
         return true
     }
-    
+
     func updateAppSettings(results: [AnyObject]) {
         for result in results {
             let setting = result as! NSManagedObject
@@ -57,43 +57,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
     }
-    
+
     func addAppSettingsToCoreData() {
         for setting in AppSettings.sharedInstance.settings {
-            let entity =  NSEntityDescription.entityForName("Setting",
-                inManagedObjectContext:self.managedObjectContext)
-            
+            let entity = NSEntityDescription.entityForName("Setting",
+                inManagedObjectContext: self.managedObjectContext)
+
             let settingEntity = NSManagedObject(entity: entity!,
                 insertIntoManagedObjectContext: self.managedObjectContext)
-            
+
             settingEntity.setValue(setting.displayableName, forKey: "displayableName")
             settingEntity.setValue(setting.isOn, forKey: "isOn")
-            
+
             do {
                 try self.managedObjectContext.save()
-            } catch let error as NSError  {
+            } catch let error as NSError {
                 DDLogError("Could not save \(error), \(error.userInfo)")
             }
-
         }
     }
-    
+
     func retrieveMetadataForOnSettings() {
         for setting in AppSettings.sharedInstance.settings {
             if setting.isOn {
                 switch setting.displayableName {
-                    case "Facebook":
-                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
-                    case "Photos":
-                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
-                    case "Calendar Events":
-                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
-                    default:
-                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
-                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
-                        MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
+                case "Facebook":
+                    MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
+                case "Photos":
+                    MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
+                case "Calendar Events":
+                    MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
+                default:
+                    MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
+                    MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
+                    MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
                 }
             }
         }
@@ -193,20 +191,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-class MembotLogFormatter: DDDispatchQueueLogFormatter {
-//    let dateFormatter: NSDateFormatter
-    
-//    override init() {
-//        dateFormatter = NSDateFormatter()
-//        dateFormatter.formatterBehavior = .Behavior10_4
-//        dateFormatter.dateFormat = "HH:mm"
-//        
-//        super.init()
-//    }
-    
+class MembotConsoleLogFormatter: DDDispatchQueueLogFormatter {
+
     override func formatLogMessage(logMessage: DDLogMessage!) -> String {
-//        let dateAndTime = dateFormatter.stringFromDate(logMessage.timestamp)
         return "[\(logMessage.function)@\(logMessage.fileName):\(logMessage.line)]: \(logMessage.message)\n"
-//        return "[\(logMessage.fileName):\(logMessage.line)]: \(logMessage.message)"
+    }
+}
+
+class MembotFileLogFormatter: DDDispatchQueueLogFormatter {
+    
+    let dateFormatter: NSDateFormatter
+
+    override init() {
+        dateFormatter = NSDateFormatter()
+        dateFormatter.formatterBehavior = .Behavior10_4
+        dateFormatter.dateFormat = "HH:mm"
+
+        super.init()
+    }
+
+    override func formatLogMessage(logMessage: DDLogMessage!) -> String {
+        let dt = dateFormatter.stringFromDate(logMessage.timestamp)
+        return "\(dt) [\(logMessage.function)@\(logMessage.fileName):\(logMessage.line)]: \(logMessage.message)\n"
     }
 }

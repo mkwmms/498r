@@ -11,17 +11,23 @@ import CocoaLumberjackSwift
 
 private let reuseIdentifier = "MonthCollectionCellIdentifier"
 
-class MonthCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+class MonthCollectionViewController: UICollectionViewController {
+    
     var monthDataSource: MonthCollectionViewDataSource?
     var blurEffectView = UIVisualEffectView()
     var currentlyViewedMemorable: Memorable?
-    var appToolBar = AppToolBar(frame: CGRectMake(0, UIScreen.mainScreen().bounds.height - 46, UIScreen.mainScreen().bounds.width, 46))
     
+    var resultSearchController = UISearchController()
+    var searchButton: UIBarButtonItem!
+    
+    var appToolBar = AppToolBar(frame: CGRectMake(0, UIScreen.mainScreen().bounds.height - 46,
+                                                     UIScreen.mainScreen().bounds.width, 46))
+    
+    // MARK: - Public Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Init our datasource and setup the closure to handle our cell
         monthDataSource = MonthCollectionViewDataSource(cellIdentifier: reuseIdentifier, configureBlock: { (cell, memorable) -> Void in
             if let actualCell = cell as? MonthCollectionViewCell {
@@ -32,20 +38,21 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         })
         
         monthDataSource?.sortMemorablesByMonth()
-
+        
         collectionView!.dataSource = monthDataSource
         
-        let dayNavigationItem = UIBarButtonItem(title: "Days", style: .Plain, target: self, action: #selector(self.segueToDayControllerViaNavBar(_:)))
-        let searchNavigationItem = UIBarButtonItem(barButtonSystemItem: .Search, target: self, action: #selector(self.displaySearchController(_:)))
-        self.navigationItem.setRightBarButtonItems([ dayNavigationItem, searchNavigationItem ], animated: false)
-        
         if currentlyViewedMemorable != nil {
-            print("ON SEGUE Section", self.indexPathFromMemorable(self.currentlyViewedMemorable!).section, "Row:", self.indexPathFromMemorable(self.currentlyViewedMemorable!).row)
             self.collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!), atScrollPosition: .CenteredVertically, animated: false)
         }
         
-        self.appToolBar.currentViewController = self
-        self.view.addSubview(appToolBar)
+        initSearchBar()
+        
+        initRightBarButtonItems()
+        
+        appToolBar.currentViewController = self
+        view.addSubview(appToolBar)
+        
+//        view.addSubview(createToolBar())
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,32 +60,20 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        self.appToolBar.frame = CGRectMake(0, UIScreen.mainScreen().bounds.width - 46, UIScreen.mainScreen().bounds.width, 46)
+    override func viewWillTransitionToSize(size: CGSize,
+                                           withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.appToolBar.frame = CGRectMake(0, UIScreen.mainScreen().bounds.width - 46,
+                                              UIScreen.mainScreen().bounds.width, 46)
     }
     
-    func displaySearchController(sender: UIBarButtonItem!) {
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-        blurEffectView = UIVisualEffectView(effect: blurEffect)
-        //always fill the view
-        blurEffectView.frame = self.collectionView!.bounds
-        blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-
-        let searchTableViewController = SearchTableViewController()
-        searchTableViewController.tableView.backgroundView = blurEffectView
-        let searchController = UISearchController(searchResultsController: searchTableViewController)
-        searchController.searchResultsController?.modalPresentationStyle = .OverCurrentContext
-        searchController.view.addSubview(blurEffectView)
-        presentViewController(searchController, animated: true, completion: nil)
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // TODO what behavior do we want this to implement?
+        DDLogVerbose("Section: " + indexPath.section.description + "Row: " + indexPath.row.description)
+        let memorableToSend = monthDataSource?.memorablesByMonth[indexPath.section][indexPath.row]
+        performSegueWithIdentifier("MonthCellToDayController", sender: memorableToSend as? AnyObject)
     }
     
-    func segueToDayControllerViaNavBar(sender: UIBarButtonItem!) {
-        //dayCollectionViewController.currentlyViewedMemorable =
-        performSegueWithIdentifier("MonthNavToDayController", sender: sender)
-        print("segueToDayController")
-    }
-
+    // FIXME
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "MonthCellToDayController") {
             let dayCollectionViewController = segue.destinationViewController as! DayCollectionViewController
@@ -87,17 +82,15 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
             if self.navigationItem.rightBarButtonItems![0] == button {
                 let indexPaths = self.collectionView!.indexPathsForVisibleItems()
                 
+                // FIXME crashes around here when you tap on a photo in a search result
+                
                 let sortedIndexPaths = indexPaths.sort {
                     $0.section < $1.section
                 }
-                for indexPath in sortedIndexPaths {
-                    print("Section:", indexPath.section, "Row:", indexPath.row)
-                }
-
+                
                 var section = 100
                 var row = 500
                 for indexPath in indexPaths {
-                    
                     if indexPath.section <= section {
                         section = indexPath.section
                         if indexPath.row < row {
@@ -105,35 +98,96 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
                         }
                     }
                 }
+                
                 let dayCollectionViewController = segue.destinationViewController as! DayCollectionViewController
-                dayCollectionViewController.currentlyViewedMemorable = self.monthDataSource?.itemAtIndexPath(NSIndexPath(forRow: row, inSection: section))
+                dayCollectionViewController.currentlyViewedMemorable =
+                    self.monthDataSource?.itemAtIndexPath(NSIndexPath(forRow: row, inSection: section))
             }
         }
     }
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // TODO what behavior do we want this to implement?
-        print(indexPath.section, indexPath.row)
-        let memorableToSend = monthDataSource?.memorablesByMonth[indexPath.section][indexPath.row]
-        performSegueWithIdentifier("MonthCellToDayController", sender: memorableToSend as? AnyObject)
-    }
-
-    // MARK: - FlowLayout
-
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let cellSize = UIScreen.mainScreen().bounds.width / 5
-        return CGSize(width: cellSize, height: cellSize)
-    }
-
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.mainScreen().bounds.width, height: 35)
+    
+    // MARK: - Private
+    
+    func segueToDayControllerViaNavBar(sender: UIBarButtonItem!) {
+        performSegueWithIdentifier("MonthNavToDayController", sender: sender)
     }
     
+    private func initRightBarButtonItems() {
+        self.navigationItem.setRightBarButtonItems(createRightBarButtonItems(), animated: false)
+    }
+    
+    private func createRightBarButtonItems() -> [UIBarButtonItem] {
+        return [UIBarButtonItem(title: "Days", style: .Plain, target: self,
+            action: #selector(self.segueToDayControllerViaNavBar(_:))), createSearchButton()
+        ]
+    }
+    
+    private func createToolBar() -> UIToolbar {
+        let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height - 46, self.view.frame.size.width, 46))
+        let toolBarItem = UIBarButtonItem(barButtonSystemItem: .Add, target: nil, action: nil)
+        toolBar.setItems([toolBarItem], animated: false)
+        toolBar.backgroundColor = UIColor(white: 1, alpha: 0.9)
+        return toolBar
+    }
+    
+    // FIXME code duplication
     private func indexPathFromMemorable(memorable: Memorable) -> NSIndexPath {
-        for section in 0 ..< self.monthDataSource!.memorablesByMonth.count {
-            if let row = self.monthDataSource?.memorablesByMonth[section].indexOf({ $0.uniqueId == memorable.uniqueId }) {
+        for section in 0 ..< self.monthDataSource!.filteredMemorablesByMonth.count {
+            if let row = self.monthDataSource?.filteredMemorablesByMonth[section]
+                .indexOf({ $0.uniqueId == memorable.uniqueId }) {
                 return NSIndexPath(forRow: row, inSection: section)
             }
         }
         return NSIndexPath(forRow: 0, inSection: 0)
+    }
+}
+
+// MARK: - FlowLayout
+
+extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let cellSize = UIScreen.mainScreen().bounds.width / 5
+        return CGSize(width: cellSize, height: cellSize)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: UIScreen.mainScreen().bounds.width, height: 35)
+    }
+}
+
+// MARK: - Search
+
+extension MonthCollectionViewController: UISearchBarDelegate {
+    // TODO get rid of this code duplication
+    
+    func createSearchButton() -> UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: .Search, target: self,
+                               action: #selector(self.showSearchBar(_:)))
+    }
+    
+    func initSearchBar() {
+        self.resultSearchController = {
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.hidesNavigationBarDuringPresentation = false // default true
+            controller.searchBar.sizeToFit()
+            controller.searchBar.placeholder = "Search by date"
+            return controller
+            }()
+        
+        self.resultSearchController.searchBar.delegate = self
+    }
+    
+    func showSearchBar(sender: UIBarButtonItem!) {
+        self.navigationItem.rightBarButtonItems = nil // FIXME I don't think this can just be hidden
+        self.navigationItem.titleView = resultSearchController.searchBar
+        resultSearchController.searchBar.becomeFirstResponder() // put cursor in query text box
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.navigationItem.titleView = nil
+        initRightBarButtonItems()
     }
 }
