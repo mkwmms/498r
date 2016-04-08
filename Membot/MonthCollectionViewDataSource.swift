@@ -43,8 +43,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView,
                         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!,
-                                                                         forIndexPath: indexPath
-            ) as! MonthCollectionViewCell
+                                                                         forIndexPath: indexPath) as! MonthCollectionViewCell
         
         if let memorable: Memorable = self.itemAtIndexPath(indexPath) {
             configureCellBlock(cell: cell, memorable: memorable)

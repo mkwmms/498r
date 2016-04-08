@@ -42,7 +42,8 @@ class MonthCollectionViewController: UICollectionViewController {
         collectionView!.dataSource = monthDataSource
         
         if currentlyViewedMemorable != nil {
-            self.collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!), atScrollPosition: .CenteredVertically, animated: false)
+            self.collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!),
+                                                         atScrollPosition: .CenteredVertically, animated: false)
         }
         
         initSearchBar()
@@ -51,8 +52,6 @@ class MonthCollectionViewController: UICollectionViewController {
         
         appToolBar.currentViewController = self
         view.addSubview(appToolBar)
-        
-//        view.addSubview(createToolBar())
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,7 +62,7 @@ class MonthCollectionViewController: UICollectionViewController {
     override func viewWillTransitionToSize(size: CGSize,
                                            withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         self.appToolBar.frame = CGRectMake(0, UIScreen.mainScreen().bounds.width - 46,
-                                              UIScreen.mainScreen().bounds.width, 46)
+                                           UIScreen.mainScreen().bounds.width, 46)
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -122,14 +121,6 @@ class MonthCollectionViewController: UICollectionViewController {
         ]
     }
     
-    private func createToolBar() -> UIToolbar {
-        let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height - 46, self.view.frame.size.width, 46))
-        let toolBarItem = UIBarButtonItem(barButtonSystemItem: .Add, target: nil, action: nil)
-        toolBar.setItems([toolBarItem], animated: false)
-        toolBar.backgroundColor = UIColor(white: 1, alpha: 0.9)
-        return toolBar
-    }
-    
     // FIXME code duplication
     private func indexPathFromMemorable(memorable: Memorable) -> NSIndexPath {
         for section in 0 ..< self.monthDataSource!.filteredMemorablesByMonth.count {
@@ -146,12 +137,16 @@ class MonthCollectionViewController: UICollectionViewController {
 
 extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let cellSize = UIScreen.mainScreen().bounds.width / 5
         return CGSize(width: cellSize, height: cellSize)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: UIScreen.mainScreen().bounds.width, height: 35)
     }
 }
