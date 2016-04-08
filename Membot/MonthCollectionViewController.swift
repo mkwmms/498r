@@ -11,7 +11,7 @@ import CocoaLumberjackSwift
 
 private let reuseIdentifier = "MonthCollectionCellIdentifier"
 
-class MonthCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class MonthCollectionViewController: UICollectionViewController {
 
     var monthDataSource: MonthCollectionViewDataSource?
     var currentlyViewedMemorable: Memorable?
@@ -76,7 +76,6 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
                 var section = 100
                 var row = 500
                 for indexPath in indexPaths {
-
                     if indexPath.section <= section {
                         section = indexPath.section
                         if indexPath.row < row {
@@ -84,22 +83,15 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
                         }
                     }
                 }
+
                 let dayCollectionViewController = segue.destinationViewController as! DayCollectionViewController
-                dayCollectionViewController.currentlyViewedMemorable = self.monthDataSource?.itemAtIndexPath(NSIndexPath(forRow: row, inSection: section))
+                dayCollectionViewController.currentlyViewedMemorable =
+                    self.monthDataSource?.itemAtIndexPath(NSIndexPath(forRow: row, inSection: section))
             }
         }
     }
 
     // MARK: - Private
-
-    private func indexPathFromMemorable(memorable: Memorable) -> NSIndexPath {
-        for section in 0 ..< self.monthDataSource!.memorablesByMonth.count {
-            if let row = self.monthDataSource?.memorablesByMonth[section].indexOf({ $0.uniqueId == memorable.uniqueId }) {
-                return NSIndexPath(forRow: row, inSection: section)
-            }
-        }
-        return NSIndexPath(forRow: 0, inSection: 0)
-    }
 
     func segueToDayControllerViaNavBar(sender: UIBarButtonItem!) {
         performSegueWithIdentifier("MonthNavToDayController", sender: sender)
@@ -122,11 +114,22 @@ class MonthCollectionViewController: UICollectionViewController, UICollectionVie
         toolBar.backgroundColor = UIColor(white: 1, alpha: 0.9)
         return toolBar
     }
+
+    // FIXME code duplication
+    private func indexPathFromMemorable(memorable: Memorable) -> NSIndexPath {
+        for section in 0 ..< self.monthDataSource!.filteredMemorablesByMonth.count {
+            if let row = self.monthDataSource?.filteredMemorablesByMonth[section]
+                .indexOf({ $0.uniqueId == memorable.uniqueId }) {
+                    return NSIndexPath(forRow: row, inSection: section)
+            }
+        }
+        return NSIndexPath(forRow: 0, inSection: 0)
+    }
 }
 
 // MARK: - FlowLayout
 
-extension MonthCollectionViewController {
+extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let cellSize = UIScreen.mainScreen().bounds.width / 5
@@ -141,10 +144,11 @@ extension MonthCollectionViewController {
 // MARK: - Search
 
 extension MonthCollectionViewController: UISearchBarDelegate {
+    // TODO get rid of this code duplication
 
     func createSearchButton() -> UIBarButtonItem {
         return UIBarButtonItem(barButtonSystemItem: .Search, target: self,
-            action: #selector(self.showSearch(_:)))
+            action: #selector(self.showSearchBar(_:)))
     }
 
     func initSearchBar() {
@@ -161,7 +165,7 @@ extension MonthCollectionViewController: UISearchBarDelegate {
         self.resultSearchController.searchBar.delegate = self
     }
 
-    func showSearch(sender: UIBarButtonItem!) {
+    func showSearchBar(sender: UIBarButtonItem!) {
         self.navigationItem.rightBarButtonItems = nil // FIXME I don't think this can just be hidden
         self.navigationItem.titleView = resultSearchController.searchBar
         resultSearchController.searchBar.becomeFirstResponder() // put cursor in query text box
