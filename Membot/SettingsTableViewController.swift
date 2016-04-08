@@ -13,6 +13,8 @@ class SettingsTableViewController: UITableViewController {
 
     let appSettings = AppSettings.sharedInstance.settings
     let reuseIdentifier = "SettingsTableViewCell"
+    
+    let navigationBar = UINavigationBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,6 @@ class SettingsTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source

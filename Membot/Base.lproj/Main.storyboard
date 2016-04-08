@@ -9,7 +9,7 @@
         <!--Membot Settings-->
         <scene sceneID="Lnp-gx-Uwh">
             <objects>
-                <tableViewController title="Membot Settings" id="HhP-Ry-jse" customClass="SettingsTableViewController" customModule="Membot" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsTableViewController" title="Membot Settings" id="HhP-Ry-jse" customClass="SettingsTableViewController" customModule="Membot" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JqE-kf-PEe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,7 +310,7 @@
         <!--Search Table View Controller-->
         <scene sceneID="bLy-7f-e0U">
             <objects>
-                <tableViewController id="NgS-JX-MTJ" customClass="SearchTableViewController" customModule="Membot" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchTableViewController" id="NgS-JX-MTJ" customClass="SearchTableViewController" customModule="Membot" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xwo-rA-AI4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

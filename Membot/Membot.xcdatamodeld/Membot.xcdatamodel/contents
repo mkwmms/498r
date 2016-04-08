@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="Composition" syncable="YES">
+        <attribute name="compositionDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="compositionText" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Setting" syncable="YES">
         <attribute name="displayableName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isOn" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
         <element name="Setting" positionX="-54" positionY="-27" width="128" height="75"/>
+        <element name="Composition" positionX="-54" positionY="-9" width="128" height="75"/>
     </elements>
 </model>

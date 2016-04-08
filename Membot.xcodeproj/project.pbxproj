@@ -52,6 +52,8 @@
 		FA709E841C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E831C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift */; };
 		FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA709E851C8A060400AAAF06 /* Adapter.swift */; };
 		FAA919261CA45FAD001B1F46 /* DisplayableImageMemorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA919251CA45FAD001B1F46 /* DisplayableImageMemorable.swift */; };
+		FACA331E1CB41B9A00807E8D /* AppToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA331D1CB41B9A00807E8D /* AppToolBar.swift */; };
+		FACA33221CB42B9A00807E8D /* ComposeMemorableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACA33211CB42B9A00807E8D /* ComposeMemorableViewController.swift */; };
 		FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */; };
 		FAD10BA31C920A88001262A6 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */; };
 		FAD10BAD1C9357AF001262A6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD10BAC1C9357AF001262A6 /* AppSettings.swift */; };
@@ -150,6 +152,8 @@
 		FA709E831C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableFacebookPhoto.swift; sourceTree = "<group>"; };
 		FA709E851C8A060400AAAF06 /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
 		FAA919251CA45FAD001B1F46 /* DisplayableImageMemorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayableImageMemorable.swift; sourceTree = "<group>"; };
+		FACA331D1CB41B9A00807E8D /* AppToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppToolBar.swift; sourceTree = "<group>"; };
+		FACA33211CB42B9A00807E8D /* ComposeMemorableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeMemorableViewController.swift; sourceTree = "<group>"; };
 		FAD10BA01C920A52001262A6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		FAD10BA21C920A88001262A6 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		FAD10BAC1C9357AF001262A6 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
@@ -231,8 +235,10 @@
 		971036BE1C91D73C00C9628E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				FACA331D1CB41B9A00807E8D /* AppToolBar.swift */,
 				972FCECA1CAAF902006D36C5 /* StickyHeaderFlowLayout.swift */,
 				FA709E7F1C88C10E00AAAF06 /* FacebookLoginViewController.swift */,
+				FACA33211CB42B9A00807E8D /* ComposeMemorableViewController.swift */,
 				FA1399991C8612C10050678C /* MonthCollectionView */,
 				FA13999A1C8612E10050678C /* DayCollectionView */,
 				FA13999B1C8612ED0050678C /* MemorableCollectionView */,
@@ -485,6 +491,7 @@
 				FAD10BAD1C9357AF001262A6 /* AppSettings.swift in Sources */,
 				FA1399901C8611DB0050678C /* DayHeaderCollectionReusableView.swift in Sources */,
 				9768B97E1C86070800019860 /* Membot.xcdatamodeld in Sources */,
+				FACA33221CB42B9A00807E8D /* ComposeMemorableViewController.swift in Sources */,
 				FA709E861C8A060400AAAF06 /* Adapter.swift in Sources */,
 				9744840F1C8F488A001DF7CC /* MonthCollectionViewDataSource.swift in Sources */,
 				974484091C8F3ABF001DF7CC /* PhotoLibraryAdapter.swift in Sources */,
@@ -505,6 +512,7 @@
 				FA6B00881CA457B6004E871B /* DisplayableImageAdapter.swift in Sources */,
 				971036D21C92135C00C9628E /* MemorableMetadataCache.swift in Sources */,
 				972FCECB1CAAF902006D36C5 /* StickyHeaderFlowLayout.swift in Sources */,
+				FACA331E1CB41B9A00807E8D /* AppToolBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
