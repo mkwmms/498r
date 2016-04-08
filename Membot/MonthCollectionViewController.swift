@@ -41,7 +41,8 @@ class MonthCollectionViewController: UICollectionViewController {
         
         collectionView!.dataSource = monthDataSource
         
-        if currentlyViewedMemorable != nil {
+        // FIXME!! this should just ask if the currentlyViewedMemorable.dataType is an image
+        if currentlyViewedMemorable != nil && !(currentlyViewedMemorable is MemorableCalendarEvent) && !(currentlyViewedMemorable is MemorableComposition) {
             self.collectionView?.scrollToItemAtIndexPath(indexPathFromMemorable(currentlyViewedMemorable!),
                                                          atScrollPosition: .CenteredVertically, animated: false)
         }
@@ -53,6 +54,12 @@ class MonthCollectionViewController: UICollectionViewController {
         appToolBar.currentViewController = self
         view.addSubview(appToolBar)
     }
+    
+    //    override func viewWillAppear(animated: Bool) {
+    //        monthDataSource?.memorablesByMonth.removeAll()
+    //        monthDataSource?.filteredMemorablesByMonth.removeAll()
+    //        monthDataSource?.sortMemorablesByMonth()
+    //    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -139,14 +146,14 @@ extension MonthCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let cellSize = UIScreen.mainScreen().bounds.width / 5
         return CGSize(width: cellSize, height: cellSize)
     }
     
     func collectionView(collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+                               referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: UIScreen.mainScreen().bounds.width, height: 35)
     }
 }

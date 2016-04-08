@@ -113,6 +113,7 @@ class ComposeMemorableViewController: UIViewController, UITextViewDelegate {
         
         do {
             try managedContext.save()
+            MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CompositionAdapter())
         } catch let error as NSError {
             DDLogError("Could not save \(error), \(error.userInfo)")
         }

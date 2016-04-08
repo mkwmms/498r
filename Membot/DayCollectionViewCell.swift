@@ -14,6 +14,7 @@ class DayCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var dayCollectionCellImage: UIImageView!
     @IBOutlet weak var dayCollectionCellLabel: UILabel!
+    var dayCollectionCellTextView: UITextView! = UITextView()
 
     func configureForItem(memorable: Any) {
         
@@ -31,6 +32,9 @@ class DayCollectionViewCell: UICollectionViewCell {
                 self.dayCollectionCellImage.hidden = true
                 self.dayCollectionCellLabel.hidden = false
                 self.dayCollectionCellLabel.text = memComposition
+//                self.dayCollectionCellTextView.text = memComposition
+//                self.dayCollectionCellTextView.center = self.contentView.center
+//                self.contentView.addSubview(dayCollectionCellTextView)
             }
             
             mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (result) -> Void in
