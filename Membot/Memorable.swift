@@ -43,14 +43,20 @@ protocol Memorable {
 extension NSDate {
 
     func monthDescription() -> String {
-
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMMM y"
         return formatter.stringFromDate(self)
     }
 
     func dayDescription() -> String {
-
         return NSDateFormatter.localizedStringFromDate(self, dateStyle: .MediumStyle, timeStyle: .NoStyle)
+    }
+}
+
+extension Memorable {
+    
+    func doesMatch(forQuery: String) -> Bool {
+        return self.creationDate.monthDescription().lowercaseString.containsString(forQuery) ||
+            self.creationDate.dayDescription().lowercaseString.containsString(forQuery)
     }
 }
