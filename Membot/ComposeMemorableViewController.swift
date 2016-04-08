@@ -18,9 +18,6 @@ class ComposeMemorableViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        printCompositions()
-        
         self.displaySubviews()
         
         // memorableComposition.delegate = self
@@ -88,25 +85,6 @@ class ComposeMemorableViewController: UIViewController, UITextViewDelegate {
                                                      y: 64,
                                                      width: UIScreen.mainScreen().bounds.width,
                                                      height: UIScreen.mainScreen().bounds.height - 64)
-        }
-    }
-    
-    func printCompositions() {
-        let fetchRequest = NSFetchRequest(entityName: "Composition")
-        var coreDataCompositions = [NSManagedObject]()
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        do {
-            let results =
-                try managedContext.executeFetchRequest(fetchRequest)
-            coreDataCompositions = results as! [NSManagedObject]
-            if coreDataCompositions.count > 0 {
-                for composition in coreDataCompositions {
-                    print(composition.valueForKey("compositionText"))
-                }
-            }
-        } catch let error as NSError {
-            DDLogError("Could not fetch \(error), \(error.userInfo)")
         }
     }
     

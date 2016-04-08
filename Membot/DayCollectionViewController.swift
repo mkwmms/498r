@@ -147,12 +147,14 @@ extension DayCollectionViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
-            let memorable = dayDataSource?.filteredMemorablesByDay[indexPath.section][indexPath.row]
-            if let memorableEvent = memorable as? MemorableCalendarEvent {
-                return CGSize(width: UIScreen.mainScreen().bounds.width, height: 30)
-            }
-            let cellSize = UIScreen.mainScreen().bounds.width
-            return CGSize(width: cellSize, height: cellSize)
+        // FIXME!! should not have to do this
+        
+        let memorable = dayDataSource?.filteredMemorablesByDay[indexPath.section][indexPath.row]
+        if memorable is MemorableComposition || memorable is MemorableCalendarEvent {
+            return CGSize(width: UIScreen.mainScreen().bounds.width, height: 30)
+        }
+        let cellSize = UIScreen.mainScreen().bounds.width
+        return CGSize(width: cellSize, height: cellSize)
     }
 }
 

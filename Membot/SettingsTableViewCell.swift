@@ -79,6 +79,8 @@ class SettingsTableViewCell: UITableViewCell {
                 MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
             case "Calendar Events":
                 MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
+            case "Journal Entries":
+                MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CompositionAdapter())
             default:
                 DDLogVerbose("No item selected")
         }

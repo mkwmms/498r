@@ -93,7 +93,7 @@ class MonthCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         var memorablesInCurrentMonth = [Memorable]()
         // Build up 2D array memorablesByMonth
         for mem in MemorableMetadataCache.sharedInstance.allMemorables {
-            guard AppSettings.sharedInstance.memTypeIsOn(mem) && !(mem is MemorableCalendarEvent) else {
+            guard AppSettings.sharedInstance.memTypeIsOn(mem) && mem.displayableData is UIImage else {
                 continue
             }
             if !(calendar.isDate(mem.creationDate, equalToDate: currentDate, toUnitGranularity: .Month)) {

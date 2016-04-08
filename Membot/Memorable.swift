@@ -13,7 +13,8 @@ import Foundation
 protocol Memorable {
     
     var uniqueId: String { get set }
-    
+//    var dataType: MyDataTypeEnum // FIXME! make this be image, video etc.
+//    var displayableMemorableTypeName // match on this in AppSettings to see if it is enabled
     var adapter: Adapter { get set }
     var metadata: Any { get set }
     var displayableData: Any? { get set }

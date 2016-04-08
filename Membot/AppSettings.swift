@@ -47,8 +47,9 @@ class AppSettings {
         }
     }
     
+    //FIXME!! we shouldn't need this :) -> check the memorable protocol for a solution
     func memTypeIsOn(memorable: Memorable) -> Bool {
-        if memorable is MemorableFacebookPhoto && facebookSetting.isOn || memorable is MemorablePhoto && photosSetting.isOn || memorable is MemorableCalendarEvent && calendarEventsSetting.isOn {
+        if memorable is MemorableFacebookPhoto && facebookSetting.isOn || memorable is MemorablePhoto && photosSetting.isOn || memorable is MemorableCalendarEvent && calendarEventsSetting.isOn || memorable is MemorableComposition && compositionSetting.isOn {
             return true
         } else {
             return false

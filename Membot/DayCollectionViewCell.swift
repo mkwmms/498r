@@ -19,19 +19,18 @@ class DayCollectionViewCell: UICollectionViewCell {
         
         let targetSize = CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
         if let mem = memorable as? Memorable {
-            
             if let memEvent = mem.metadata as? EKEvent {
                 self.dayCollectionCellImage.hidden = true
                 self.dayCollectionCellLabel.hidden = false
-//                self.dayCollectionCellLabel.backgroundColor =  UIColor(red: 110, green: 237, blue: 237, alpha: 1)
                 self.dayCollectionCellLabel.text = memEvent.title
-//                if memEvent.creationDate != nil {
-//                    self.dayCollectionCellLabel.text += " " + (memEvent.creationDate?.dayDescription())!
-//                }
                 self.dayCollectionCellImage.sizeToFit()
                 self.dayCollectionCellLabel.center = self.contentView.center
                 DDLogVerbose("Title: " + memEvent.title)
                 return
+            } else if let memComposition = mem.metadata as? String {
+                self.dayCollectionCellImage.hidden = true
+                self.dayCollectionCellLabel.hidden = false
+                self.dayCollectionCellLabel.text = memComposition
             }
             
             mem.adapter.retrieveDisplayableData(mem.metadata, dimensions: self.sizeThatFits(targetSize), completion: { (result) -> Void in

@@ -24,7 +24,6 @@ class CompositionAdapter: Adapter {
             coreDataCompositions = results as! [NSManagedObject]
             if coreDataCompositions.count > 0 {
                 for composition in coreDataCompositions {
-//                    memorableCompositions.
                     let date = composition.valueForKey("compositionDate") as! NSDate
                     let text = composition.valueForKey("compositionText") as! String
                     let id = date.timeIntervalSince1970.description // TODO make this more bulletproof
@@ -33,6 +32,7 @@ class CompositionAdapter: Adapter {
                     memorableCompositions.append(mem)
                 }
             }
+            completion(memorableCompositions)
         } catch let error as NSError {
             DDLogError("Could not fetch \(error), \(error.userInfo)")
         }
