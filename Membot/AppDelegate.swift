@@ -92,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(FacebookPhotosAdapter())
                     MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
                     MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(PhotoLibraryAdapter())
+                    MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CompositionAdapter())
                 }
             }
         }

@@ -66,7 +66,7 @@ class SettingsTableViewCell: UITableViewCell {
             case "Calendar Events":
                 MemorableMetadataCache.sharedInstance.retrieveMetadataFrom(CalendarLibraryAdapter())
             default:
-                DDLogInfo("No item selected")
+                DDLogVerbose("No item selected")
         }
     }
     

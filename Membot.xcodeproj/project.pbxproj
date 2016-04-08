@@ -36,6 +36,8 @@
 		978C4E081C985A3A005CF3FE /* Haneke.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 978C4E061C985A3A005CF3FE /* Haneke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		978C4E0C1C985A75005CF3FE /* Haneke.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 978C4E0B1C985A75005CF3FE /* Haneke.framework.dSYM */; };
 		97C0E4CE1C9A69F7004C6C7C /* MemorableFacebookMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C0E4CD1C9A69F7004C6C7C /* MemorableFacebookMetadata.swift */; };
+		97ED60D01CB8041E004C8BCC /* CompositionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED60CF1CB8041E004C8BCC /* CompositionAdapter.swift */; };
+		97ED60D21CB80601004C8BCC /* MemorableComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED60D11CB80601004C8BCC /* MemorableComposition.swift */; };
 		FA1399881C86112F0050678C /* MonthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399871C86112F0050678C /* MonthCollectionViewController.swift */; };
 		FA13998A1C8611430050678C /* DayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1399891C8611430050678C /* DayCollectionViewController.swift */; };
 		FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */; };
@@ -135,6 +137,8 @@
 		978C4E061C985A3A005CF3FE /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = ../Carthage/Build/iOS/Haneke.framework; sourceTree = "<group>"; };
 		978C4E0B1C985A75005CF3FE /* Haneke.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Haneke.framework.dSYM; path = ../Carthage/Build/iOS/Haneke.framework.dSYM; sourceTree = "<group>"; };
 		97C0E4CD1C9A69F7004C6C7C /* MemorableFacebookMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableFacebookMetadata.swift; sourceTree = "<group>"; };
+		97ED60CF1CB8041E004C8BCC /* CompositionAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionAdapter.swift; sourceTree = "<group>"; };
+		97ED60D11CB80601004C8BCC /* MemorableComposition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableComposition.swift; sourceTree = "<group>"; };
 		FA1399871C86112F0050678C /* MonthCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewController.swift; sourceTree = "<group>"; };
 		FA1399891C8611430050678C /* DayCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCollectionViewController.swift; sourceTree = "<group>"; };
 		FA13998B1C8611580050678C /* MemorableCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorableCollectionViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				971036D11C92135C00C9628E /* MemorableMetadataCache.swift */,
 				FA6B00871CA457B6004E871B /* DisplayableImageAdapter.swift */,
 				FAA919251CA45FAD001B1F46 /* DisplayableImageMemorable.swift */,
+				97ED60CE1CB803FE004C8BCC /* Composition */,
 				971036BB1C91D70600C9628E /* Facebook */,
 				971036BC1C91D71700C9628E /* Calendar */,
 				971036BD1C91D72600C9628E /* Photos */,
@@ -309,6 +314,15 @@
 				9768B99A1C86070900019860 /* Info.plist */,
 			);
 			path = MembotUITests;
+			sourceTree = "<group>";
+		};
+		97ED60CE1CB803FE004C8BCC /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				97ED60CF1CB8041E004C8BCC /* CompositionAdapter.swift */,
+				97ED60D11CB80601004C8BCC /* MemorableComposition.swift */,
+			);
+			name = Composition;
 			sourceTree = "<group>";
 		};
 		FA1399991C8612C10050678C /* MonthCollectionView */ = {
@@ -499,10 +513,12 @@
 				FA709E801C88C10E00AAAF06 /* FacebookLoginViewController.swift in Sources */,
 				9768B9761C86070800019860 /* AppDelegate.swift in Sources */,
 				9744840B1C8F3B1C001DF7CC /* MemorablePhoto.swift in Sources */,
+				97ED60D01CB8041E004C8BCC /* CompositionAdapter.swift in Sources */,
 				FA13998C1C8611580050678C /* MemorableCollectionViewController.swift in Sources */,
 				FAD10BA11C920A52001262A6 /* SettingsTableViewController.swift in Sources */,
 				FA709E841C89FBDF00AAAF06 /* MemorableFacebookPhoto.swift in Sources */,
 				971466B71C88946B000C07FC /* Memorable.swift in Sources */,
+				97ED60D21CB80601004C8BCC /* MemorableComposition.swift in Sources */,
 				FA1399921C8612330050678C /* MonthCollectionViewCell.swift in Sources */,
 				FA13998A1C8611430050678C /* DayCollectionViewController.swift in Sources */,
 				FA13998E1C8611D00050678C /* MonthHeaderCollectionReusableView.swift in Sources */,
