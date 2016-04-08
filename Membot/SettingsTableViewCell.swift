@@ -12,12 +12,18 @@ import CocoaLumberjackSwift
 
 class SettingsTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var settingCellLabel: UILabel!
-    @IBOutlet weak var settingCellSwitch: UISwitch!
+//    @IBOutlet weak var settingCellLabel: UILabel!
+//    @IBOutlet weak var settingCellSwitch: UISwitch!
+    
+    let settingCellLabel = UILabel()
+    let settingCellSwitch = UISwitch()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.settingCellLabel.text = "BARNACLES"
+        self.contentView.addSubview(settingCellLabel)
+        self.settingCellLabel.center = self.contentView.center
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -25,35 +31,35 @@ class SettingsTableViewCell: UITableViewCell {
         self.selectionStyle = .None
     }
 
-    @IBAction func settingsCellSwitchChanged(sender: AnyObject) {
-        self.didTurnOnFacebook()
-        if self.settingCellSwitch.on {
-            retrieveMetaDataForOnSettings()
-        }
-        saveSwitchToAppSettings()
-    }
+//    @IBAction func settingsCellSwitchChanged(sender: AnyObject) {
+//        self.didTurnOnFacebook()
+//        if self.settingCellSwitch.on {
+//            retrieveMetaDataForOnSettings()
+//        }
+//        saveSwitchToAppSettings()
+//    }
     
     func saveSwitchToAppSettings() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let entityDescription = NSEntityDescription.entityForName("Setting",
-            inManagedObjectContext: managedContext)
-        let request = NSFetchRequest()
-        request.entity = entityDescription
-        let predicate = NSPredicate(format: "(displayableName = %@)", settingCellLabel.text!)
-        request.predicate = predicate
-        do {
-            let results = try managedContext.executeFetchRequest(request)
-            let result = results[0] as! NSManagedObject
-            let displayableName = result.valueForKey("displayableName")
-            result.setValue(self.settingCellSwitch.on, forKey: "isOn")
-            try managedContext.save()
-            AppSettings.sharedInstance.updateSetting(displayableName as! String, isOn: self.settingCellSwitch.on)
-            
-        } catch let error as NSError {
-            DDLogError("Could not save \(error), \(error.userInfo)")
-            
-        }
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext = appDelegate.managedObjectContext
+//        let entityDescription = NSEntityDescription.entityForName("Setting",
+//            inManagedObjectContext: managedContext)
+//        let request = NSFetchRequest()
+//        request.entity = entityDescription
+//        let predicate = NSPredicate(format: "(displayableName = %@)", settingCellLabel.text!)
+//        request.predicate = predicate
+//        do {
+//            let results = try managedContext.executeFetchRequest(request)
+//            let result = results[0] as! NSManagedObject
+//            let displayableName = result.valueForKey("displayableName")
+//            result.setValue(self.settingCellSwitch.on, forKey: "isOn")
+//            try managedContext.save()
+//            AppSettings.sharedInstance.updateSetting(displayableName as! String, isOn: self.settingCellSwitch.on)
+//            
+//        } catch let error as NSError {
+//            DDLogError("Could not save \(error), \(error.userInfo)")
+//            
+//        }
     }
     
     func retrieveMetaDataForOnSettings() {
@@ -71,10 +77,10 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     func didTurnOnFacebook() -> Bool {
-        if self.settingCellLabel.text == "Facebook" && self.settingCellSwitch.on {
-            return true
-        } else {
+//        if self.settingCellLabel.text == "Facebook" && self.settingCellSwitch.on {
+//            return true
+//        } else {
             return false
-        }
+//        }
     }
 }

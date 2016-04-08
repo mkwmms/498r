@@ -19,7 +19,10 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBarHidden = false
+        
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 64)
+        navigationBar.autoresizingMask = .FlexibleWidth
         navigationBar.backgroundColor = UIColor(white:1, alpha: 0.5)
         let navigationItem = UINavigationItem()
         navigationItem.title = "Settings"
@@ -29,6 +32,9 @@ class SettingsTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = doneButton
         navigationBar.items = [navigationItem]
         self.view.addSubview(navigationBar)
+        
+        self.tableView.registerClass(SettingsTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        self.tableView.frame = CGRect(x: 0, y: UIScreen.mainScreen().bounds.height - 64, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - 64)
     }
     
     func doneWithSettings(sender: UIBarButtonItem) {
@@ -38,6 +44,10 @@ class SettingsTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+//        <#code#>
+//    }
 
     // MARK: - Table view data source
 
