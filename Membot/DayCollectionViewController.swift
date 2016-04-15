@@ -150,11 +150,20 @@ extension DayCollectionViewController: UICollectionViewDelegateFlowLayout {
         // FIXME!! should not have to do this
         
         let memorable = dayDataSource?.filteredMemorablesByDay[indexPath.section][indexPath.row]
-        if memorable is MemorableComposition || memorable is MemorableCalendarEvent {
-            return CGSize(width: UIScreen.mainScreen().bounds.width, height: 30)
+        if memorable is MemorableCalendarEvent {
+            return CGSize(width: UIScreen.mainScreen().bounds.width, height: 50)
+        } else if memorable is MemorableComposition {
+//            let displayText = memorable?.metadata as! String
+//            let textView = UITextView()
+//            textView.text = displayText
+//            textView.sizeToFit()
+//            textView.layoutIfNeeded()
+//            print("TextView size:", textView.bounds.width, textView.bounds.height)
+//            return textView.contentSize
+            return CGSize(width: UIScreen.mainScreen().bounds.width, height: 300)
         }
         let cellSize = UIScreen.mainScreen().bounds.width
-        return CGSize(width: cellSize, height: cellSize)
+        return CGSize(width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.width)
     }
 }
 

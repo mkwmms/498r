@@ -35,6 +35,12 @@ extension NSDate {
     func dayDescription() -> String {
         return NSDateFormatter.localizedStringFromDate(self, dateStyle: .MediumStyle, timeStyle: .NoStyle)
     }
+    
+    func timeDescription() -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "H:mm"
+        return formatter.stringFromDate(self)
+    }
 }
 
 extension Memorable {
